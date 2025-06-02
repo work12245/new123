@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+
+        <title>Mastering the Perfect Burger: Tips and Tricks</title>
+        <meta name="description" content="Mastering the Perfect Burger: Tips and Tricks">
+
+    <link rel="icon" type="image/png" href="/public/uploads/website-images/favicon-2023-03-05-01-07-01-8002.png">
+    <link rel="stylesheet" href="/public/user/css/all.min.css">
+    <link rel="stylesheet" href="/public/user/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/user/css/spacing.css">
+    <link rel="stylesheet" href="/public/user/css/slick.css">
+    <link rel="stylesheet" href="/public/user/css/nice-select.css">
+    <link rel="stylesheet" href="/public/user/css/venobox.min.css">
+    <link rel="stylesheet" href="/public/user/css/animate.css">
+    <link rel="stylesheet" href="/public/user/css/jquery.exzoom.css">
+    <link rel="stylesheet" href="/public/toastr/toastr.min.css">
+    <link rel="stylesheet" href="/public/user/css/style.css">
+    <link rel="stylesheet" href="/public/user/css/responsive.css">
+    <link rel="stylesheet" href="/public/backend/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/public/backend/css/select2.min.css">
+
+
+    <style>
+    :root {
+    --colorPrimary: #eb0029;
+    --paraColor: #494949;
+    --colorBlack: #010f1c;
+    --colorWhite: #ffffff;
+    --paraFont: 'Barlow', sans-serif;
+    --headingFont: 'Jost', sans-serif;
+    --cursiveFont: 'Lobster', cursive;
+    --boxShadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    --gradiantBg: rgb(156, 3, 30)linear-gradient(0deg, rgba(156, 3, 30, 1) 0%, rgba(235, 0, 41, 1) 100%);
+    --gradiantHoverBg: rgb(235, 0, 41)linear-gradient(0deg, rgba(235, 0, 41, 1) 0%, rgba(156, 3, 30, 1) 100%);
+}
+
+
+.footer_overlay{
+    background: #b90424fa !important;
+}
+
+
+.topbar_icon li a {
+    background: #ca0628 !important;
+}
+
+</style>
+    
+    <!--jquery library js-->
+    <script src="/public/user/js/jquery-3.6.3.min.js"></script>
+    <script src="/public/user/js/sweetalert2@11.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=5248-fd-5fds"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '5248-fd-5fds');
+    </script>
+    
+            <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'fsdf45sdf4sdf');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=fsdf45sdf4sdf&ev=PageView&noscript=1"
+    /></noscript>
+    
+
+</head>
+
+<body>
+
+    <div class="" id="preloader">
+        <div class="img d-none">
+            <img src="/public/uploads/website-images/Spinner.gif" alt="UniFood" class="img-fluid">
+        </div>
+    </div>
+
+    <!--=============================
+        TOPBAR START
+    ==============================-->
+    <section class="wsus__topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6 d-none d-md-block">
+                    <ul class="wsus__topbar_info d-flex flex-wrap">
+                        <li><a href="mailto:websolutionus1@gmail.com"><i class="fas fa-envelope"></i> websolutionus1@gmail.com</a>
+                        </li>
+                        <li><a href="callto:+1347-430-9510"><i class="fas fa-phone-alt"></i> +1347-430-9510</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                    <div class="topbar_right">
+                        <div class="topbar_language">
+                            <form id="setLanguage" action="set-language">
+                                <select id="select_js3" name="code">
+                                                                        <option value="en"selected>English</option>
+                                                                        <option value="bn">Bangla</option>
+                                                                        <option value="ar">Arabic</option>
+                                                                    </select>
+                            </form>
+                        </div>
+                        <ul class="topbar_icon d-flex flex-wrap">
+                                                        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                                                        <li><a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                                                        <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                                                        <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                                                    </ul>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=============================
+        TOPBAR END
+    ==============================-->
+
+
+    <!--=============================
+        MENU START
+    ==============================-->
+    <nav class="navbar navbar-expand-lg main_menu">
+        <div class="container">
+            <a class="navbar-brand" href="https://unifood.websolutionus.com">
+                <img src="/public/uploads/website-images/logo-2022-12-13-05-18-57-4851.png" alt="UniFood" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="far fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav m-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://unifood.websolutionus.com">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="products">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">pages <i class="far fa-plus"></i></a>
+                        <ul class="droap_menu">
+
+                            <li>
+                                <a href="our-chef">Our chef</a>
+                            </li>
+
+                            <li><a href="testimonial">Testimonial</a></li>
+
+                            <li><a href="faq">FAQs</a></li>
+
+                            <li><a href="privacy-policy">privacy policy</a></li>
+                            <li><a href="terms-and-condition">terms and condition</a></li>
+
+                                                        <li><a href="page/custom-page-one">Custom Page One</a></li>
+                                                        <li><a href="page/custom-page-two">Custom Page Two</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blogs">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us">contact us</a>
+                    </li>
+                </ul>
+                <ul class="menu_icon d-flex flex-wrap">
+                    <li>
+                        <a href="javascript:;" class="menu_search"><i class="far fa-search"></i></a>
+                        <div class="wsus__search_form">
+                            <form action="products">
+                                <span class="close_search"><i class="far fa-times"></i></span>
+                                <input name="search" type="text" placeholder="Type your keyword">
+                                <button type="submit">search</button>
+                            </form>
+                        </div>
+                    </li>
+                                        <li>
+                        <a class="cart_icon"><i class="fas fa-shopping-basket"></i> <span class="topbar_cart_qty">1</span></a>
+                    </li>
+                    <li>
+                        <a href="dashboard"><i class="fas fa-user"></i></a>
+                    </li>
+                    <li>
+                                                <a class="common_btn" href="#" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">reservation</a>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wsus__menu_cart_area">
+        <div class="wsus__menu_cart_boody">
+
+                            <div>
+                    <div class="wsus__menu_cart_header">
+                        <h5 class="mini_cart_body_item">Total Item(1)</h5>
+                        <span class="close_cart"><i class="fal fa-times"></i></span>
+                    </div>
+                    <ul class="mini_cart_list">
+                                                                            <li class="min-item-5f7087038469780385ab24fb9f5f0b11" data-mini-item-rowid="5f7087038469780385ab24fb9f5f0b11">
+                                <div class="menu_cart_img">
+                                    <img src="/public/uploads/custom-images/pulled-pork-sliders-2023-03-06-01-02-22-7233.png" alt="menu" class="img-fluid w-100">
+                                </div>
+                                <div class="menu_cart_text">
+                                    <a class="title" href="product/pulled-pork-sliders">Pulled Pork Sliders </a>
+                                    <p class="size">Small</p>
+                                                                        <span class="extra">Sour Cream (+$10)</span>
+                                    
+                                    
+                                    <p class="price mini-price-5f7087038469780385ab24fb9f5f0b11">$140</p>
+                                </div>
+                                <input type="hidden" class="mini-input-price set-mini-input-price-5f7087038469780385ab24fb9f5f0b11" value="140">
+                                <span class="del_icon mini-item-remove"><i class="fal fa-times"></i></span>
+                            </li>
+                        
+                    </ul>
+                    <p class="subtotal">Sub Total <span class="mini_sub_total">$140</span></p>
+                    <a class="cart_view" href="cart"> view cart</a>
+                    <a class="checkout" href="checkout">checkout</a>
+                </div>
+            
+        </div>
+    </div>
+
+            <div class="wsus__reservation">
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Book a Table</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="wsus__reservation_form" method="POST" action="store-reservation">
+                                <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                                                <input class="reservation_input datepicker" type="text" autocomplete="off" name="reserve_date" required placeholder="Select date">
+
+                                <select class="reservation_input" id="select_js" required name="reserve_time">
+                                    <option value="">Select Time</option>
+                                    <option value="12:00 AM - 01:00 AM">12:00 AM - 01:00 AM</option>
+                                    <option value="01:00 AM - 02:00 AM">01:00 AM - 02:00 AM</option>
+                                    <option value="02:00 AM - 03:00 AM">02:00 AM - 03:00 AM</option>
+                                    <option value="03:00 AM - 04:00 AM">03:00 AM - 04:00 AM</option>
+                                    <option value="04:00 AM - 05:00 AM">04:00 AM - 05:00 AM</option>
+                                    <option value="05:00 AM - 06:00 AM">05:00 AM - 06:00 AM</option>
+                                    <option value="06:00 AM - 07:00 AM">06:00 AM - 07:00 AM</option>
+                                    <option value="07:00 AM - 08:00 AM">07:00 AM - 08:00 AM</option>
+                                    <option value="08:00 AM - 09:00 AM">08:00 AM - 09:00 AM</option>
+                                    <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+                                    <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                                    <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                                    <option value="12:00 PM - 01:00 PM">12:00 PM - 01:00 PM</option>
+                                    <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+                                    <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+                                    <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
+                                    <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+                                    <option value="05:00 PM - 06:00 PM">05:00 PM - 06:00 PM</option>
+                                    <option value="06:00 PM - 07:00 PM">06:00 PM - 07:00 PM</option>
+                                    <option value="07:00 PM - 08:00 PM">07:00 PM - 08:00 PM</option>
+                                    <option value="08:00 PM - 09:00 PM">08:00 PM - 09:00 PM</option>
+                                    <option value="09:00 PM - 10:00 PM">09:00 PM - 10:00 PM</option>
+                                    <option value="10:00 PM - 11:00 PM">10:00 PM - 11:00 PM</option>
+                                    <option value="11:00 PM - 12:00 AM">11:00 PM - 12:00 AM</option>
+                                </select>
+
+                                <input class="reservation_input" type="number" placeholder="Number of person" name="person" required>
+                                <button type="submit">Send Request</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--=============================
+        MENU END
+    ==============================-->
+
+
+    <!-- CART POPUT START -->
+    <div class="wsus__cart_popup">
+        <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="fal fa-times"></i></button>
+                        <div class="load_product_modal_response">
+                            <img src="/public/uploads/website-images/Spinner-1s-200px.gif" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CART POPUT END -->
+    <!--=============================
+        OFFER ITEM END
+    ==============================-->
+
+    
+
+    <!--=============================
+        BREADCRUMB START
+    ==============================-->
+    <section class="wsus__breadcrumb" style="background: url(/public/uploads/website-images/breadcrumb_image-2022-12-31-01-18-17-5423.jpg);">
+        <div class="wsus__breadcrumb_overlay">
+            <div class="container">
+                <div class="wsus__breadcrumb_text">
+                    <h1>Blog Details</h1>
+                    <ul>
+                        <li><a href="https://unifood.websolutionus.com">Home</a></li>
+                        <li><a href="blogs">Our Blogs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=============================
+        BREADCRUMB END
+    ==============================-->
+
+
+        <!--=========================
+        BLOG DETAILS START
+    ==========================-->
+    <section class="wsus__blog_details mt_120 xs_mt_90 mb_100 xs_mb_70">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8">
+                    <div class="wsus__blog_det_area">
+                        <div class="wsus__blog_details_img wow fadeInUp" data-wow-duration="1s">
+                            <img src="/public/uploads/custom-images/blog--2023-03-06-08-52-20-8429.jpg" alt="blog details" class="imf-fluid w-100">
+                        </div>
+                        <div class="wsus__blog_details_text wow fadeInUp" data-wow-duration="1s">
+                            <ul class="details_bloger d-flex flex-wrap">
+                                <li><i class="far fa-user"></i> By Admin</li>
+                                <li><i class="far fa-comment-alt-lines"></i> 2 Comments</li>
+                                <li><i class="far fa-calendar-alt"></i> 05 Mar 2023</li>
+                            </ul>
+                            <h2>Mastering the Perfect Burger: Tips and Tricks</h2>
+                            <p>Per ex vero nonumy. Ius eu doming nominavi mediocrem, aliquid efficiantur no vim, sanctus admodum mnesarchum ad pro. No sea invidunt partiendo. No postea numquam ocurreret duo, unum abhorreant cu nam, fugit fastidii percipitur nam id.</p>
+<p>Appetere fabellas ius te. Nonumes splendide deseruisse ea vis, alii velit vel eu. Eos ut scaevola platonem rationibus. Vis natum vivendo sententiae in, ea aperiam apeirian pri, in partem eleifend quo. Pro ex nobis utinam, nam et vidit numquam fastidii, ne per munere adolescens.</p>
+<p>Id est maiorum volutpat, ad nominavi suscipit suscipiantur vix. Ut ius veri aperiam reprehendunt. Ut per unum sapientem consequuntur, usu ut quot scripta. Sea te nisl expetenda, ad quo congue argumentum, sit quis simul accusam cu. Usu ei perfecto repudiare tincidunt, ut quas malis erant vim. An mel vidit iudicabit.</p>
+<p>In vim natum soleat nostro, pri in eloquentiam contentiones. Eu sit sapientem reprehendunt, omnis aliquid eu eos. No quot illum veniam est, ne pro iudico saperet mnesarchum. Ea pri nostro disputando contentiones, eu nec menandri qualisque, vis ex equidem invidunt. Et accusam detracto splendide per, congue meliore id sea. Has eu aeterno patrioque expetendis, mel ei dissentiet reformidans.</p>
+<p>Ei usu malis aeque efficiantur. Mazim dolor denique duo ad, augue ornatus sententiae vel at, duo id sumo vulputate. His legimus assueverit ut, commune maluisset deterruisset id mel. Oblique volumus eos ut, quo autem posidonium definitiones cu. Cu usu lorem consul concludaturque,</p>
+<p>Doming aliquid te pro. Mei et quodsi ornatus praesent, summo debet vis eu, dolor soleat nostrud sea eu. Cu altera possim sanctus est. Ea iriure repudiandae per, no eam legendos consectetuer. Mel at justo doming voluptatum. Mel mentitum fabellas deserunt no, et duo amet unum appetere. Doming aliquid te pro. Mei et quodsi ornatus praesent, summo debet vis eu, dolor soleat nostrud sea eu. Cu altera possim sanctus est. Ea iriure repudiandae per, no eam legendos consectetuer.</p>
+
+                            <div class="blog_tags_share d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="share d-flex flex-wrap align-items-center">
+                                    <span>share:</span>
+                                    <ul class="d-flex flex-wrap">
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=blog/mastering-the-perfect-burger-tips-and-tricks&t=Mastering the Perfect Burger: Tips and Tricks"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="https://twitter.com/share?text=Mastering the Perfect Burger: Tips and Tricks&url=blog/mastering-the-perfect-burger-tips-and-tricks"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=blog/mastering-the-perfect-burger-tips-and-tricks&title=Mastering the Perfect Burger: Tips and Tricks"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="https://www.pinterest.com/pin/create/button/?description=Mastering the Perfect Burger: Tips and Tricks&media=&url=blog/mastering-the-perfect-burger-tips-and-tricks"><i class="fab fa-pinterest-p"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="blog_det_button mt_100 xs_mt_70 wow fadeInUp" data-wow-duration="1s">
+                                                    <li>
+                                <a href="blog/the-best-ways-to-cook-seafood-at-home">
+                                    <img src="/public/uploads/custom-images/blog--2023-03-06-08-51-22-6826.jpg" alt="button img" class="img-fluid w-100">
+                                    <p>The Best Ways to Cook Seafood at Home
+                                        <span> <i class="far fa-long-arrow-left"></i> Previous</span>
+                                    </p>
+                                </a>
+                            </li>
+                        
+                                                    <li>
+                                <a href="blog/the-surprising-health-benefits-of-spicy-foods">
+                                    <p>The Surprising Health Benefits of Spicy Foods
+                                        <span>next <i class="far fa-long-arrow-right"></i></span>
+                                    </p>
+                                    <img src="/public/uploads/custom-images/blog--2023-03-06-08-53-28-1159.jpg" alt="button img" class="img-fluid w-100">
+                                </a>
+                            </li>
+                                            </ul>
+
+                    <div class="wsus__comment mt_100 xs_mt_70 wow fadeInUp" data-wow-duration="1s">
+                        <h4>2 Comments</h4>
+                                                    <div class="wsus__single_comment m-0 border-0">
+                                <img src="http://www.gravatar.com/avatar/75d23af433e0cea4c0e45a56dba18b30" alt="review" class="img-fluid">
+                                <div class="wsus__single_comm_text">
+                                    <h3>David Simmonsss <span>05 Mar, 2023 </span></h3>
+                                    <p>Te soleat legendos molestiae cum. Tale sanctus invidunt cu per, quo at modo recteque elaboraret. Ex mazim homero per. Eu nec exerci doctus, cu mei oblique copiosae.</p>
+                                </div>
+                            </div>
+                                                    <div class="wsus__single_comment m-0 border-0">
+                                <img src="http://www.gravatar.com/avatar/75d23af433e0cea4c0e45a56dba18b30" alt="review" class="img-fluid">
+                                <div class="wsus__single_comm_text">
+                                    <h3>John Doe <span>05 Mar, 2023 </span></h3>
+                                    <p>Sit vivendum eleifend adipiscing ea. Modus legere suscipiantur an vel, melius patrioque est cu, eum at audire probatus repudiandae.</p>
+                                </div>
+                            </div>
+                                            </div>
+
+                    <div class="comment_input mt_100 xs_mt_70 wow fadeInUp" data-wow-duration="1s">
+                        <h4>Write a comment</h4>
+                        <p>Your email address will not be published. Required fields are marked *</p>
+                        <form id="blogCommentForm">
+                            <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                            <div class="row">
+                                <div class="col-xl-6 col-md-6">
+                                    <label>name *</label>
+                                    <div class="wsus__contact_form_input">
+                                        <span><i class="fal fa-user-alt"></i></span>
+                                        <input type="text" name="name" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-md-6">
+                                    <label>Email *</label>
+                                    <div class="wsus__contact_form_input">
+                                        <span><i class="fal fa-user-alt"></i></span>
+                                        <input type="email" placeholder="Email" name="email">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <label>comment *</label>
+                                    <div class="wsus__contact_form_input textarea">
+                                        <span><i class="fal fa-user-alt"></i></span>
+                                        <textarea rows="5" placeholder="Your Comment" name="comment"></textarea>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="blog_id" value="5">
+                                
+                                <div class="col-xl-12">
+                                    <button type="submit" class="common_btn mt_20">Submit comment</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4">
+                    <div id="sticky_sidebar">
+                        <div class="wsus__blog_search blog_sidebar m-0 wow fadeInUp" data-wow-duration="1s">
+                            <h3>Search</h3>
+                            <form action="blogs">
+                                <input name="search" type="text" placeholder="Type your keyword">
+                                <button type="submit"><i class="fas fa-search"></i></button>
+                            </form>
+                        </div>
+                        <div class="wsus__related_blog blog_sidebar wow fadeInUp" data-wow-duration="1s">
+                            <h3>Popular Post</h3>
+                            <ul>
+                                                                    <li>
+                                        <img src="/public/uploads/custom-images/blog--2023-03-06-08-51-22-6826.jpg" alt="blog" class="img-fluid w-100">
+                                        <div class="text">
+                                            <a href="blog/the-best-ways-to-cook-seafood-at-home">The Best Ways to Cook Seafood at Home</a>
+                                            <p><i class="far fa-calendar-alt"></i> 05 Mar 2023</p>
+                                        </div>
+                                    </li>
+                                                                    <li>
+                                        <img src="/public/uploads/custom-images/blog--2023-03-05-05-36-09-3126.jpg" alt="blog" class="img-fluid w-100">
+                                        <div class="text">
+                                            <a href="blog/the-science-of-pairing-wine-and-cheese">The Science of Pairing Wine and Cheese</a>
+                                            <p><i class="far fa-calendar-alt"></i> 05 Mar 2023</p>
+                                        </div>
+                                    </li>
+                                                                    <li>
+                                        <img src="/public/uploads/custom-images/blog--2023-03-05-05-35-24-9694.jpg" alt="blog" class="img-fluid w-100">
+                                        <div class="text">
+                                            <a href="blog/why-our-pasta-is-worth-the-visit">Why Our Pasta is Worth the Visit</a>
+                                            <p><i class="far fa-calendar-alt"></i> 05 Mar 2023</p>
+                                        </div>
+                                    </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="wsus__blog_categori blog_sidebar wow fadeInUp" data-wow-duration="1s">
+                            <h3>Categories</h3>
+                            <ul>
+                                                                <li><a href="blogs?category=chicken">Chicken <span>2</span></a></li>
+                                                                <li><a href="blogs?category=fresh-food">Fresh Food <span>1</span></a></li>
+                                                                <li><a href="blogs?category=spicy">Spicy <span>2</span></a></li>
+                                                                <li><a href="blogs?category=grill">Grill <span>1</span></a></li>
+                                                                <li><a href="blogs?category=kabab">Kabab <span>0</span></a></li>
+                                                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=========================
+        BLOG DETAILS END
+    ==========================-->
+
+
+    <script>
+        (function($) {
+            "use strict";
+            $(document).ready(function () {
+                $("#blogCommentForm").on('submit', function(e){
+                    e.preventDefault();
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        data: $('#blogCommentForm').serialize(),
+                        url: "blog-comment",
+                        success: function (response) {
+                            if(response.status == 1){
+                                toastr.success(response.message)
+                                $("#blogCommentForm").trigger("reset");
+                            }
+                        },
+                        error: function(response) {
+                            if(response.responseJSON.errors.name)toastr.error(response.responseJSON.errors.name[0])
+                            if(response.responseJSON.errors.email)toastr.error(response.responseJSON.errors.email[0])
+                            if(response.responseJSON.errors.comment)toastr.error(response.responseJSON.errors.comment[0])
+
+                            if(!response.responseJSON.errors.name || !response.responseJSON.errors.email || !response.responseJSON.errors.comment){
+                                toastr.error("Please complete the recaptcha to submit the form")
+                            }
+                        }
+                    });
+                })
+
+
+            });
+        })(jQuery);
+
+    </script>
+
+
+
+    <!--=============================
+        BRAND START
+    ==============================-->
+    <section class="wsus__brand" style="background: url(/public/uploads/website-images/counter-bg-2023-03-06-09-34-36-3312.jpg);">
+        <div class="wsus__brand_overlay">
+            <div class="container">
+                <div class="row brand_slider wow fadeInUp" data-wow-duration="1s">
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-35-57-4275.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-05-2512.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-15-7213.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-24-3552.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-34-1671.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-42-1713.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                    </div>
+            </div>
+        </div>
+    </section>
+    <!--=============================
+        BRAND END
+    ==============================-->
+
+
+    <!--=============================
+        FOOTER START
+    ==============================-->
+    <footer style="background: url(/public/uploads/website-images/footer_background-2022-12-13-12-06-33-5633.jpg);">
+        <div class="footer_overlay pt_100 xs_pt_70 pb_100 xs_pb_70">
+            <div class="container wow fadeInUp" data-wow-duration="1s">
+                <div class="row justify-content-between">
+                    <div class="col-lg-4 col-sm-8 col-md-6">
+                        <div class="wsus__footer_content">
+                            <a class="footer_logo" href="https://unifood.websolutionus.com">
+                                <img src="/public/uploads/website-images/footer_logo-2022-12-13-05-17-08-5906.png" alt="UniFood" class="img-fluid w-100">
+                            </a>
+                            <span>There are many variations of Lorem Ipsum available, but the majority have suffered.</span>
+                            <p class="info"><i class="far fa-map-marker-alt"></i> 7232 Broadway 308, United States</p>
+                            <a class="info" href="callto:+1347-430-9510"><i class="fas fa-phone-alt"></i>
+                                +1347-430-9510</a>
+                            <a class="info" href="mailto:websolutionus1@gmail.com"><i class="fas fa-envelope"></i>
+                                websolutionus1@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-md-6">
+                        <div class="wsus__footer_content">
+                            <h3>Important Link</h3>
+                            <ul>
+                                <li><a href="https://unifood.websolutionus.com">Home</a></li>
+                                <li><a href="about-us">About Us</a></li>
+                                <li><a href="contact-us">Contact Us</a></li>
+                                <li><a href="our-chef">Our Chef</a></li>
+                                <li><a href="our-chef">Dashboard</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-md-6 order-sm-4 order-lg-3">
+                        <div class="wsus__footer_content">
+                            <h3>Help Link</h3>
+                            <ul>
+                                <li><a href="blogs">Our Blogs</a></li>
+                                <li><a href="testimonial">Testimonial</a></li>
+                                <li><a href="faq">FAQ</a></li>
+                                <li><a href="privacy-policy">Privacy and Policy</a></li>
+                                <li><a href="terms-and-condition">Terms anc Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 col-md-6 order-lg-4">
+                        <div class="wsus__footer_content">
+                            <h3>Subscribe to Newsletter</h3>
+                            <form id="subscribe_form">
+                                <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                <input type="email" placeholder="Email" name="email">
+                                <button id="subscribe_btn" type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                            <div class="wsus__footer_social_link">
+                                <h5>Follow us:</h5>
+                                <ul class="d-flex flex-wrap">
+                                                                        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                                                                        <li><a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                                                                        <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                                                                        <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wsus__footer_bottom d-flex flex-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="wsus__footer_bottom_text d-flex flex-wrap justify-content-between">
+                            <p>©2024 websolutionus All rights reserved</p>
+                            <ul class="d-flex flex-wrap">
+                                <li><a href="faq">FAQ</a></li>
+                                <li><a href="payment">Payment</a></li>
+                                <li><a href="checkout">Checkout</a></li>
+                                <li><a href="dashboard">Dashboard</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--=============================
+        FOOTER END
+    ==============================-->
+
+
+    <!--=============================
+        SCROLL BUTTON START
+    ==============================-->
+    <div class="wsus__scroll_btn">
+        Go to top
+    </div>
+    <!--=============================
+        SCROLL BUTTON END
+    ==============================-->
+
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/612dc781d6e7610a49b2d444/1fedd6l9m';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    
+
+    
+
+    <!--bootstrap js-->
+    <script src="/public/user/js/bootstrap.bundle.min.js"></script>
+    <!--font-awesome js-->
+    <script src="/public/user/js/Font-Awesome.js"></script>
+    <!-- slick slider -->
+    <script src="/public/user/js/slick.min.js"></script>
+    <!-- isotop js -->
+    <script src="/public/user/js/isotope.pkgd.min.js"></script>
+    <!-- simplyCountdownjs -->
+    <script src="/public/user/js/simplyCountdown.js"></script>
+    <!-- counter up js -->
+    <script src="/public/user/js/jquery.waypoints.min.js"></script>
+    <script src="/public/user/js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="/public/user/js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="/public/user/js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="/public/user/js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="/public/user/js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="/public/user/js/jquery.exzoom.js"></script>
+
+    <script src="/public/backend/js/bootstrap-datepicker.min.js"></script>
+
+    <!--main/custom js-->
+    <script src="/public/user/js/main.js"></script>
+
+    <script src="/public/toastr/toastr.min.js"></script>
+    <script src="/public/backend/js/select2.min.js"></script>
+
+    <script>
+            </script>
+
+    
+<script>
+    (function($) {
+        "use strict";
+        $(document).ready(function () {
+            
+            $("#setLanguage").on('change', function(e){
+                this.submit();
+            });
+            
+            $(".first_menu_product").click();
+
+            $('.select2').select2();
+            $('.modal_select2').select2({
+                dropdownParent: $("#address_modal")
+            });
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                startDate: '-Infinity'
+            });
+
+            $(document).on('click', '.mini-item-remove', function () {
+                let root_li = $(this).parents('li');
+                let rowid = root_li.data('mini-item-rowid');
+                root_li.remove();
+
+                let is_cart_page = "no";
+                if(is_cart_page == 'yes'){
+                    $(".main-cart-item-"+rowid).remove();
+                    calculate_total();
+                }
+
+                calculate_mini_total();
+
+                $.ajax({
+                    type: 'get',
+                    url: "remove-cart-item" + "/" + rowid,
+                    success: function (response) {
+                        toastr.success(response.message);
+
+                        let ready_to_reload = "no"
+                        if(ready_to_reload == 'yes'){
+                            window.location.reload();
+                        }
+                    },
+                    error: function(response) {
+                        if(response.status == 500){
+                            toastr.error("Server error occured")
+                        }
+
+                        if(response.status == 403){
+                            toastr.error("Server error occured")
+                        }
+                    }
+                });
+            });
+    
+            $("#subscribe_form").on('submit', function(e){
+                    e.preventDefault();
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    $("#subscribe_btn").prop("disabled", true);
+                    $("#subscribe_btn").html(`<i class="fas fa-spinner"></i>`);
+
+                    $.ajax({
+                        type: 'POST',
+                        data: $('#subscribe_form').serialize(),
+                        url: "subscribe-request",
+                        success: function (response) {
+                            toastr.success(response.message)
+                            $("#subscribe_form").trigger("reset");
+                            $("#subscribe_btn").prop("disabled", false);
+                            $("#subscribe_btn").html(`<i class="fas fa-paper-plane"></i>`);
+                        },
+                        error: function(response) {
+                            $("#subscribe_btn").prop("disabled", false);
+                            $("#subscribe_btn").html(`<i class="fas fa-paper-plane"></i>`);
+
+                            if(response.status == 403){
+                                if(response.responseJSON.message)toastr.error(response.responseJSON.message)
+                            }
+                        }
+                    });
+                })
+        });
+    })(jQuery);
+
+    function calculate_mini_total(){
+        let mini_sub_total = 0;
+        let mini_total_item = 0;
+        $(".mini-input-price").each(function () {
+            let current_val = $(this).val();
+            mini_sub_total = parseInt(mini_sub_total) + parseInt(current_val);
+            mini_total_item = parseInt(mini_total_item) + parseInt(1);
+        });
+
+        $(".mini_sub_total").html(`$${mini_sub_total}`);
+        $(".topbar_cart_qty").html(mini_total_item);
+        $(".mini_cart_body_item").html(`Total Item(${mini_total_item})`);
+
+        let mini_empty_cart = `<div class="wsus__menu_cart_header">
+                <h5>Your shopping cart is empty!</h5>
+                <span class="close_cart"><i class="fal fa-times"></i></span>
+            </div>
+            `;
+
+        if(mini_total_item == 0){
+            $(".wsus__menu_cart_boody").html(mini_empty_cart)
+        }
+    }
+
+    function load_product_model(product_id){
+
+        $("#preloader").addClass('preloader')
+        $(".img").removeClass('d-none')
+
+        $.ajax({
+            type: 'get',
+            url: "load-product-modal" + "/" + product_id,
+            success: function (response) {
+                $("#preloader").removeClass('preloader')
+                $(".img").addClass('d-none')
+                $(".load_product_modal_response").html(response)
+                $("#cartModal").modal('show');
+            },
+            error: function(response) {
+                toastr.error("Server error occured")
+            }
+        });
+    }
+
+    function add_to_wishlist(id){
+        $.ajax({
+            type: 'get',
+            url: "add-to-wishlist" + "/" + id,
+            success: function (response) {
+                toastr.success("Wishlist added successfully");
+            },
+            error: function(response) {
+                if(response.status == 500){
+                    toastr.error("Server error occured")
+                }
+
+                if(response.status == 403){
+                    toastr.error(response.responseJSON.message)
+                }
+            }
+        });
+    }
+    function before_auth_wishlist(){
+        toastr.error("Please login first")
+    }
+
+</script>
+
+</body>
+
+</html>

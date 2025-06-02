@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+
+        <title>Dashboard</title>
+        <meta name="description" content="Dashboard">
+
+    <link rel="icon" type="image/png" href="/public/uploads/website-images/favicon-2023-03-05-01-07-01-8002.png">
+    <link rel="stylesheet" href="/public/user/css/all.min.css">
+    <link rel="stylesheet" href="/public/user/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/user/css/spacing.css">
+    <link rel="stylesheet" href="/public/user/css/slick.css">
+    <link rel="stylesheet" href="/public/user/css/nice-select.css">
+    <link rel="stylesheet" href="/public/user/css/venobox.min.css">
+    <link rel="stylesheet" href="/public/user/css/animate.css">
+    <link rel="stylesheet" href="/public/user/css/jquery.exzoom.css">
+    <link rel="stylesheet" href="/public/toastr/toastr.min.css">
+    <link rel="stylesheet" href="/public/user/css/style.css">
+    <link rel="stylesheet" href="/public/user/css/responsive.css">
+    <link rel="stylesheet" href="/public/backend/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/public/backend/css/select2.min.css">
+
+
+    <style>
+    :root {
+    --colorPrimary: #eb0029;
+    --paraColor: #494949;
+    --colorBlack: #010f1c;
+    --colorWhite: #ffffff;
+    --paraFont: 'Barlow', sans-serif;
+    --headingFont: 'Jost', sans-serif;
+    --cursiveFont: 'Lobster', cursive;
+    --boxShadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    --gradiantBg: rgb(156, 3, 30)linear-gradient(0deg, rgba(156, 3, 30, 1) 0%, rgba(235, 0, 41, 1) 100%);
+    --gradiantHoverBg: rgb(235, 0, 41)linear-gradient(0deg, rgba(235, 0, 41, 1) 0%, rgba(156, 3, 30, 1) 100%);
+}
+
+
+.footer_overlay{
+    background: #b90424fa !important;
+}
+
+
+.topbar_icon li a {
+    background: #ca0628 !important;
+}
+
+</style>
+    
+    <!--jquery library js-->
+    <script src="/public/user/js/jquery-3.6.3.min.js"></script>
+    <script src="/public/user/js/sweetalert2@11.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=5248-fd-5fds"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '5248-fd-5fds');
+    </script>
+    
+            <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'fsdf45sdf4sdf');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=fsdf45sdf4sdf&ev=PageView&noscript=1"
+    /></noscript>
+    
+
+</head>
+
+<body>
+
+    <div class="" id="preloader">
+        <div class="img d-none">
+            <img src="/public/uploads/website-images/Spinner.gif" alt="UniFood" class="img-fluid">
+        </div>
+    </div>
+
+    <!--=============================
+        TOPBAR START
+    ==============================-->
+    <section class="wsus__topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6 d-none d-md-block">
+                    <ul class="wsus__topbar_info d-flex flex-wrap">
+                        <li><a href="mailto:websolutionus1@gmail.com"><i class="fas fa-envelope"></i> websolutionus1@gmail.com</a>
+                        </li>
+                        <li><a href="callto:+1347-430-9510"><i class="fas fa-phone-alt"></i> +1347-430-9510</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                    <div class="topbar_right">
+                        <div class="topbar_language">
+                            <form id="setLanguage" action="set-language">
+                                <select id="select_js3" name="code">
+                                                                        <option value="en"selected>English</option>
+                                                                        <option value="bn">Bangla</option>
+                                                                        <option value="ar">Arabic</option>
+                                                                    </select>
+                            </form>
+                        </div>
+                        <ul class="topbar_icon d-flex flex-wrap">
+                                                        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                                                        <li><a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                                                        <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                                                        <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                                                    </ul>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=============================
+        TOPBAR END
+    ==============================-->
+
+
+    <!--=============================
+        MENU START
+    ==============================-->
+    <nav class="navbar navbar-expand-lg main_menu">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="/public/uploads/website-images/logo-2022-12-13-05-18-57-4851.png" alt="UniFood" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="far fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav m-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">pages <i class="far fa-plus"></i></a>
+                        <ul class="droap_menu">
+
+                            <li>
+                                <a href="our-chef.html">Our chef</a>
+                            </li>
+
+                            <li><a href="testimonial.html">Testimonial</a></li>
+
+                            <li><a href="faq.html">FAQs</a></li>
+
+                            <li><a href="privacy-policy.html">privacy policy</a></li>
+                            <li><a href="terms-and-condition.html">terms and condition</a></li>
+
+                                                        <li><a href="page/custom-page-one.html">Custom Page One</a></li>
+                                                        <li><a href="page/custom-page-two.html">Custom Page Two</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blogs.html">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">contact us</a>
+                    </li>
+                </ul>
+                <ul class="menu_icon d-flex flex-wrap">
+                    <li>
+                        <a href="javascript:;" class="menu_search"><i class="far fa-search"></i></a>
+                        <div class="wsus__search_form">
+                            <form action="products">
+                                <span class="close_search"><i class="far fa-times"></i></span>
+                                <input name="search" type="text" placeholder="Type your keyword">
+                                <button type="submit">search</button>
+                            </form>
+                        </div>
+                    </li>
+                                        <li>
+                        <a class="cart_icon"><i class="fas fa-shopping-basket"></i> <span class="topbar_cart_qty">0</span></a>
+                    </li>
+                    <li>
+                        <a href="dashboard.html"><i class="fas fa-user"></i></a>
+                    </li>
+                    <li>
+                                                <a class="common_btn" href="login.html">reservation</a>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wsus__menu_cart_area">
+        <div class="wsus__menu_cart_boody">
+
+                            <div>
+                    <div class="wsus__menu_cart_header">
+                        <h5 class="mini_cart_body_item">Total Item(1)</h5>
+                        <span class="close_cart"><i class="fal fa-times"></i></span>
+                    </div>
+                    <ul class="mini_cart_list">
+                                                                            <li class="min-item-5f7087038469780385ab24fb9f5f0b11" data-mini-item-rowid="5f7087038469780385ab24fb9f5f0b11">
+                                <div class="menu_cart_img">
+                                    <img src="/public/uploads/custom-images/pulled-pork-sliders-2023-03-06-01-02-22-7233.png" alt="menu" class="img-fluid w-100">
+                                </div>
+                                <div class="menu_cart_text">
+                                    <a class="title" href="product/pulled-pork-sliders">Pulled Pork Sliders </a>
+                                    <p class="size">Small</p>
+                                                                        <span class="extra">Sour Cream (+$10)</span>
+                                    
+                                    
+                                    <p class="price mini-price-5f7087038469780385ab24fb9f5f0b11">$140</p>
+                                </div>
+                                <input type="hidden" class="mini-input-price set-mini-input-price-5f7087038469780385ab24fb9f5f0b11" value="140">
+                                <span class="del_icon mini-item-remove"><i class="fal fa-times"></i></span>
+                            </li>
+                        
+                    </ul>
+                    <p class="subtotal">Sub Total <span class="mini_sub_total">$140</span></p>
+                    <a class="cart_view" href="cart"> view cart</a>
+                    <a class="checkout" href="checkout">checkout</a>
+                </div>
+            
+        </div>
+    </div>
+
+            <div class="wsus__reservation">
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Book a Table</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="wsus__reservation_form" method="POST" action="store-reservation">
+                                <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                                                <input class="reservation_input datepicker" type="text" autocomplete="off" name="reserve_date" required placeholder="Select date">
+
+                                <select class="reservation_input" id="select_js" required name="reserve_time">
+                                    <option value="">Select Time</option>
+                                    <option value="12:00 AM - 01:00 AM">12:00 AM - 01:00 AM</option>
+                                    <option value="01:00 AM - 02:00 AM">01:00 AM - 02:00 AM</option>
+                                    <option value="02:00 AM - 03:00 AM">02:00 AM - 03:00 AM</option>
+                                    <option value="03:00 AM - 04:00 AM">03:00 AM - 04:00 AM</option>
+                                    <option value="04:00 AM - 05:00 AM">04:00 AM - 05:00 AM</option>
+                                    <option value="05:00 AM - 06:00 AM">05:00 AM - 06:00 AM</option>
+                                    <option value="06:00 AM - 07:00 AM">06:00 AM - 07:00 AM</option>
+                                    <option value="07:00 AM - 08:00 AM">07:00 AM - 08:00 AM</option>
+                                    <option value="08:00 AM - 09:00 AM">08:00 AM - 09:00 AM</option>
+                                    <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+                                    <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                                    <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                                    <option value="12:00 PM - 01:00 PM">12:00 PM - 01:00 PM</option>
+                                    <option value="01:00 PM - 02:00 PM">01:00 PM - 02:00 PM</option>
+                                    <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+                                    <option value="03:00 PM - 04:00 PM">03:00 PM - 04:00 PM</option>
+                                    <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+                                    <option value="05:00 PM - 06:00 PM">05:00 PM - 06:00 PM</option>
+                                    <option value="06:00 PM - 07:00 PM">06:00 PM - 07:00 PM</option>
+                                    <option value="07:00 PM - 08:00 PM">07:00 PM - 08:00 PM</option>
+                                    <option value="08:00 PM - 09:00 PM">08:00 PM - 09:00 PM</option>
+                                    <option value="09:00 PM - 10:00 PM">09:00 PM - 10:00 PM</option>
+                                    <option value="10:00 PM - 11:00 PM">10:00 PM - 11:00 PM</option>
+                                    <option value="11:00 PM - 12:00 AM">11:00 PM - 12:00 AM</option>
+                                </select>
+
+                                <input class="reservation_input" type="number" placeholder="Number of person" name="person" required>
+                                <button type="submit">Send Request</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--=============================
+        MENU END
+    ==============================-->
+
+
+    <!-- CART POPUT START -->
+    <div class="wsus__cart_popup">
+        <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="fal fa-times"></i></button>
+                        <div class="load_product_modal_response">
+                            <img src="/public/uploads/website-images/Spinner-1s-200px.gif" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CART POPUT END -->
+    <!--=============================
+        OFFER ITEM END
+    ==============================-->
+
+    
+
+    <!--=============================
+        BREADCRUMB START
+    ==============================-->
+    <section class="wsus__breadcrumb" style="background: url(/public/uploads/website-images/breadcrumb_image-2022-12-31-01-18-17-5423.jpg);">
+        <div class="wsus__breadcrumb_overlay">
+            <div class="container">
+                <div class="wsus__breadcrumb_text">
+                    <h1>Dashboard</h1>
+                    <ul>
+                        <li><a href="https://unifood.websolutionus.com">Home</a></li>
+                        <li><a href="dashboard">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=============================
+        BREADCRUMB END
+    ==============================-->
+
+
+        <!--=========================
+        DASHBOARD START
+    ==========================-->
+    <section class="wsus__dashboard mt_120 xs_mt_90 mb_100 xs_mb_70">
+        <div class="container">
+            <div class="wsus__dashboard_area">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 wow fadeInUp" data-wow-duration="1s">
+                        <div class="wsus__dashboard_menu">
+                            <div class="dasboard_header">
+                                <div class="dasboard_header_img">
+
+                                    
+                                    <img id="preview-user-avatar" src="/public/uploads/custom-images/-2023-03-06-09-41-47-8232.jpg" alt="user" class="img-fluid w-100">
+                                    
+                                    <label for="upload"><i class="far fa-camera"></i></label>
+                                    <form id="upload_user_avatar_form" enctype="multipart/form-data" method="POST">
+                                        <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                        <input type="file" name="image" id="upload" hidden onchange="previewThumnailImage(event)">
+                                    </form>
+                                </div>
+                                <h2>John Doe</h2>
+                            </div>
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                aria-orientation="vertical">
+                                <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                                    aria-selected="true"><span><i class="fas fa-user"></i></span> Personal Info</button>
+
+                                <button class="nav-link" id="v-pills-address-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-address" type="button" role="tab"
+                                    aria-controls="v-pills-address" aria-selected="true"><span><i
+                                            class="fas fa-user"></i></span>Address</button>
+
+                                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-profile" type="button" role="tab"
+                                    aria-controls="v-pills-profile" aria-selected="false"><span><i
+                                            class="fas fa-bags-shopping"></i></span> Order</button>
+
+                                <button class="nav-link" id="v-pills-messages-tab2" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-messages2" type="button" role="tab"
+                                    aria-controls="v-pills-messages2" aria-selected="false"><span><i
+                                            class="far fa-heart"></i></span> wishlist</button>
+
+                                <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-messages" type="button" role="tab"
+                                    aria-controls="v-pills-messages" aria-selected="false"><span><i
+                                            class="fas fa-star"></i></span> Reviews</button>
+
+                                <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-settings" type="button" role="tab"
+                                    aria-controls="v-pills-settings" aria-selected="false"><span><i
+                                            class="fas fa-user-lock"></i></span> Change Password </button>
+
+                                <button class="nav-link" id="v-pills-reservation-tab" data-bs-toggle="pill"
+                                    data-bs-target="#v-pills-reservation" type="button" role="tab"
+                                    aria-controls="v-pills-reservation" aria-selected="false"><span><i
+                                            class="fas fa-user-lock"></i></span> Reservations </button>
+
+                                <a onclick="return confirm('Are you sure ?')" href="delete-account" class="nav-link"><span> <i class="fas fa-trash"></i>
+                                    </span> Delete Account</a>
+
+                                    <button id="logout_btn" class="nav-link" type="button"><span> <i class="fas fa-sign-out-alt"></i>
+                                    </span> Logout</button>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 wow fadeInUp" data-wow-duration="1s">
+                        <div class="wsus__dashboard_content">
+                            <div class="tab-content" id="v-pills-tabContent">
+
+                                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                                    aria-labelledby="v-pills-home-tab">
+                                    <div class="wsus_dashboard_body">
+                                        <h3>Welcome to your Profile</h3>
+
+                                        <div class="wsus__dsahboard_overview">
+                                            <div class="row">
+                                                <div class="col-xl-4 col-sm-6 col-md-4">
+                                                    <div class="wsus__dsahboard_overview_item">
+                                                        <span class="icon"><i class="far fa-shopping-basket"></i></span>
+                                                        <h4>Total order <span>(11)</span></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-sm-6 col-md-4">
+                                                    <div class="wsus__dsahboard_overview_item green">
+                                                        <span class="icon"><i class="far fa-shopping-basket"></i></span>
+                                                        <h4>Completed <span>(4)</span></h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-sm-6 col-md-4">
+                                                    <div class="wsus__dsahboard_overview_item red">
+                                                        <span class="icon"><i class="far fa-shopping-basket"></i></span>
+                                                        <h4>Cancel <span>(1)</span></h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="wsus_dash_personal_info">
+                                            <h4>Personal Information
+                                                <a class="dash_info_btn">
+                                                    <span class="edit">edit</span>
+                                                    <span class="cancel">cancel</span>
+                                                </a>
+                                            </h4>
+
+                                            <div class="personal_info_text">
+                                                <p><span>Name:</span> John Doe</p>
+                                                <p><span>Email:</span> user@gmail.com</p>
+                                                <p><span>Phone:</span> 123-343-4444</p>
+                                                <p><span>Address:</span>Los Angeles, CA, USA </p>
+                                            </div>
+
+                                            <div class="wsus_dash_personal_info_edit comment_input p-0">
+                                                <form id="personal_info_form">
+                                                    <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="wsus__comment_imput_single">
+                                                                <label>Name</label>
+                                                                <input type="text" name="name" value="John Doe" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6">
+                                                            <div class="wsus__comment_imput_single">
+                                                                <label>Email</label>
+                                                                <input type="email" name="email" value="user@gmail.com" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6">
+                                                            <div class="wsus__comment_imput_single">
+                                                                <label>Phone</label>
+                                                                <input type="text" placeholder="Phone" name="phone" value="123-343-4444">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-12">
+                                                            <div class="wsus__comment_imput_single">
+                                                                <label>Address</label>
+
+                                                                <input type="text" placeholder="Address" name="address" value="Los Angeles, CA, USA">
+
+                                                            </div>
+                                                            <button type="submit" class="common_btn">submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-address" role="tabpanel"
+                                    aria-labelledby="v-pills-address-tab">
+                                    <div class="wsus_dashboard_body address_body">
+                                        <h3>address <a class="dash_add_new_address"><i class="far fa-plus"></i> add new
+                                            </a>
+                                        </h3>
+                                        <div class="wsus_dashboard_address">
+                                            <div class="wsus_dashboard_existing_address">
+                                                <div class="row" id="address_all_list">
+
+                                                                                                            <div class="col-md-6">
+                                                            <div class="wsus__checkout_single_address ">
+                                                                <div class="form-check address-list-1">
+                                                                    <label class="form-check-label">
+                                                                                                                                                <span class="icon"><i class="fas fa-home"></i>Home</span>
+                                                                                                                                                <span class="address">Name : John Doe</span>
+
+                                                                        <span class="address">Phone : 125-985-4587</span>
+
+                                                                        <span class="address">Delivery area : Metrocenter Mall</span>
+
+                                                                        <span class="address">Address : Los Angeles, CA, USA</span>
+                                                                    </label>
+                                                                </div>
+                                                                <ul>
+                                                                    <li><a  data-existing-address="{&quot;id&quot;:1,&quot;user_id&quot;:1,&quot;delivery_area_id&quot;:3,&quot;first_name&quot;:&quot;John&quot;,&quot;last_name&quot;:&quot;Doe&quot;,&quot;email&quot;:&quot;user@gmail.com&quot;,&quot;phone&quot;:&quot;125-985-4587&quot;,&quot;address&quot;:&quot;Los Angeles, CA, USA&quot;,&quot;type&quot;:&quot;home&quot;,&quot;default_address&quot;:&quot;Yes&quot;,&quot;latitude&quot;:null,&quot;longitude&quot;:null,&quot;created_at&quot;:&quot;2023-03-05T16:47:09.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-03-05T16:47:09.000000Z&quot;,&quot;delivery_area&quot;:{&quot;id&quot;:3,&quot;area_name&quot;:&quot;Metrocenter Mall&quot;,&quot;delivery_fee&quot;:&quot;25&quot;,&quot;min_time&quot;:&quot;20&quot;,&quot;max_time&quot;:&quot;30&quot;,&quot;status&quot;:1,&quot;created_at&quot;:&quot;2023-03-04T22:55:58.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-03-04T22:55:58.000000Z&quot;}}" class="dash_edit_btn edit_data_attribute-1"><i
+                                                                                class="far fa-edit"></i></a></li>
+                                                                    <li><a onclick="delete_address(1)" class="dash_del_icon"><i
+                                                                                class="fas fa-trash-alt"></i></a>
+                                                                    </li>
+
+                                                                    <form id="delete_address_1" action="address/1" method="POST">
+                                                                    <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                    <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                                                                            <div class="col-md-6">
+                                                            <div class="wsus__checkout_single_address ">
+                                                                <div class="form-check address-list-2">
+                                                                    <label class="form-check-label">
+                                                                                                                                                <span class="icon"><i class="far fa-car-building"></i>Office</span>
+                                                                                                                                                <span class="address">Name : John Doe</span>
+
+                                                                        <span class="address">Phone : 123-343-4444</span>
+
+                                                                        <span class="address">Delivery area : Thunderbird Paseo Park</span>
+
+                                                                        <span class="address">Address : Los Angeles, CA, USA</span>
+                                                                    </label>
+                                                                </div>
+                                                                <ul>
+                                                                    <li><a  data-existing-address="{&quot;id&quot;:2,&quot;user_id&quot;:1,&quot;delivery_area_id&quot;:2,&quot;first_name&quot;:&quot;John&quot;,&quot;last_name&quot;:&quot;Doe&quot;,&quot;email&quot;:&quot;user@gmail.com&quot;,&quot;phone&quot;:&quot;123-343-4444&quot;,&quot;address&quot;:&quot;Los Angeles, CA, USA&quot;,&quot;type&quot;:&quot;office&quot;,&quot;default_address&quot;:&quot;No&quot;,&quot;latitude&quot;:null,&quot;longitude&quot;:null,&quot;created_at&quot;:&quot;2023-03-05T16:47:48.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-03-05T16:47:48.000000Z&quot;,&quot;delivery_area&quot;:{&quot;id&quot;:2,&quot;area_name&quot;:&quot;Thunderbird Paseo Park&quot;,&quot;delivery_fee&quot;:&quot;15&quot;,&quot;min_time&quot;:&quot;10&quot;,&quot;max_time&quot;:&quot;20&quot;,&quot;status&quot;:1,&quot;created_at&quot;:&quot;2023-03-04T22:55:45.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-03-04T22:55:45.000000Z&quot;}}" class="dash_edit_btn edit_data_attribute-2"><i
+                                                                                class="far fa-edit"></i></a></li>
+                                                                    <li><a onclick="delete_address(2)" class="dash_del_icon"><i
+                                                                                class="fas fa-trash-alt"></i></a>
+                                                                    </li>
+
+                                                                    <form id="delete_address_2" action="address/2" method="POST">
+                                                                    <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                    <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                                                                            <div class="col-md-6">
+                                                            <div class="wsus__checkout_single_address ">
+                                                                <div class="form-check address-list-3">
+                                                                    <label class="form-check-label">
+                                                                                                                                                <span class="icon"><i class="fas fa-home"></i>Home</span>
+                                                                                                                                                <span class="address">Name : David Rechard</span>
+
+                                                                        <span class="address">Phone : 123-874-6548</span>
+
+                                                                        <span class="address">Delivery area : Deer Valley Rock Art Center</span>
+
+                                                                        <span class="address">Address : Los Angeles, CA, USA</span>
+                                                                    </label>
+                                                                </div>
+                                                                <ul>
+                                                                    <li><a  data-existing-address="{&quot;id&quot;:3,&quot;user_id&quot;:1,&quot;delivery_area_id&quot;:6,&quot;first_name&quot;:&quot;David&quot;,&quot;last_name&quot;:&quot;Rechard&quot;,&quot;email&quot;:&quot;user@gmail.com&quot;,&quot;phone&quot;:&quot;123-874-6548&quot;,&quot;address&quot;:&quot;Los Angeles, CA, USA&quot;,&quot;type&quot;:&quot;home&quot;,&quot;default_address&quot;:&quot;No&quot;,&quot;latitude&quot;:null,&quot;longitude&quot;:null,&quot;created_at&quot;:&quot;2023-03-05T16:48:18.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-03-05T16:48:18.000000Z&quot;,&quot;delivery_area&quot;:{&quot;id&quot;:6,&quot;area_name&quot;:&quot;Deer Valley Rock Art Center&quot;,&quot;delivery_fee&quot;:&quot;15&quot;,&quot;min_time&quot;:&quot;15&quot;,&quot;max_time&quot;:&quot;20&quot;,&quot;status&quot;:1,&quot;created_at&quot;:&quot;2023-03-04T22:57:28.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-03-04T22:57:28.000000Z&quot;}}" class="dash_edit_btn edit_data_attribute-3"><i
+                                                                                class="far fa-edit"></i></a></li>
+                                                                    <li><a onclick="delete_address(3)" class="dash_del_icon"><i
+                                                                                class="fas fa-trash-alt"></i></a>
+                                                                    </li>
+
+                                                                    <form id="delete_address_3" action="address/3" method="POST">
+                                                                    <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                    <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                                                                            <div class="col-md-6">
+                                                            <div class="wsus__checkout_single_address ">
+                                                                <div class="form-check address-list-4">
+                                                                    <label class="form-check-label">
+                                                                                                                                                <span class="icon"><i class="far fa-car-building"></i>Office</span>
+                                                                                                                                                <span class="address">Name : John Abraham</span>
+
+                                                                        <span class="address">Phone : 123-874-6548</span>
+
+                                                                        <span class="address">Delivery area : Thunderbird Paseo Park</span>
+
+                                                                        <span class="address">Address : Los Angeles, CA, USA</span>
+                                                                    </label>
+                                                                </div>
+                                                                <ul>
+                                                                    <li><a  data-existing-address="{&quot;id&quot;:4,&quot;user_id&quot;:1,&quot;delivery_area_id&quot;:2,&quot;first_name&quot;:&quot;John&quot;,&quot;last_name&quot;:&quot;Abraham&quot;,&quot;email&quot;:&quot;user@gmail.com&quot;,&quot;phone&quot;:&quot;123-874-6548&quot;,&quot;address&quot;:&quot;Los Angeles, CA, USA&quot;,&quot;type&quot;:&quot;office&quot;,&quot;default_address&quot;:&quot;No&quot;,&quot;latitude&quot;:null,&quot;longitude&quot;:null,&quot;created_at&quot;:&quot;2023-03-05T16:49:24.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-03-05T16:49:24.000000Z&quot;,&quot;delivery_area&quot;:{&quot;id&quot;:2,&quot;area_name&quot;:&quot;Thunderbird Paseo Park&quot;,&quot;delivery_fee&quot;:&quot;15&quot;,&quot;min_time&quot;:&quot;10&quot;,&quot;max_time&quot;:&quot;20&quot;,&quot;status&quot;:1,&quot;created_at&quot;:&quot;2023-03-04T22:55:45.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-03-04T22:55:45.000000Z&quot;}}" class="dash_edit_btn edit_data_attribute-4"><i
+                                                                                class="far fa-edit"></i></a></li>
+                                                                    <li><a onclick="delete_address(4)" class="dash_del_icon"><i
+                                                                                class="fas fa-trash-alt"></i></a>
+                                                                    </li>
+
+                                                                    <form id="delete_address_4" action="address/4" method="POST">
+                                                                    <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                    <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                                                                    </div>
+                                            </div>
+                                            <div class="wsus_dashboard_new_address ">
+                                                <form id="add_new_address_form" method="POST">
+                                                    <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <h4>add new address</h4>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="wsus__check_single_form">
+                                                                <select name="delivery_area_id" class="select2">
+                                                                    <option value="">Select Delivery Area</option>
+                                                                                                                                            <option value="1">Arizona State University West Campus</option>
+                                                                                                                                            <option value="2">Thunderbird Paseo Park</option>
+                                                                                                                                            <option value="3">Metrocenter Mall</option>
+                                                                                                                                            <option value="4">Reach 11 Recreation Area</option>
+                                                                                                                                            <option value="5">Pioneer Community Park</option>
+                                                                                                                                            <option value="6">Deer Valley Rock Art Center</option>
+                                                                                                                                            <option value="7">Cave Creek Regional Park</option>
+                                                                                                                                            <option value="8">Turf Soaring School</option>
+                                                                                                                                    </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 col-lg-12 col-xl-6">
+                                                            <div class="wsus__check_single_form">
+                                                                <input type="text" placeholder="First Name*" name="first_name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-12 col-xl-6">
+                                                            <div class="wsus__check_single_form">
+                                                                <input type="text" placeholder="Last Name *" name="last_name">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 col-lg-12 col-xl-6">
+                                                            <div class="wsus__check_single_form">
+                                                                <input type="text" placeholder="Phone" name="phone">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-12 col-xl-6">
+                                                            <div class="wsus__check_single_form">
+                                                                <input type="email" placeholder="Email" name="email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-lg-12 col-xl-12">
+                                                            <div class="wsus__check_single_form">
+                                                                <textarea name="address" cols="3" rows="4"
+                                                                    placeholder="Address *"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="wsus__check_single_form check_area">
+                                                                <div class="form-check">
+                                                                    <input value="home" class="form-check-input" type="radio"
+                                                                        name="address_type" id="flexRadioDefault1">
+                                                                    <label class="form-check-label"
+                                                                        for="flexRadioDefault1">
+                                                                        home
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input value="office" class="form-check-input" type="radio"
+                                                                        name="address_type" id="flexRadioDefault2">
+                                                                    <label class="form-check-label"
+                                                                        for="flexRadioDefault2">
+                                                                        office
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="button"
+                                                                class="common_btn cancel_new_address">cancel</button>
+                                                            <button type="submit" class="common_btn">Save Address</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="wsus_dashboard_edit_address ">
+                                                <form id="edit_address_form" method="POST">
+                                                    <input type="hidden" name="_method" value="PUT">                                                    <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <h4>Edit address</h4>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="wsus__check_single_form">
+                                                                <select name="delivery_area_id" class="select2 edit_delivery_area_id">
+
+                                                                                                                                            <option value="1">Arizona State University West Campus</option>
+                                                                                                                                            <option value="2">Thunderbird Paseo Park</option>
+                                                                                                                                            <option value="3">Metrocenter Mall</option>
+                                                                                                                                            <option value="4">Reach 11 Recreation Area</option>
+                                                                                                                                            <option value="5">Pioneer Community Park</option>
+                                                                                                                                            <option value="6">Deer Valley Rock Art Center</option>
+                                                                                                                                            <option value="7">Cave Creek Regional Park</option>
+                                                                                                                                            <option value="8">Turf Soaring School</option>
+                                                                                                                                    </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <input type="hidden" name="edit_id" class="edit_id">
+                                                        <div class="col-md-6 col-lg-12 col-xl-6">
+                                                            <div class="wsus__check_single_form">
+                                                                <input class="edit_first_name" type="text" placeholder="First Name*" name="first_name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-12 col-xl-6">
+                                                            <div class="wsus__check_single_form">
+                                                                <input class="edit_last_name" type="text" placeholder="Last Name *" name="last_name">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6 col-lg-12 col-xl-6">
+                                                            <div class="wsus__check_single_form">
+                                                                <input class="edit_phone" type="text" placeholder="Phone" name="phone">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-12 col-xl-6">
+                                                            <div class="wsus__check_single_form">
+                                                                <input class="edit_email" type="email" placeholder="Email" name="email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 col-lg-12 col-xl-12">
+                                                            <div class="wsus__check_single_form">
+                                                                <textarea class="edit_address" name="address" cols="3" rows="4"
+                                                                    placeholder="Address *"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="wsus__check_single_form check_area">
+                                                                <div class="form-check">
+                                                                    <input value="home" class="form-check-input edit_address_type home_type" type="radio"
+                                                                        name="address_type" id="flexRadioDefault3">
+                                                                    <label class="form-check-label"
+                                                                        for="flexRadioDefault3">
+                                                                        home
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input value="office" class="form-check-input edit_address_type office_type" type="radio"
+                                                                        name="address_type" id="flexRadioDefault4">
+                                                                    <label class="form-check-label"
+                                                                        for="flexRadioDefault4">
+                                                                        office
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="button"
+                                                                class="common_btn cancel_edit_address">cancel</button>
+                                                            <button type="submit" class="common_btn">Save Address</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
+                                    aria-labelledby="v-pills-profile-tab">
+                                    <div class="wsus_dashboard_body">
+                                        <h3>order list</h3>
+                                        <div class="wsus_dashboard_order">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr class="t_header">
+                                                            <th>Order</th>
+                                                            <th>Date</th>
+                                                            <th>Status</th>
+                                                            <th>Amount</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#1214241772</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>16 Apr 2024</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="cancel">Pending</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$195</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="23">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#107887705</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>07 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="cancel">Pending</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$375</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="12">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#301211793</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>06 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="cancel">Pending</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$890</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="10">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#724479377</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>05 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="complete">Completed</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$420</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="9">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#560337900</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>05 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="cancel">Declined</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$270</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="8">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#1583060974</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>05 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="complete">Processing</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$350</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="7">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#1107267602</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>05 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="complete">On the way</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$315</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="6">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#917890010</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>05 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="complete">Completed</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$205</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="5">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#1402351631</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>05 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="complete">Completed</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$315</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="4">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#958913600</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>05 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="cancel">Pending</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$225</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="3">View Details</a></td>
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td>
+                                                                    <h5>#479428556</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>05 Mar 2023</p>
+                                                                </td>
+                                                                <td>
+
+                                                                                                                                    <span class="complete">Completed</span>
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <h5>$310</h5>
+                                                                </td>
+                                                                <td><a class="view_invoice" data-order-id="2">View Details</a></td>
+                                                            </tr>
+                                                                                                            </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="wsus__invoice">
+                                            <a class="go_back"><i class="fas fa-long-arrow-alt-left"></i> go back</a>
+                                            <div id="load_order_details">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade " id="v-pills-messages2" role="tabpanel"
+                                    aria-labelledby="v-pills-messages-tab2">
+                                    <div class="wsus_dashboard_body">
+                                        <h3>wishlist</h3>
+                                        <div class="wsus__dashoard_wishlist">
+                                            <div class="row">
+                                                                                                <div class="col-xl-4 col-sm-6 col-lg-6">
+                                                    <div class="wsus__menu_item">
+                                                        <div class="wsus__menu_item_img">
+                                                            <img src="/public/uploads/custom-images/hyderabadi-biryani-2023-03-05-01-14-59-9689.png" alt="menu" class="img-fluid w-100">
+                                                            <a class="category" href="products?category=burger">Burger</a>
+                                                        </div>
+                                                        <div class="wsus__menu_item_text">
+                                                            <p class="rating">
+
+                                                                
+                                                                                                                                                                                                                                                                                        <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                            
+                                                                <span>1</span>
+                                                            </p>
+                                                            <a class="title" href="product/hyderabadi-biryani">Hyderabadi Biryani</a>
+                                                                                                                            <h5 class="price">$130 <del>$150</del> </h5>
+                                                            
+                                                            <ul class="d-flex flex-wrap justify-content-center">
+                                                                <li><a href="javascript:;" onclick="load_product_model(1)"><i
+                                                                            class="fas fa-shopping-basket"></i></a></li>
+
+                                                                    <form id="remove_wishlist_1" action="remove-to-wishlist/1" method="POST">
+                                                                        <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                        <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+
+                                                                    <li><a href="javascript:;" onclick="remove_wishlist(1)"><i class="fal fa-heart"></i></a></li>
+
+                                                                <li><a href="product/hyderabadi-biryani"><i class="far fa-eye"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                                                <div class="col-xl-4 col-sm-6 col-lg-6">
+                                                    <div class="wsus__menu_item">
+                                                        <div class="wsus__menu_item_img">
+                                                            <img src="/public/uploads/custom-images/indian-cuisine-pakora-2023-03-05-01-32-04-5856.jpg" alt="menu" class="img-fluid w-100">
+                                                            <a class="category" href="products?category=muffin">Muffin</a>
+                                                        </div>
+                                                        <div class="wsus__menu_item_text">
+                                                            <p class="rating">
+
+                                                                
+                                                                                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                
+                                                                <span>0</span>
+                                                            </p>
+                                                            <a class="title" href="product/indian-cuisine-pakora">Indian cuisine Pakora</a>
+                                                                                                                            <h5 class="price">$100 <del>$120</del> </h5>
+                                                            
+                                                            <ul class="d-flex flex-wrap justify-content-center">
+                                                                <li><a href="javascript:;" onclick="load_product_model(3)"><i
+                                                                            class="fas fa-shopping-basket"></i></a></li>
+
+                                                                    <form id="remove_wishlist_3" action="remove-to-wishlist/3" method="POST">
+                                                                        <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                        <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+
+                                                                    <li><a href="javascript:;" onclick="remove_wishlist(3)"><i class="fal fa-heart"></i></a></li>
+
+                                                                <li><a href="product/indian-cuisine-pakora"><i class="far fa-eye"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                                                <div class="col-xl-4 col-sm-6 col-lg-6">
+                                                    <div class="wsus__menu_item">
+                                                        <div class="wsus__menu_item_img">
+                                                            <img src="/public/uploads/custom-images/daria-shevtsova-2023-03-05-02-47-26-3957.png" alt="menu" class="img-fluid w-100">
+                                                            <a class="category" href="products?category=burger">Burger</a>
+                                                        </div>
+                                                        <div class="wsus__menu_item_text">
+                                                            <p class="rating">
+
+                                                                
+                                                                                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                
+                                                                <span>0</span>
+                                                            </p>
+                                                            <a class="title" href="product/daria-shevtsova">Daria Shevtsova</a>
+                                                                                                                            <h5 class="price">$120 <del>$200</del> </h5>
+                                                            
+                                                            <ul class="d-flex flex-wrap justify-content-center">
+                                                                <li><a href="javascript:;" onclick="load_product_model(6)"><i
+                                                                            class="fas fa-shopping-basket"></i></a></li>
+
+                                                                    <form id="remove_wishlist_6" action="remove-to-wishlist/6" method="POST">
+                                                                        <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                        <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+
+                                                                    <li><a href="javascript:;" onclick="remove_wishlist(6)"><i class="fal fa-heart"></i></a></li>
+
+                                                                <li><a href="product/daria-shevtsova"><i class="far fa-eye"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                                                <div class="col-xl-4 col-sm-6 col-lg-6">
+                                                    <div class="wsus__menu_item">
+                                                        <div class="wsus__menu_item_img">
+                                                            <img src="/public/uploads/custom-images/spicy-burger-2023-03-05-02-57-08-4535.png" alt="menu" class="img-fluid w-100">
+                                                            <a class="category" href="products?category=burger">Burger</a>
+                                                        </div>
+                                                        <div class="wsus__menu_item_text">
+                                                            <p class="rating">
+
+                                                                
+                                                                                                                                                                                                                                                                                        <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                            
+                                                                <span>1</span>
+                                                            </p>
+                                                            <a class="title" href="product/spicy-burger">Spicy Burger</a>
+                                                                                                                            <h5 class="price">$40 <del>$80</del> </h5>
+                                                            
+                                                            <ul class="d-flex flex-wrap justify-content-center">
+                                                                <li><a href="javascript:;" onclick="load_product_model(7)"><i
+                                                                            class="fas fa-shopping-basket"></i></a></li>
+
+                                                                    <form id="remove_wishlist_7" action="remove-to-wishlist/7" method="POST">
+                                                                        <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                        <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+
+                                                                    <li><a href="javascript:;" onclick="remove_wishlist(7)"><i class="fal fa-heart"></i></a></li>
+
+                                                                <li><a href="product/spicy-burger"><i class="far fa-eye"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                                                <div class="col-xl-4 col-sm-6 col-lg-6">
+                                                    <div class="wsus__menu_item">
+                                                        <div class="wsus__menu_item_img">
+                                                            <img src="/public/uploads/custom-images/firecracker-shrimp-2023-03-06-12-25-11-9828.png" alt="menu" class="img-fluid w-100">
+                                                            <a class="category" href="products?category=chicken">Chicken</a>
+                                                        </div>
+                                                        <div class="wsus__menu_item_text">
+                                                            <p class="rating">
+
+                                                                
+                                                                                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                
+                                                                <span>0</span>
+                                                            </p>
+                                                            <a class="title" href="product/firecracker-shrimp">Firecracker Shrimp</a>
+                                                                                                                            <h5 class="price">$25 <del>$30</del> </h5>
+                                                            
+                                                            <ul class="d-flex flex-wrap justify-content-center">
+                                                                <li><a href="javascript:;" onclick="load_product_model(15)"><i
+                                                                            class="fas fa-shopping-basket"></i></a></li>
+
+                                                                    <form id="remove_wishlist_15" action="remove-to-wishlist/15" method="POST">
+                                                                        <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                        <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+
+                                                                    <li><a href="javascript:;" onclick="remove_wishlist(15)"><i class="fal fa-heart"></i></a></li>
+
+                                                                <li><a href="product/firecracker-shrimp"><i class="far fa-eye"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                                                <div class="col-xl-4 col-sm-6 col-lg-6">
+                                                    <div class="wsus__menu_item">
+                                                        <div class="wsus__menu_item_img">
+                                                            <img src="/public/uploads/custom-images/grilled-octopus-salad-2023-03-06-12-28-49-3466.png" alt="menu" class="img-fluid w-100">
+                                                            <a class="category" href="products?category=chicken">Chicken</a>
+                                                        </div>
+                                                        <div class="wsus__menu_item_text">
+                                                            <p class="rating">
+
+                                                                
+                                                                                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                
+                                                                <span>0</span>
+                                                            </p>
+                                                            <a class="title" href="product/grilled-octopus-salad">Grilled Octopus Salad</a>
+                                                                                                                            <h5 class="price">$70 <del>$75</del> </h5>
+                                                            
+                                                            <ul class="d-flex flex-wrap justify-content-center">
+                                                                <li><a href="javascript:;" onclick="load_product_model(16)"><i
+                                                                            class="fas fa-shopping-basket"></i></a></li>
+
+                                                                    <form id="remove_wishlist_16" action="remove-to-wishlist/16" method="POST">
+                                                                        <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                        <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+
+                                                                    <li><a href="javascript:;" onclick="remove_wishlist(16)"><i class="fal fa-heart"></i></a></li>
+
+                                                                <li><a href="product/grilled-octopus-salad"><i class="far fa-eye"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                                                <div class="col-xl-4 col-sm-6 col-lg-6">
+                                                    <div class="wsus__menu_item">
+                                                        <div class="wsus__menu_item_img">
+                                                            <img src="/public/uploads/custom-images/quinoa-stuffed-peppers-2023-03-06-12-52-48-9661.png" alt="menu" class="img-fluid w-100">
+                                                            <a class="category" href="products?category=dresserts">Dresserts</a>
+                                                        </div>
+                                                        <div class="wsus__menu_item_text">
+                                                            <p class="rating">
+
+                                                                
+                                                                                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                    <i class="far fa-star"></i>
+                                                                
+                                                                <span>0</span>
+                                                            </p>
+                                                            <a class="title" href="product/quinoa-stuffed-peppers">Quinoa Stuffed Peppers</a>
+                                                                                                                            <h5 class="price">$110</h5>
+                                                            
+                                                            <ul class="d-flex flex-wrap justify-content-center">
+                                                                <li><a href="javascript:;" onclick="load_product_model(20)"><i
+                                                                            class="fas fa-shopping-basket"></i></a></li>
+
+                                                                    <form id="remove_wishlist_20" action="remove-to-wishlist/20" method="POST">
+                                                                        <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                        <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+
+                                                                    <li><a href="javascript:;" onclick="remove_wishlist(20)"><i class="fal fa-heart"></i></a></li>
+
+                                                                <li><a href="product/quinoa-stuffed-peppers"><i class="far fa-eye"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                                                <div class="col-xl-4 col-sm-6 col-lg-6">
+                                                    <div class="wsus__menu_item">
+                                                        <div class="wsus__menu_item_img">
+                                                            <img src="/public/uploads/custom-images/truffle-fries-2023-03-06-01-06-09-8443.png" alt="menu" class="img-fluid w-100">
+                                                            <a class="category" href="products?category=sandwich">Sandwich</a>
+                                                        </div>
+                                                        <div class="wsus__menu_item_text">
+                                                            <p class="rating">
+
+                                                                
+                                                                                                                                                                                                                                                                                        <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                            
+                                                                <span>1</span>
+                                                            </p>
+                                                            <a class="title" href="product/truffle-fries">Truffle Fries</a>
+                                                                                                                            <h5 class="price">$150 <del>$200</del> </h5>
+                                                            
+                                                            <ul class="d-flex flex-wrap justify-content-center">
+                                                                <li><a href="javascript:;" onclick="load_product_model(22)"><i
+                                                                            class="fas fa-shopping-basket"></i></a></li>
+
+                                                                    <form id="remove_wishlist_22" action="remove-to-wishlist/22" method="POST">
+                                                                        <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                                        <input type="hidden" name="_method" value="DELETE">                                                                    </form>
+
+                                                                    <li><a href="javascript:;" onclick="remove_wishlist(22)"><i class="fal fa-heart"></i></a></li>
+
+                                                                <li><a href="product/truffle-fries"><i class="far fa-eye"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                                    aria-labelledby="v-pills-messages-tab">
+                                    <div class="wsus_dashboard_body dashboard_review">
+                                        <h3>reviews</h3>
+                                        <div class="wsus__review_area">
+                                            <div class="wsus__comment pt-0 mt_20">
+                                                                                                <div class="wsus__single_comment m-0 border-0">
+                                                    <img src="/public/uploads/custom-images/pulled-pork-sliders-2023-03-06-01-02-22-7233.png" alt="review" class="img-fluid">
+                                                    <div class="wsus__single_comm_text">
+                                                        <h3><a href="product/pulled-pork-sliders">Pulled Pork Sliders</a> <span>06 Mar 2023 </span>
+                                                        </h3>
+                                                        <span class="rating">
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                    </span>
+                                                        <p>Pizza is a savory dish of Italian origin consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes</p>
+                                                                                                                <span class="status active">active</span>
+                                                        
+                                                    </div>
+                                                </div>
+                                                                                                <div class="wsus__single_comment m-0 border-0">
+                                                    <img src="/public/uploads/custom-images/truffle-fries-2023-03-06-01-06-09-8443.png" alt="review" class="img-fluid">
+                                                    <div class="wsus__single_comm_text">
+                                                        <h3><a href="product/truffle-fries">Truffle Fries</a> <span>06 Mar 2023 </span>
+                                                        </h3>
+                                                        <span class="rating">
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                    </span>
+                                                        <p>Pizza is a savory dish of Italian origin consisting of a usually round, flattened base of leavened wheat-based dough topped with tomatoes</p>
+                                                                                                                <span class="status active">active</span>
+                                                        
+                                                    </div>
+                                                </div>
+                                                                                                <div class="wsus__single_comment m-0 border-0">
+                                                    <img src="/public/uploads/custom-images/spicy-burger-2023-03-05-02-57-08-4535.png" alt="review" class="img-fluid">
+                                                    <div class="wsus__single_comm_text">
+                                                        <h3><a href="product/spicy-burger">Spicy Burger</a> <span>05 Mar 2023 </span>
+                                                        </h3>
+                                                        <span class="rating">
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                    </span>
+                                                        <p>Vim et alterum ornatus vivendum, ut mea solum repudiare. His etiam delenit tibique no, ad harum omnes scribentur qui, ne wisi detracto his. Ei movet accusam pri</p>
+                                                                                                                <span class="status active">active</span>
+                                                        
+                                                    </div>
+                                                </div>
+                                                                                                <div class="wsus__single_comment m-0 border-0">
+                                                    <img src="/public/uploads/custom-images/hyderabadi-biryani-2023-03-05-01-14-59-9689.png" alt="review" class="img-fluid">
+                                                    <div class="wsus__single_comm_text">
+                                                        <h3><a href="product/hyderabadi-biryani">Hyderabadi Biryani</a> <span>05 Mar 2023 </span>
+                                                        </h3>
+                                                        <span class="rating">
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                    </span>
+                                                        <p>Vim et alterum ornatus vivendum, ut mea solum repudiare. His etiam delenit tibique no, ad harum omnes scribentur qui, ne wisi detracto his.</p>
+                                                                                                                <span class="status active">active</span>
+                                                        
+                                                    </div>
+                                                </div>
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                                    aria-labelledby="v-pills-settings-tab">
+                                    <div class="wsus_dashboard_body wsus__change_password">
+                                        <div class="wsus__review_input">
+                                            <h3>change password</h3>
+                                            <div class="comment_input pt-0">
+                                                <form id="change_password_form">
+                                                    <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                                    <div class="row">
+                                                        <div class="col-xl-6">
+                                                            <div class="wsus__comment_imput_single">
+                                                                <label>Current Password</label>
+                                                                <input type="password" placeholder="Current Password" name="current_password">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6">
+                                                            <div class="wsus__comment_imput_single">
+                                                                <label>New Password</label>
+                                                                <input type="password" placeholder="New Password" name="password">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-12">
+                                                            <div class="wsus__comment_imput_single">
+                                                                <label>Confirm Password</label>
+                                                                <input type="password" name="password_confirmation" placeholder="Confirm Password">
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="common_btn mt_20">submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="v-pills-reservation" role="tabpanel"
+                                    aria-labelledby="v-pills-reservation-tab">
+                                    <div class="wsus_dashboard_body">
+                                        <h3>Reservations</h3>
+                                        <div class="wsus_dashboard_order reservation_list">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr class="t_header">
+                                                            <th class="sn">SN</th>
+                                                            <th class="time">Date &amp; Time</th>
+                                                            <th class="person">Person</th>
+                                                            <th class="status">Status</th>
+                                                        </tr>
+                                                                                                                    <tr>
+                                                                <td class="sn">
+                                                                    <h5>#1</h5>
+                                                                </td>
+                                                                <td class="time">
+                                                                    <p>27 Mar, 2023</p>
+                                                                    <br>
+                                                                    <p>09:00 AM - 10:00 AM</p>
+
+                                                                </td>
+                                                                <td class="person">
+                                                                    12
+                                                                </td>
+                                                                <td class="status">
+                                                                                                                                        <span class="cancel">Pending</span>
+                                                                                                                                    </td>
+
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td class="sn">
+                                                                    <h5>#2</h5>
+                                                                </td>
+                                                                <td class="time">
+                                                                    <p>19 Mar, 2023</p>
+                                                                    <br>
+                                                                    <p>02:00 AM - 03:00 AM</p>
+
+                                                                </td>
+                                                                <td class="person">
+                                                                    2
+                                                                </td>
+                                                                <td class="status">
+                                                                                                                                        <span class="cancel">Pending</span>
+                                                                                                                                    </td>
+
+                                                            </tr>
+                                                                                                                    <tr>
+                                                                <td class="sn">
+                                                                    <h5>#3</h5>
+                                                                </td>
+                                                                <td class="time">
+                                                                    <p>29 Mar, 2023</p>
+                                                                    <br>
+                                                                    <p>12:00 AM - 01:00 AM</p>
+
+                                                                </td>
+                                                                <td class="person">
+                                                                    3
+                                                                </td>
+                                                                <td class="status">
+                                                                                                                                        <span class="cancel">Pending</span>
+                                                                                                                                    </td>
+
+                                                            </tr>
+                                                                                                            </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        (function($) {
+            "use strict";
+            $(document).ready(function () {
+
+                $("#personal_info_form").on("submit", function(e){
+                    e.preventDefault();
+
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        data: $('#personal_info_form').serialize(),
+                        url: "update-profile",
+                        success: function (response) {
+                            toastr.success(response.message)
+                            let personal_info = `
+                                <p><span>Name:</span> ${ response.user.name }</p>
+                                <p><span>Email:</span> ${ response.user.email }</p>
+                                <p><span>Phone:</span> ${ response.user.phone }</p>
+                                <p><span>Address:</span>${ response.user.address } </p>`;
+                            $(".personal_info_text").html(personal_info);
+
+                        },
+                        error: function(response) {
+                            if(response.status == 422){
+                                if(response.responseJSON.errors.name)toastr.error(response.responseJSON.errors.name[0])
+                                if(response.responseJSON.errors.phone)toastr.error(response.responseJSON.errors.phone[0])
+                                if(response.responseJSON.errors.address)toastr.error(response.responseJSON.errors.address[0])
+                            }
+
+                            if(response.status == 500){
+                                toastr.error("Server error occured")
+                            }
+
+
+                        }
+                    });
+
+                })
+
+                $("#change_password_form").on("submit", function(e){
+                    e.preventDefault();
+
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        data: $('#change_password_form').serialize(),
+                        url: "update-password",
+                        success: function (response) {
+                            toastr.success(response.message)
+                            $("#change_password_form").trigger("reset");
+                        },
+                        error: function(response) {
+                            if(response.status == 422){
+                                if(response.responseJSON.errors.current_password)toastr.error(response.responseJSON.errors.current_password[0])
+                                if(response.responseJSON.errors.password)toastr.error(response.responseJSON.errors.password[0])
+                            }
+
+                            if(response.status == 500){
+                                toastr.error("Server error occured")
+                            }
+
+                            if(response.status == 403){
+                                toastr.error(response.responseJSON.message);
+                            }
+
+                        }
+                    });
+                })
+
+                $("#logout_btn").on("click", function(){
+                    window.location.href = "user-logout";
+                })
+
+                $("#delete_account_btn").on("click", function(){
+                    window.location.href = "delete-account";
+                })
+
+
+
+
+                $("#upload_user_avatar_form").on("submit", function(e){
+                    e.preventDefault();
+
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        data:new FormData(this),
+                        dataType:'JSON',
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        url: "upload-user-avatar",
+                        success: function (response) {
+                            toastr.success(response.message)
+                        },
+                        error: function(response) {
+
+                        }
+                    });
+                })
+
+                $("#add_new_address_form").on("submit", function(e){
+                    e.preventDefault();
+
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        data: $('#add_new_address_form').serialize(),
+                        url: "address",
+                        success: function (response) {
+                            toastr.success(response.message)
+                            $("#add_new_address_form").trigger("reset");
+                            location.reload();
+                        },
+                        error: function(response) {
+                            if(response.status == 422){
+                                if(response.responseJSON.errors.first_name)toastr.error(response.responseJSON.errors.first_name[0])
+                                if(response.responseJSON.errors.last_name)toastr.error(response.responseJSON.errors.last_name[0])
+                                if(response.responseJSON.errors.address)toastr.error(response.responseJSON.errors.address[0])
+                                if(response.responseJSON.errors.address_type)toastr.error(response.responseJSON.errors.address_type[0])
+                                if(response.responseJSON.errors.delivery_area_id)toastr.error(response.responseJSON.errors.delivery_area_id[0])
+
+                            }
+
+                            if(response.status == 500){
+                                toastr.error("Server error occured")
+                            }
+
+                            if(response.status == 403){
+                                toastr.error(response.responseJSON.message);
+                            }
+
+                        }
+                    });
+                })
+
+                $(".dash_edit_btn").on("click", function(){
+                    let existing_address = $(this).data('existing-address');
+
+                    $(".edit_id").val(existing_address.id)
+                    $(".edit_first_name").val(existing_address.first_name)
+                    $(".edit_last_name").val(existing_address.last_name)
+                    $(".edit_phone").val(existing_address.phone)
+                    $(".edit_email").val(existing_address.email)
+                    $(".edit_address").val(existing_address.address)
+                    $(".edit_delivery_area_id").val(existing_address.delivery_area_id).trigger('change')
+
+                    if(existing_address.type == 'home'){
+                        $('.home_type').attr('checked', 'checked');
+                    }else{
+                        $('.office_type').attr('checked', 'checked');
+                    }
+                })
+
+                $("#edit_address_form").on("submit", function(e){
+                    e.preventDefault();
+
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    let edit_id = $(".edit_id").val();
+                    let url = "address/:id";
+                    url = url.replace(':id', edit_id);
+
+                    $.ajax({
+                        type: 'PUT',
+                        data: $('#edit_address_form').serialize(),
+                        url:url,
+                        success: function (response) {
+                            toastr.success(response.message)
+                            let address = response.address
+
+                            let type = '';
+                            if(response.address.type == 'home'){
+                                type = '<span class="icon"><i class="fas fa-home"></i>Home</span>';
+                            }else{
+                                type = '<span class="icon"><i class="far fa-car-building"></i>Office</span>';
+                            }
+                            let html_response = `
+                            <label class="form-check-label">
+                                    ${type}
+                                    <span class="address">Name : ${ address.first_name} ${ address.last_name}</span>
+                                    <span class="address">Phone : ${ address.phone}</span>
+                                    <span class="address">Address : ${ address.address}</span>
+                                </label>
+                            `
+                            $('.address-list-' + edit_id).html(html_response);
+                            $('.edit_data_attribute-' + edit_id).attr("data-existing-address", address);
+                            window.location.reload();
+                        },
+                        error: function(response) {
+                            if(response.status == 422){
+                                if(response.responseJSON.errors.first_name)toastr.error(response.responseJSON.errors.first_name[0])
+                                if(response.responseJSON.errors.last_name)toastr.error(response.responseJSON.errors.last_name[0])
+                                if(response.responseJSON.errors.address)toastr.error(response.responseJSON.errors.address[0])
+                                if(response.responseJSON.errors.address_type)toastr.error(response.responseJSON.errors.address_type[0])
+                                if(response.responseJSON.errors.delivery_area_id)toastr.error(response.responseJSON.errors.delivery_area_id[0])
+                            }
+
+                            if(response.status == 500){
+                                toastr.error("Server error occured")
+                            }
+
+                            if(response.status == 403){
+                                toastr.error(response.responseJSON.message);
+                            }
+
+                        }
+                    });
+                })
+
+                $(".view_invoice").on("click", function(){
+                    let order_id = $(this).data('order-id');
+                    $("#load_order_details").html('')
+                    $.ajax({
+                        type: 'get',
+                        url: "single-order" + "/" + order_id,
+                        success: function (response) {
+                            $("#load_order_details").html(response)
+                        },
+                        error: function(response) {
+                            toastr.error("Server error occured")
+                        }
+                    });
+                })
+
+
+            });
+        })(jQuery);
+
+
+        function previewThumnailImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('preview-user-avatar');
+                output.src = reader.result;
+            }
+
+            reader.readAsDataURL(event.target.files[0]);
+            $("#upload_user_avatar_form").submit();
+        };
+
+
+        function delete_address(id){
+            Swal.fire({
+                title: "Are you realy want to delete this item ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "Yes, Delete It",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    $("#delete_address_"+id).submit();
+                }
+
+            })
+        }
+
+        function remove_wishlist(id){
+
+            Swal.fire({
+                title: "Are you realy want to remove wishlist item ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: "Yes, Remove It",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    $("#remove_wishlist_"+id).submit();
+                }
+
+            })
+        }
+
+
+
+    </script>
+
+
+    <!--=============================
+        BRAND START
+    ==============================-->
+    <section class="wsus__brand" style="background: url(/public/uploads/website-images/counter-bg-2023-03-06-09-34-36-3312.jpg);">
+        <div class="wsus__brand_overlay">
+            <div class="container">
+                <div class="row brand_slider wow fadeInUp" data-wow-duration="1s">
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-35-57-4275.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-05-2512.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-15-7213.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-24-3552.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-34-1671.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-42-1713.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                    </div>
+            </div>
+        </div>
+    </section>
+    <!--=============================
+        BRAND END
+    ==============================-->
+
+
+    <!--=============================
+        FOOTER START
+    ==============================-->
+    <footer style="background: url(/public/uploads/website-images/footer_background-2022-12-13-12-06-33-5633.jpg);">
+        <div class="footer_overlay pt_100 xs_pt_70 pb_100 xs_pb_70">
+            <div class="container wow fadeInUp" data-wow-duration="1s">
+                <div class="row justify-content-between">
+                    <div class="col-lg-4 col-sm-8 col-md-6">
+                        <div class="wsus__footer_content">
+                            <a class="footer_logo" href="https://unifood.websolutionus.com">
+                                <img src="/public/uploads/website-images/footer_logo-2022-12-13-05-17-08-5906.png" alt="UniFood" class="img-fluid w-100">
+                            </a>
+                            <span>There are many variations of Lorem Ipsum available, but the majority have suffered.</span>
+                            <p class="info"><i class="far fa-map-marker-alt"></i> 7232 Broadway 308, United States</p>
+                            <a class="info" href="callto:+1347-430-9510"><i class="fas fa-phone-alt"></i>
+                                +1347-430-9510</a>
+                            <a class="info" href="mailto:websolutionus1@gmail.com"><i class="fas fa-envelope"></i>
+                                websolutionus1@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-md-6">
+                        <div class="wsus__footer_content">
+                            <h3>Important Link</h3>
+                            <ul>
+                                <li><a href="https://unifood.websolutionus.com">Home</a></li>
+                                <li><a href="about-us">About Us</a></li>
+                                <li><a href="contact-us">Contact Us</a></li>
+                                <li><a href="our-chef">Our Chef</a></li>
+                                <li><a href="our-chef">Dashboard</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-md-6 order-sm-4 order-lg-3">
+                        <div class="wsus__footer_content">
+                            <h3>Help Link</h3>
+                            <ul>
+                                <li><a href="blogs">Our Blogs</a></li>
+                                <li><a href="testimonial">Testimonial</a></li>
+                                <li><a href="faq">FAQ</a></li>
+                                <li><a href="privacy-policy">Privacy and Policy</a></li>
+                                <li><a href="terms-and-condition">Terms anc Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 col-md-6 order-lg-4">
+                        <div class="wsus__footer_content">
+                            <h3>Subscribe to Newsletter</h3>
+                            <form id="subscribe_form">
+                                <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                <input type="email" placeholder="Email" name="email">
+                                <button id="subscribe_btn" type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                            <div class="wsus__footer_social_link">
+                                <h5>Follow us:</h5>
+                                <ul class="d-flex flex-wrap">
+                                                                        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                                                                        <li><a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                                                                        <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                                                                        <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wsus__footer_bottom d-flex flex-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="wsus__footer_bottom_text d-flex flex-wrap justify-content-between">
+                            <p>©2024 websolutionus All rights reserved</p>
+                            <ul class="d-flex flex-wrap">
+                                <li><a href="faq">FAQ</a></li>
+                                <li><a href="payment">Payment</a></li>
+                                <li><a href="checkout">Checkout</a></li>
+                                <li><a href="dashboard">Dashboard</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--=============================
+        FOOTER END
+    ==============================-->
+
+
+    <!--=============================
+        SCROLL BUTTON START
+    ==============================-->
+    <div class="wsus__scroll_btn">
+        Go to top
+    </div>
+    <!--=============================
+        SCROLL BUTTON END
+    ==============================-->
+
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/612dc781d6e7610a49b2d444/1fedd6l9m';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    
+
+    
+
+    <!--bootstrap js-->
+    <script src="/public/user/js/bootstrap.bundle.min.js"></script>
+    <!--font-awesome js-->
+    <script src="/public/user/js/Font-Awesome.js"></script>
+    <!-- slick slider -->
+    <script src="/public/user/js/slick.min.js"></script>
+    <!-- isotop js -->
+    <script src="/public/user/js/isotope.pkgd.min.js"></script>
+    <!-- simplyCountdownjs -->
+    <script src="/public/user/js/simplyCountdown.js"></script>
+    <!-- counter up js -->
+    <script src="/public/user/js/jquery.waypoints.min.js"></script>
+    <script src="/public/user/js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="/public/user/js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="/public/user/js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="/public/user/js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="/public/user/js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="/public/user/js/jquery.exzoom.js"></script>
+
+    <script src="/public/backend/js/bootstrap-datepicker.min.js"></script>
+
+    <!--main/custom js-->
+    <script src="/public/user/js/main.js"></script>
+
+    <script src="/public/toastr/toastr.min.js"></script>
+    <script src="/public/backend/js/select2.min.js"></script>
+
+    <script>
+            </script>
+
+    
+<script>
+    (function($) {
+        "use strict";
+        $(document).ready(function () {
+            
+            $("#setLanguage").on('change', function(e){
+                this.submit();
+            });
+            
+            $(".first_menu_product").click();
+
+            $('.select2').select2();
+            $('.modal_select2').select2({
+                dropdownParent: $("#address_modal")
+            });
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                startDate: '-Infinity'
+            });
+
+            $(document).on('click', '.mini-item-remove', function () {
+                let root_li = $(this).parents('li');
+                let rowid = root_li.data('mini-item-rowid');
+                root_li.remove();
+
+                let is_cart_page = "no";
+                if(is_cart_page == 'yes'){
+                    $(".main-cart-item-"+rowid).remove();
+                    calculate_total();
+                }
+
+                calculate_mini_total();
+
+                $.ajax({
+                    type: 'get',
+                    url: "remove-cart-item" + "/" + rowid,
+                    success: function (response) {
+                        toastr.success(response.message);
+
+                        let ready_to_reload = "no"
+                        if(ready_to_reload == 'yes'){
+                            window.location.reload();
+                        }
+                    },
+                    error: function(response) {
+                        if(response.status == 500){
+                            toastr.error("Server error occured")
+                        }
+
+                        if(response.status == 403){
+                            toastr.error("Server error occured")
+                        }
+                    }
+                });
+            });
+    
+            $("#subscribe_form").on('submit', function(e){
+                    e.preventDefault();
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    $("#subscribe_btn").prop("disabled", true);
+                    $("#subscribe_btn").html(`<i class="fas fa-spinner"></i>`);
+
+                    $.ajax({
+                        type: 'POST',
+                        data: $('#subscribe_form').serialize(),
+                        url: "subscribe-request",
+                        success: function (response) {
+                            toastr.success(response.message)
+                            $("#subscribe_form").trigger("reset");
+                            $("#subscribe_btn").prop("disabled", false);
+                            $("#subscribe_btn").html(`<i class="fas fa-paper-plane"></i>`);
+                        },
+                        error: function(response) {
+                            $("#subscribe_btn").prop("disabled", false);
+                            $("#subscribe_btn").html(`<i class="fas fa-paper-plane"></i>`);
+
+                            if(response.status == 403){
+                                if(response.responseJSON.message)toastr.error(response.responseJSON.message)
+                            }
+                        }
+                    });
+                })
+        });
+    })(jQuery);
+
+    function calculate_mini_total(){
+        let mini_sub_total = 0;
+        let mini_total_item = 0;
+        $(".mini-input-price").each(function () {
+            let current_val = $(this).val();
+            mini_sub_total = parseInt(mini_sub_total) + parseInt(current_val);
+            mini_total_item = parseInt(mini_total_item) + parseInt(1);
+        });
+
+        $(".mini_sub_total").html(`$${mini_sub_total}`);
+        $(".topbar_cart_qty").html(mini_total_item);
+        $(".mini_cart_body_item").html(`Total Item(${mini_total_item})`);
+
+        let mini_empty_cart = `<div class="wsus__menu_cart_header">
+                <h5>Your shopping cart is empty!</h5>
+                <span class="close_cart"><i class="fal fa-times"></i></span>
+            </div>
+            `;
+
+        if(mini_total_item == 0){
+            $(".wsus__menu_cart_boody").html(mini_empty_cart)
+        }
+    }
+
+    function load_product_model(product_id){
+
+        $("#preloader").addClass('preloader')
+        $(".img").removeClass('d-none')
+
+        $.ajax({
+            type: 'get',
+            url: "load-product-modal" + "/" + product_id,
+            success: function (response) {
+                $("#preloader").removeClass('preloader')
+                $(".img").addClass('d-none')
+                $(".load_product_modal_response").html(response)
+                $("#cartModal").modal('show');
+            },
+            error: function(response) {
+                toastr.error("Server error occured")
+            }
+        });
+    }
+
+    function add_to_wishlist(id){
+        $.ajax({
+            type: 'get',
+            url: "add-to-wishlist" + "/" + id,
+            success: function (response) {
+                toastr.success("Wishlist added successfully");
+            },
+            error: function(response) {
+                if(response.status == 500){
+                    toastr.error("Server error occured")
+                }
+
+                if(response.status == 403){
+                    toastr.error(response.responseJSON.message)
+                }
+            }
+        });
+    }
+    function before_auth_wishlist(){
+        toastr.error("Please login first")
+    }
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,1991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+
+        <title>UniFood - Welcome to Our Restaurant Management Project with Laravel</title>
+        <meta name="description" content="Unifood - Welcome to Our Restaurant Management Project with Laravel">
+
+    <link rel="icon" type="image/png" href="/public/uploads/website-images/favicon-2023-03-05-01-07-01-8002.png">
+    <link rel="stylesheet" href="/public/user/css/all.min.css">
+    <link rel="stylesheet" href="/public/user/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/user/css/spacing.css">
+    <link rel="stylesheet" href="/public/user/css/slick.css">
+    <link rel="stylesheet" href="/public/user/css/nice-select.css">
+    <link rel="stylesheet" href="/public/user/css/venobox.min.css">
+    <link rel="stylesheet" href="/public/user/css/animate.css">
+    <link rel="stylesheet" href="/public/user/css/jquery.exzoom.css">
+    <link rel="stylesheet" href="/public/toastr/toastr.min.css">
+    <link rel="stylesheet" href="/public/user/css/style.css">
+    <link rel="stylesheet" href="/public/user/css/responsive.css">
+    <link rel="stylesheet" href="/public/backend/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/public/backend/css/select2.min.css">
+
+
+    <style>
+    :root {
+    --colorPrimary: #eb0029;
+    --paraColor: #494949;
+    --colorBlack: #010f1c;
+    --colorWhite: #ffffff;
+    --paraFont: 'Barlow', sans-serif;
+    --headingFont: 'Jost', sans-serif;
+    --cursiveFont: 'Lobster', cursive;
+    --boxShadow: rgba(99, 99, 99, 0.45) 0px 2px 8px 0px;
+    --gradiantBg: rgb(156, 3, 30)linear-gradient(0deg, rgba(156, 3, 30, 1) 0%, rgba(235, 0, 41, 1) 100%);
+    --gradiantHoverBg: rgb(235, 0, 41)linear-gradient(0deg, rgba(235, 0, 41, 1) 0%, rgba(156, 3, 30, 1) 100%);
+}
+
+
+.footer_overlay{
+    background: #b90424fa !important;
+}
+
+
+.topbar_icon li a {
+    background: #ca0628 !important;
+}
+
+</style>
+    
+    <!--jquery library js-->
+    <script src="/public/user/js/jquery-3.6.3.min.js"></script>
+    <script src="/public/user/js/sweetalert2@11.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=5248-fd-5fds"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '5248-fd-5fds');
+    </script>
+    
+            <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'fsdf45sdf4sdf');
+        fbq('track', 'PageView');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=fsdf45sdf4sdf&ev=PageView&noscript=1"
+    /></noscript>
+    
+
+</head>
+
+<body>
+
+    <div class="" id="preloader">
+        <div class="img d-none">
+            <img src="/public/uploads/website-images/Spinner.gif" alt="UniFood" class="img-fluid">
+        </div>
+    </div>
+
+    <!--=============================
+        TOPBAR START
+    ==============================-->
+    <section class="wsus__topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6 d-none d-md-block">
+                    <ul class="wsus__topbar_info d-flex flex-wrap">
+                        <li><a href="mailto:websolutionus1@gmail.com"><i class="fas fa-envelope"></i> websolutionus1@gmail.com</a>
+                        </li>
+                        <li><a href="callto:+1347-430-9510"><i class="fas fa-phone-alt"></i> +1347-430-9510</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                    <div class="topbar_right">
+                        <div class="topbar_language">
+                            <form id="setLanguage" action="set-language">
+                                <select id="select_js3" name="code">
+                                                                        <option value="en"selected>English</option>
+                                                                        <option value="bn">Bangla</option>
+                                                                        <option value="ar">Arabic</option>
+                                                                    </select>
+                            </form>
+                        </div>
+                        <ul class="topbar_icon d-flex flex-wrap">
+                                                        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                                                        <li><a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                                                        <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                                                        <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                                                    </ul>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=============================
+        TOPBAR END
+    ==============================-->
+
+
+    <!--=============================
+        MENU START
+    ==============================-->
+    <nav class="navbar navbar-expand-lg main_menu">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="/public/uploads/website-images/logo-2022-12-13-05-18-57-4851.png" alt="UniFood" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="far fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav m-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">pages <i class="far fa-plus"></i></a>
+                        <ul class="droap_menu">
+
+                            <li>
+                                <a href="our-chef.html">Our chef</a>
+                            </li>
+
+                            <li><a href="testimonial.html">Testimonial</a></li>
+
+                            <li><a href="faq.html">FAQs</a></li>
+
+                            <li><a href="privacy-policy.html">privacy policy</a></li>
+                            <li><a href="terms-and-condition.html">terms and condition</a></li>
+
+                                                        <li><a href="page/custom-page-one.html">Custom Page One</a></li>
+                                                        <li><a href="page/custom-page-two.html">Custom Page Two</a></li>
+                                                    </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blogs.html">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">contact us</a>
+                    </li>
+                </ul>
+                <ul class="menu_icon d-flex flex-wrap">
+                    <li>
+                        <a href="javascript:;" class="menu_search"><i class="far fa-search"></i></a>
+                        <div class="wsus__search_form">
+                            <form action="products">
+                                <span class="close_search"><i class="far fa-times"></i></span>
+                                <input name="search" type="text" placeholder="Type your keyword">
+                                <button type="submit">search</button>
+                            </form>
+                        </div>
+                    </li>
+                                        <li>
+                        <a class="cart_icon"><i class="fas fa-shopping-basket"></i> <span class="topbar_cart_qty">0</span></a>
+                    </li>
+                    <li>
+                        <a href="dashboard.html"><i class="fas fa-user"></i></a>
+                    </li>
+                    <li>
+                                                <a class="common_btn" href="login.html">reservation</a>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wsus__menu_cart_area">
+        <div class="wsus__menu_cart_boody">
+
+                            <div class="wsus__menu_cart_header">
+                    <h5>Your shopping cart is empty!</h5>
+                    <span class="close_cart"><i class="fal fa-times"></i></span>
+                </div>
+            
+        </div>
+    </div>
+
+        <!--=============================
+        MENU END
+    ==============================-->
+
+
+    <!-- CART POPUT START -->
+    <div class="wsus__cart_popup">
+        <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="fal fa-times"></i></button>
+                        <div class="load_product_modal_response">
+                            <img src="/public/uploads/website-images/Spinner-1s-200px.gif" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CART POPUT END -->
+    <!--=============================
+        OFFER ITEM END
+    ==============================-->
+
+    
+    <!--=============================
+        BANNER START
+    ==============================-->
+    <section class="wsus__banner" style="background: url(/public/uploads/website-images/slider-bg-2022-12-12-11-51-08-2052.jpg);">
+        <div class="wsus__banner_overlay">
+            <span class="banner_shape_1">
+                <img src="/public/uploads/website-images/slider-foreground1-2022-12-12-11-50-35-9330.png" alt="shape" class="img-fluid w-100">
+            </span>
+            <span class="banner_shape_2">
+                <img src="/public/uploads/website-images/slider-foreground2-2022-12-12-11-48-49-1308.png" alt="shape" class="img-fluid w-100">
+            </span>
+            <div class="row banner_slider">
+                                    <div class="col-12">
+                        <div class="wsus__banner_slider">
+                            <div class=" container">
+                                <div class="row">
+                                    <div class="col-xl-5 col-md-5 col-lg-5">
+                                        <div class="wsus__banner_img wow fadeInLeft" data-wow-duration="1s">
+                                            <div class="img">
+                                                <img src="/public/uploads/custom-images/slider.png" alt="food item" class="img-fluid w-100">
+                                                <span style="background: url(/public/user/images/offer_shapes.png);">
+                                                    35% off
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-5 col-md-7 col-lg-6">
+                                        <div class="wsus__banner_text wow fadeInRight" data-wow-duration="1s">
+                                            <h1>Special Deals Today</h1>
+                                            <h3>Fast Food &amp; Restaurants</h3>
+                                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum fugit minima et debitis ut distinctio optio qui voluptate natus.</p>
+                                            <ul class="d-flex flex-wrap">
+                                                <li><a class="common_btn" href="product/fried-chicken.html">Shop now</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="col-12">
+                        <div class="wsus__banner_slider">
+                            <div class=" container">
+                                <div class="row">
+                                    <div class="col-xl-5 col-md-5 col-lg-5">
+                                        <div class="wsus__banner_img wow fadeInLeft" data-wow-duration="1s">
+                                            <div class="img">
+                                                <img src="/public/uploads/custom-images/slider-2023-03-05-04-14-24-6461.png" alt="food item" class="img-fluid w-100">
+                                                <span style="background: url(/public/user/images/offer_shapes.png);">
+                                                    25% Off
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-5 col-md-7 col-lg-6">
+                                        <div class="wsus__banner_text wow fadeInRight" data-wow-duration="1s">
+                                            <h1>Delicious Food Options</h1>
+                                            <h3>Satisfy Your Cravings</h3>
+                                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum fugit minima et debitis ut distinctio optio qui voluptate natus.</p>
+                                            <ul class="d-flex flex-wrap">
+                                                <li><a class="common_btn" href="product/daria-shevtsova.html">Shop now</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="col-12">
+                        <div class="wsus__banner_slider">
+                            <div class=" container">
+                                <div class="row">
+                                    <div class="col-xl-5 col-md-5 col-lg-5">
+                                        <div class="wsus__banner_img wow fadeInLeft" data-wow-duration="1s">
+                                            <div class="img">
+                                                <img src="/public/uploads/custom-images/slider-2023-03-05-04-15-55-8570.png" alt="food item" class="img-fluid w-100">
+                                                <span style="background: url(/public/user/images/offer_shapes.png);">
+                                                    20% off
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-5 col-md-7 col-lg-6">
+                                        <div class="wsus__banner_text wow fadeInRight" data-wow-duration="1s">
+                                            <h1>Mouth-Watering Dishes</h1>
+                                            <h3>Try Something New</h3>
+                                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum fugit minima et debitis ut distinctio optio qui voluptate natus.</p>
+                                            <ul class="d-flex flex-wrap">
+                                                <li><a class="common_btn" href="product/onion-rings.html">Shop now</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </section>
+    <!--=============================
+        BANNER END
+    ==============================-->
+
+
+    <!--=============================
+        WHY CHOOSE START
+    ==============================-->
+        <section class="wsus__why_choose">
+        <div class="container">
+            <div class="row">
+                                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        <div class="wsus__choose_single d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="icon icon_1">
+                                <i class="fal fa-badge-percent"></i>
+                            </div>
+                            <div class="text">
+                                <h3>Discount Voucher</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit est</p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        <div class="wsus__choose_single d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="icon icon_1">
+                                <i class="fas fa-burger-soda"></i>
+                            </div>
+                            <div class="text">
+                                <h3>Fresh Healthy Foods</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit est</p>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        <div class="wsus__choose_single d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="icon icon_1">
+                                <i class="far fa-hat-chef"></i>
+                            </div>
+                            <div class="text">
+                                <h3>Fast Serve On Table</h3>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit est</p>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </section>
+        <!--=============================
+        WHY CHOOSE END
+    ==============================-->
+
+
+    <!--=============================
+        OFFER ITEM START
+    ==============================-->
+            <section class="wsus__offer_item mt_95 xs_mt_65">
+            <span class="banner_shape_3">
+                <img src="/public/uploads/website-images/today_special_image-2022-12-15-02-32-21-7287.png" alt="shape" class="img-fluid w-100">
+            </span>
+            <div class="container">
+                <div class="row wow fadeInUp" data-wow-duration="1s">
+                    <div class="col-md-8 col-lg-7 col-xl-6 m-auto text-center">
+                        <div class="wsus__section_heading mb_50">
+                            <h4>Daily Offer</h4>
+                            <h2>Up To 75% Off For This Day</h2>
+                            <span>
+                                <img src="/public/user/images/heading_shapes.png" alt="shapes" class="img-fluid w-100">
+                            </span>
+                            <p>Objectively pontificate quality models before intuitive information. Dramatically recaptiualize multifunctional.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row offer_item_slider wow fadeInUp" data-wow-duration="1s">
+                                            <div class="col-xl-4">
+                            <div class="wsus__offer_item_single" style="background: url(/public/uploads/custom-images/dal-makhani-paneer-2023-03-05-01-25-44-9364.jpg);">
+
+                                                                <span>17% off</span>
+                                
+                                <a class="title" href="product/dal-makhani-paneer">Dal Makhani Paneer</a>
+                                <p>Nec in rebum primis causae. Affert iisque ex pri, vis utinam vivendo definitionem ad, nostrum omnesque per et. Omnium antiopam cotidieque cu sit.</p>
+                                <ul class="d-flex flex-wrap">
+                                    <li><a href="javascript:;" onclick="load_product_model(2)"><i
+                                                class="fas fa-shopping-basket"></i></a></li>
+
+                                                                        <li><a href="javascript:;" onclick="before_auth_wishlist(2)"><i class="fal fa-heart"></i></a></li>
+                                    
+
+                                    <li><a href="product/dal-makhani-paneer"><i class="far fa-eye"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                                            <div class="col-xl-4">
+                            <div class="wsus__offer_item_single" style="background: url(/public/uploads/custom-images/indian-cuisine-pakora-2023-03-05-01-32-04-5856.jpg);">
+
+                                                                <span>17% off</span>
+                                
+                                <a class="title" href="product/indian-cuisine-pakora">Indian cuisine Pakora</a>
+                                <p>Per ex vero nonumy. Ius eu doming nominavi mediocrem, aliquid efficiantur no vim, sanctus admodum mnesarchum ad pro. No sea invidunt partiendo. No postea numquam ocurreret duo, unum abhorreant cu nam, fugit fastidii percipitur nam id.</p>
+                                <ul class="d-flex flex-wrap">
+                                    <li><a href="javascript:;" onclick="load_product_model(3)"><i
+                                                class="fas fa-shopping-basket"></i></a></li>
+
+                                                                        <li><a href="javascript:;" onclick="before_auth_wishlist(3)"><i class="fal fa-heart"></i></a></li>
+                                    
+
+                                    <li><a href="product/indian-cuisine-pakora"><i class="far fa-eye"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                                            <div class="col-xl-4">
+                            <div class="wsus__offer_item_single" style="background: url(/public/uploads/custom-images/beef-masala-salad-2023-03-05-01-42-23-6194.jpg);">
+
+                                                                <span>13% off</span>
+                                
+                                <a class="title" href="product/beef-masala-salad">Beef Masala Salad</a>
+                                <p>In vim natum soleat nostro, pri in eloquentiam contentiones. Eu sit sapientem reprehendunt, omnis aliquid eu eos. No quot illum veniam est, ne pro iudico saperet mnesarchum.</p>
+                                <ul class="d-flex flex-wrap">
+                                    <li><a href="javascript:;" onclick="load_product_model(4)"><i
+                                                class="fas fa-shopping-basket"></i></a></li>
+
+                                                                        <li><a href="javascript:;" onclick="before_auth_wishlist(4)"><i class="fal fa-heart"></i></a></li>
+                                    
+
+                                    <li><a href="product/beef-masala-salad"><i class="far fa-eye"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                                            <div class="col-xl-4">
+                            <div class="wsus__offer_item_single" style="background: url(/public/uploads/custom-images/chicken-nuggets-2023-03-05-01-50-15-6100.jpg);">
+
+                                                                <span>40% off</span>
+                                
+                                <a class="title" href="product/chicken-nuggets">Chicken Nuggets</a>
+                                <p>Sint dignissim consectetuer nec et, per ad probatus referrentur, vel cu consequat sententiae. Ad duis fugit dictas mea, et cum stet oratio cetero. Ne pri omittam fastidii. No per harum dicant neglegentur, sea ei esse volumus adolescens.</p>
+                                <ul class="d-flex flex-wrap">
+                                    <li><a href="javascript:;" onclick="load_product_model(5)"><i
+                                                class="fas fa-shopping-basket"></i></a></li>
+
+                                                                        <li><a href="javascript:;" onclick="before_auth_wishlist(5)"><i class="fal fa-heart"></i></a></li>
+                                    
+
+                                    <li><a href="product/chicken-nuggets"><i class="far fa-eye"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </section>
+    
+    <!--=============================
+        MENU ITEM START
+    ==============================-->
+            <section class="wsus__menu mt_95 xs_mt_65">
+            <span class="banner_shape_1">
+                <img src="/public/uploads/website-images/menu_left_image-2022-12-15-02-46-22-9229.png" alt="shape" class="img-fluid w-100">
+            </span>
+            <span class="banner_shape_2">
+                <img src="/public/uploads/website-images/menu_right_image-2022-12-15-02-46-42-1965.png" alt="shape" class="img-fluid w-100">
+            </span>
+            <div class="container">
+
+                <div class="row wow fadeInUp" data-wow-duration="1s">
+                    <div class="col-md-8 col-lg-7 col-xl-6 m-auto text-center">
+                        <div class="wsus__section_heading mb_45">
+                            <h4>Food Menu</h4>
+                            <h2>Our Popular Delicious Foods</h2>
+                            <span>
+                                <img src="/public/user/images/heading_shapes.png" alt="shapes" class="img-fluid w-100">
+                            </span>
+                            <p>Objectively pontificate quality models before intuitive information. Dramatically recaptiualize multifunctional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row wow fadeInUp" data-wow-duration="1s">
+                    <div class="col-12">
+                        <div class="menu_filter d-flex flex-wrap justify-content-center">
+                                                            <button class="first_menu_product" data-filter=".category_1">Burger</button>
+                                                            <button class="" data-filter=".category_2">Chicken</button>
+                                                            <button class="" data-filter=".category_3">Pizza</button>
+                                                            <button class="" data-filter=".category_4">Dresserts</button>
+                                                            <button class="" data-filter=".category_5">Sandwich</button>
+                                                    </div>
+                    </div>
+                </div>
+
+                <div class="row grid">
+                    <div class="col-xl-3 col-sm-6 col-lg-4 category_1 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/hyderabadi-biryani-2023-03-05-01-14-59-9689.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Burger</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+   
+                                         <i class="fas fa-star"></i>
+                                         <i class="fas fa-star"></i>
+                                         <i class="fas fa-star"></i>
+                                         <i class="fas fa-star"></i>
+                                         <i class="fas fa-star"></i>
+                                          <span>1</span>
+                                    </p>
+                                    <a class="title" href="product/hyderabadi-biryani">Hyderabadi Biryani</a>
+
+                                                                            <h5 class="price">$130 <del>$150</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(1)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(1)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/hyderabadi-biryani"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_1 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/daria-shevtsova-2023-03-05-02-47-26-3957.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Burger</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/daria-shevtsova">Daria Shevtsova</a>
+
+                                                                            <h5 class="price">$120 <del>$200</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(6)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(6)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/daria-shevtsova"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_1 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/spicy-burger-2023-03-05-02-57-08-4535.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Burger</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                                                                                                                        <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                            <span>1</span>
+                                    </p>
+                                    <a class="title" href="product/spicy-burger">Spicy Burger</a>
+
+                                                                            <h5 class="price">$40 <del>$80</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(7)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(7)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/spicy-burger"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_1 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/fried-chicken-2023-03-05-02-59-51-6567.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Burger</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/fried-chicken">Fried Chicken</a>
+
+                                                                            <h5 class="price">$50 <del>$60</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(8)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(8)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/fried-chicken"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_1 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/mozzarella-sticks-2023-03-05-03-05-46-3294.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Burger</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/mozzarella-sticks">Mozzarella Sticks</a>
+
+                                                                            <h5 class="price">$70 <del>$110</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(9)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(9)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/mozzarella-sticks"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_1 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/popcorn-chicken-2023-03-05-03-10-01-2671.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Burger</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/popcorn-chicken">Popcorn Chicken</a>
+
+                                                                            <h5 class="price">$60 <del>$90</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(10)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(10)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/popcorn-chicken"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_1 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/chicken-wings-2023-03-05-03-14-33-3228.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Burger</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/chicken-wings">Chicken Wings</a>
+
+                                                                            <h5 class="price">$75 <del>$80</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(11)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(11)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/chicken-wings"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_1 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/onion-rings-2023-03-05-03-23-09-1753.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Burger</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/onion-rings">Onion Rings</a>
+
+                                                                            <h5 class="price">$30 <del>$35</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(12)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(12)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/onion-rings"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_2 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/firecracker-shrimp-2023-03-06-12-25-11-9828.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Chicken</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/firecracker-shrimp">Firecracker Shrimp</a>
+
+                                                                            <h5 class="price">$25 <del>$30</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(15)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(15)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/firecracker-shrimp"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_2 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/grilled-octopus-salad-2023-03-06-12-28-49-3466.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Chicken</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/grilled-octopus-salad">Grilled Octopus Salad</a>
+
+                                                                            <h5 class="price">$70 <del>$75</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(16)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(16)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/grilled-octopus-salad"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_3 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/pesto-and-burrata-crostini-2023-03-06-12-35-05-9316.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Pizza</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/pesto-and-burrata-crostini">Pesto and Burrata Crostini</a>
+
+                                                                            <h5 class="price">$65 <del>$100</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(17)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(17)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/pesto-and-burrata-crostini"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_3 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/lobster-bisque-2023-03-06-12-40-12-7186.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Pizza</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/lobster-bisque">Lobster Bisque</a>
+
+                                                                            <h5 class="price">$60</h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(18)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(18)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/lobster-bisque"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_4 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/seared-ahi-tuna-2023-03-06-12-47-21-4113.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Dresserts</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/seared-ahi-tuna">Seared Ahi Tuna</a>
+
+                                                                            <h5 class="price">$85 <del>$90</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(19)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(19)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/seared-ahi-tuna"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_4 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/quinoa-stuffed-peppers-2023-03-06-12-52-48-9661.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Dresserts</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                    <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                                                                <span>0</span>
+                                    </p>
+                                    <a class="title" href="product/quinoa-stuffed-peppers">Quinoa Stuffed Peppers</a>
+
+                                                                            <h5 class="price">$110</h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(20)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(20)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/quinoa-stuffed-peppers"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_5 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/pulled-pork-sliders-2023-03-06-01-02-22-7233.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Sandwich</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                                                                                                                        <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                            <span>1</span>
+                                    </p>
+                                    <a class="title" href="product/pulled-pork-sliders">Pulled Pork Sliders</a>
+
+                                                                            <h5 class="price">$130 <del>$150</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(21)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(21)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/pulled-pork-sliders"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 col-sm-6 col-lg-4 category_5 wow fadeInUp " data-wow-duration="1s">
+                            <div class="wsus__menu_item">
+                                <div class="wsus__menu_item_img">
+                                    <img src="/public/uploads/custom-images/truffle-fries-2023-03-06-01-06-09-8443.png" alt="menu" class="img-fluid w-100">
+                                    <a class="category" href="#">Sandwich</a>
+                                </div>
+                                <div class="wsus__menu_item_text">
+                                    <p class="rating">
+                                        
+                                                                                                                                                                                        <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                            <span>1</span>
+                                    </p>
+                                    <a class="title" href="product/truffle-fries">Truffle Fries</a>
+
+                                                                            <h5 class="price">$150 <del>$200</del> </h5>
+                                    
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                        <li><a href="javascript:;" onclick="load_product_model(22)"><i
+                                                    class="fas fa-shopping-basket"></i></a></li>
+
+
+                                                                                <li><a href="javascript:;" onclick="before_auth_wishlist(22)"><i class="fal fa-heart"></i></a></li>
+                                        
+                                        <li><a href="product/truffle-fries"><i class="far fa-eye"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!--=============================
+        MENU ITEM END
+    ==============================-->
+
+
+    <!--=============================
+        ADD SLIDER START
+    ==============================-->
+            <section class="wsus__add_slider mt_100 xs_mt_70">
+            <div class="container">
+                <div class="row add_slider wow fadeInUp" data-wow-duration="1s">
+                                            <div class="col-xl-4">
+                            <a href="product/onion-rings" class="wsus__add_slider_single" style="background: url(uploads/custom-images/advertisement-2023-03-05-04-00-30-5264.png);">
+                                <div class="text">
+                                    <h3>Fried Chicken</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                            </a>
+                        </div>
+                                            <div class="col-xl-4">
+                            <a href="product/fried-chicken" class="wsus__add_slider_single" style="background: url(uploads/custom-images/advertisement-2023-03-05-04-01-56-2034.png);">
+                                <div class="text">
+                                    <h3>Spicy Burger</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                            </a>
+                        </div>
+                                            <div class="col-xl-4">
+                            <a href="product/spicy-burger" class="wsus__add_slider_single" style="background: url(uploads/custom-images/advertisement-2023-03-05-04-03-43-9191.png);">
+                                <div class="text">
+                                    <h3>New Year</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                            </a>
+                        </div>
+                                            <div class="col-xl-4">
+                            <a href="product/mozzarella-sticks" class="wsus__add_slider_single" style="background: url(uploads/custom-images/advertisement-2023-03-05-04-06-17-9213.png);">
+                                <div class="text">
+                                    <h3>Black Firday</h3>
+                                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                </div>
+                            </a>
+                        </div>
+                                    </div>
+            </div>
+        </section>
+        <!--=============================
+        ADD SLIDER END
+    ==============================-->
+
+
+    <!--=============================
+        TEAM START
+    ==============================-->
+            <section class="wsus__team pt_95 xs_pt_65 pb_150 xs_pb_120" style="background: url(/public/user/images/chefs_bg.jpg);">
+            <span class="banner_shape_1">
+                <img src="/public/uploads/website-images/chef_left_image-2022-12-15-02-59-31-5537.png" alt="shape" class="img-fluid w-100">
+            </span>
+            <span class="banner_shape_2">
+                <img src="/public/uploads/website-images/chef_right_image-2022-12-15-03-00-31-1531.png" alt="shape" class="img-fluid w-100">
+            </span>
+            <div class="container">
+                <div class="row wow fadeInUp" data-wow-duration="1s">
+                    <div class="col-md-8 col-lg-7 col-xl-6 m-auto text-center">
+                        <div class="wsus__section_heading mb_25">
+                            <h4>Our Team</h4>
+                            <h2>Meet Our Expert Chefs</h2>
+                            <span>
+                                <img src="/public/user/images/heading_shapes.png" alt="shapes" class="img-fluid w-100">
+                            </span>
+                            <p>Objectively pontificate quality models before intuitive information. Dramatically recaptiualize multifunctional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row team_slider">
+                                            <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_team">
+                                <div class="wsus__single_team_img">
+                                    <img src="/public/uploads/custom-images/olivia-ava-20230305042302.jpg" alt="team" class="img-fluid w-100">
+                                </div>
+                                <div class="wsus__single_team_text">
+                                    <h4>Olivia Ava</h4>
+                                    <p>Senior Chef</p>
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                                                                    <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_team">
+                                <div class="wsus__single_team_img">
+                                    <img src="/public/uploads/custom-images/john-doe-20230305042351.jpg" alt="team" class="img-fluid w-100">
+                                </div>
+                                <div class="wsus__single_team_text">
+                                    <h4>John Doe</h4>
+                                    <p>Senior Chef</p>
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                                                                    <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_team">
+                                <div class="wsus__single_team_img">
+                                    <img src="/public/uploads/custom-images/sophia-charle-20230305042513.jpg" alt="team" class="img-fluid w-100">
+                                </div>
+                                <div class="wsus__single_team_text">
+                                    <h4>Sophia Charle</h4>
+                                    <p>Intern Chef</p>
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                                                                    <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_team">
+                                <div class="wsus__single_team_img">
+                                    <img src="/public/uploads/custom-images/david-richard-20230305042547.jpg" alt="team" class="img-fluid w-100">
+                                </div>
+                                <div class="wsus__single_team_text">
+                                    <h4>David Richard</h4>
+                                    <p>Junior Chef</p>
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                                                                    <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_team">
+                                <div class="wsus__single_team_img">
+                                    <img src="/public/uploads/custom-images/flora-ocean-20230305042650.jpg" alt="team" class="img-fluid w-100">
+                                </div>
+                                <div class="wsus__single_team_text">
+                                    <h4>Flora Ocean</h4>
+                                    <p>Web Developer</p>
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                                                                    <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_team">
+                                <div class="wsus__single_team_img">
+                                    <img src="/public/uploads/custom-images/freyja-mylah-20230305042759.jpg" alt="team" class="img-fluid w-100">
+                                </div>
+                                <div class="wsus__single_team_text">
+                                    <h4>Freyja Mylah</h4>
+                                    <p>Graphic Designer</p>
+                                    <ul class="d-flex flex-wrap justify-content-center">
+                                                                                    <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                                        
+                                                                                    <li><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+        </section>
+        <!--=============================
+        TEAM END
+    ==============================-->
+
+
+    <!--=============================
+        DOWNLOAD APP START
+    ==============================-->
+
+            <section class="wsus__download mt_100 xs_mt_70">
+            <div class="container">
+                <div class="wsus__download_bg" style="background: url(/public/uploads/website-images/app_background_one-2022-12-13-01-02-55-7947.jpg);">
+                    <div class="wsus__download_overlay">
+                        <div class="row justify-content-between">
+                            <div class="col-xl-5 col-lg-6 wow fadeInUp" data-wow-duration="1s">
+                                <div class="wsus__download_text">
+                                    <div class="wsus__section_heading mb_25">
+                                        <h2>Download Our Mobile Apps</h2>
+                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque assumenda tenetur, provident earum consequatur, ut voluptas laboriosam fuga error aut eaque architecto quo pariatur. Vel dolore omnis quisquam. Lorem ipsum dolor, sit amet consectetur adipisicing elit Cumque.</p>
+                                    </div>
+                                    <ul class="d-flex flex-wrap">
+                                        <li>
+                                            <a href="https://play.google.com/">
+                                                <i class="fab fa-google-play"></i>
+                                                <p> <span>download from</span> google play </p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.apple.com/app-store/">
+                                                <i class="fab fa-apple"></i>
+                                                <p> <span>download from</span> apple store </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 wow fadeInUp" data-wow-duration="1s">
+                                <div class="wsus__download_img">
+                                    <img src="/public/uploads/website-images/app-image-2022-12-12-01-03-00-7574.png" alt="download" class="img-fluid w-100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=============================
+        DOWNLOAD APP END
+    ==============================-->
+
+
+    <!--=============================
+        COUNTER START
+    ==============================-->
+            <section class="wsus__counter mt_100 xs_mt_70" style="background: url(/public/uploads/website-images/counter-bg-2023-03-06-09-34-03-6121.jpg);">
+            <div class="wsus__counter_overlay pt_100 xs_pt_70 pb_100 xs_pb_70">
+                <div class="container">
+                    <div class="row">
+                                                    <div class="col-xl-3 col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="1s">
+                                <div class="wsus__single_counter">
+                                    <i class="fas fa-burger-soda"></i>
+                                    <div class="text">
+                                        <h2 class="counter">1200</h2>
+                                        <p>Customer Serve</p>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="col-xl-3 col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="1s">
+                                <div class="wsus__single_counter">
+                                    <i class="fal fa-hat-chef"></i>
+                                    <div class="text">
+                                        <h2 class="counter">1150</h2>
+                                        <p>Experience Chef</p>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="col-xl-3 col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="1s">
+                                <div class="wsus__single_counter">
+                                    <i class="far fa-handshake"></i>
+                                    <div class="text">
+                                        <h2 class="counter">1250</h2>
+                                        <p>Happy Customer</p>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="col-xl-3 col-sm-6 col-lg-3 wow fadeInUp" data-wow-duration="1s">
+                                <div class="wsus__single_counter">
+                                    <i class="far fa-trophy"></i>
+                                    <div class="text">
+                                        <h2 class="counter">1300</h2>
+                                        <p>Winning Award</p>
+                                    </div>
+                                </div>
+                            </div>
+                                            </div>
+                </div>
+            </div>
+        </section>
+        <!--=============================
+        COUNTER END
+    ==============================-->
+
+
+    <!--=============================
+       TESTIMONIAL  START
+    ==============================-->
+            <section class="wsus__testimonial pt_90 xs_pt_60 mb_150 xs_mb_120">
+            <div class="container">
+
+                <div class="row wow fadeInUp" data-wow-duration="1s">
+                    <div class="col-md-8 col-lg-7 col-xl-6 m-auto text-center">
+                        <div class="wsus__section_heading mb_40">
+                            <h4>Testimonial</h4>
+                            <h2>Our Customar Feedbacks</h2>
+                            <span>
+                                <img src="/public/user/images/heading_shapes.png" alt="shapes" class="img-fluid w-100">
+                            </span>
+                            <p>Objectively pontificate quality models before intuitive information. Dramatically recaptiualize multifunctional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row testi_slider">
+                                            <div class="col-xl-4 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_testimonial">
+                                <div class="wsus__testimonial_header d-flex flex-wrap align-items-center">
+                                    <div class="img">
+                                        <img src="/public/uploads/custom-images/elia-navy-20230305045641.jpg" alt="clients" class="img-fluid w-100">
+                                    </div>
+                                    <div class="text">
+                                        <h4>Elia Navy</h4>
+                                        <p>Web Developer</p>
+                                    </div>
+                                </div>
+                                <div class="wsus__single_testimonial_body">
+                                    <p class="feedback">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut accusamus praesentium quaerat nihil magnam a porro eaque numquam</p>
+                                    <span class="rating">
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                        </span>
+                                </div>
+                                <div class="wsus__testimonial_product">
+                                    <img src="/public/uploads/custom-images/testimonial-product-20230305045641.png" alt="product" class="img-fluid w-100">
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-4 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_testimonial">
+                                <div class="wsus__testimonial_header d-flex flex-wrap align-items-center">
+                                    <div class="img">
+                                        <img src="/public/uploads/custom-images/john-abraham-20230305045819.jpg" alt="clients" class="img-fluid w-100">
+                                    </div>
+                                    <div class="text">
+                                        <h4>John Abraham</h4>
+                                        <p>MBBS, FCPS, FRCS</p>
+                                    </div>
+                                </div>
+                                <div class="wsus__single_testimonial_body">
+                                    <p class="feedback">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut accusamus praesentium quaerat nihil magnam a porro eaque numquam</p>
+                                    <span class="rating">
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="far fa-star"></i>
+                                                                                                                        </span>
+                                </div>
+                                <div class="wsus__testimonial_product">
+                                    <img src="/public/uploads/custom-images/testimonial-product-20230305045819.png" alt="product" class="img-fluid w-100">
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-4 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_testimonial">
+                                <div class="wsus__testimonial_header d-flex flex-wrap align-items-center">
+                                    <div class="img">
+                                        <img src="/public/uploads/custom-images/jose-larry-20230305050016.jpg" alt="clients" class="img-fluid w-100">
+                                    </div>
+                                    <div class="text">
+                                        <h4>Jose Larry</h4>
+                                        <p>Web Designer</p>
+                                    </div>
+                                </div>
+                                <div class="wsus__single_testimonial_body">
+                                    <p class="feedback">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut accusamus praesentium quaerat nihil magnam a porro eaque numquam</p>
+                                    <span class="rating">
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                        </span>
+                                </div>
+                                <div class="wsus__testimonial_product">
+                                    <img src="/public/uploads/custom-images/testimonial-product-20230305050016.png" alt="product" class="img-fluid w-100">
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-4 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_testimonial">
+                                <div class="wsus__testimonial_header d-flex flex-wrap align-items-center">
+                                    <div class="img">
+                                        <img src="/public/uploads/custom-images/david-richard-20230305050113.jpg" alt="clients" class="img-fluid w-100">
+                                    </div>
+                                    <div class="text">
+                                        <h4>David Richard</h4>
+                                        <p>Graphic Designer</p>
+                                    </div>
+                                </div>
+                                <div class="wsus__single_testimonial_body">
+                                    <p class="feedback">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut accusamus praesentium quaerat nihil magnam a porro eaque numquam</p>
+                                    <span class="rating">
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="far fa-star"></i>
+                                                                                                                                                                            <i class="far fa-star"></i>
+                                                                                                                        </span>
+                                </div>
+                                <div class="wsus__testimonial_product">
+                                    <img src="/public/uploads/custom-images/testimonial-product-20230305050113.png" alt="product" class="img-fluid w-100">
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-4 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_testimonial">
+                                <div class="wsus__testimonial_header d-flex flex-wrap align-items-center">
+                                    <div class="img">
+                                        <img src="/public/uploads/custom-images/david-simmons-20230305050400.jpg" alt="clients" class="img-fluid w-100">
+                                    </div>
+                                    <div class="text">
+                                        <h4>David Simmons</h4>
+                                        <p>MBBS, FCPS, FRCS</p>
+                                    </div>
+                                </div>
+                                <div class="wsus__single_testimonial_body">
+                                    <p class="feedback">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut accusamus praesentium quaerat nihil magnam a porro eaque numquam</p>
+                                    <span class="rating">
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="far fa-star"></i>
+                                                                                                                        </span>
+                                </div>
+                                <div class="wsus__testimonial_product">
+                                    <img src="/public/uploads/custom-images/testimonial-product-20230305050400.png" alt="product" class="img-fluid w-100">
+                                </div>
+                            </div>
+                        </div>
+                                            <div class="col-xl-4 wow fadeInUp" data-wow-duration="1s">
+                            <div class="wsus__single_testimonial">
+                                <div class="wsus__testimonial_header d-flex flex-wrap align-items-center">
+                                    <div class="img">
+                                        <img src="/public/uploads/custom-images/mary-patricia-20230305050436.jpg" alt="clients" class="img-fluid w-100">
+                                    </div>
+                                    <div class="text">
+                                        <h4>Mary  Patricia</h4>
+                                        <p>Senior Chef</p>
+                                    </div>
+                                </div>
+                                <div class="wsus__single_testimonial_body">
+                                    <p class="feedback">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut accusamus praesentium quaerat nihil magnam a porro eaque numquam</p>
+                                    <span class="rating">
+                                                                                                                                <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                                                                            <i class="fas fa-star"></i>
+                                                                                                                        </span>
+                                </div>
+                                <div class="wsus__testimonial_product">
+                                    <img src="/public/uploads/custom-images/testimonial-product-20230305050436.png" alt="product" class="img-fluid w-100">
+                                </div>
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+        </section>
+        <!--=============================
+        TESTIMONIAL END
+    ==============================-->
+
+    <!--=============================
+        BLOG START
+    ==============================-->
+
+            <section class="wsus__blog" style="background: url(/public/uploads/website-images/blog_background-2022-12-15-03-17-45-5083.jpg);">
+            <div class="wsus__blog_overlay pt_95 xs_pt_65 pb_100 xs_pb_70">
+                <div class="container">
+
+                    <div class="row wow fadeInUp" data-wow-duration="1s">
+                        <div class="col-md-8 col-lg-7 col-xl-6 m-auto text-center">
+                            <div class="wsus__section_heading mb_25">
+                                <h4>Our Blogs</h4>
+                                <h2>Our Latest Foods Blog</h2>
+                                <span>
+                                    <img src="/public/user/images/heading_shapes.png" alt="shapes" class="img-fluid w-100">
+                                </span>
+                                <p>Objectively pontificate quality models before intuitive information. Dramatically recaptiualize multifunctional.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                                                    <div class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp" data-wow-duration="1s">
+                                <div class="wsus__single_blog">
+                                    <a href="blog/the-secret-to-perfectly-cooked-steaks" class="wsus__single_blog_img">
+                                        <img src="/public/uploads/custom-images/blog--2023-03-05-05-34-11-4870.jpg" alt="blog" class="img-fluid w-100">
+                                    </a>
+                                    <div class="wsus__single_blog_text">
+                                        <a class="category" href="blogs?category=chicken">Chicken</a>
+                                        <ul class="d-flex flex-wrap mt_15">
+                                            <li><i class="fas fa-user"></i>by admin</li>
+                                            <li><i class="fas fa-calendar-alt"></i> 05 Mar 2023</li>
+                                            <li><i class="fas fa-comments"></i> 0comment</li>
+                                        </ul>
+                                        <a class="title" href="blog/the-secret-to-perfectly-cooked-steaks">The Secret to Perfectly Cooked Steaks</a>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp" data-wow-duration="1s">
+                                <div class="wsus__single_blog">
+                                    <a href="blog/why-our-pasta-is-worth-the-visit" class="wsus__single_blog_img">
+                                        <img src="/public/uploads/custom-images/blog--2023-03-05-05-35-24-9694.jpg" alt="blog" class="img-fluid w-100">
+                                    </a>
+                                    <div class="wsus__single_blog_text">
+                                        <a class="category" href="blogs?category=chicken">Chicken</a>
+                                        <ul class="d-flex flex-wrap mt_15">
+                                            <li><i class="fas fa-user"></i>by admin</li>
+                                            <li><i class="fas fa-calendar-alt"></i> 05 Mar 2023</li>
+                                            <li><i class="fas fa-comments"></i> 0comment</li>
+                                        </ul>
+                                        <a class="title" href="blog/why-our-pasta-is-worth-the-visit">Why Our Pasta is Worth the Visit</a>
+                                    </div>
+                                </div>
+                            </div>
+                                                    <div class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp" data-wow-duration="1s">
+                                <div class="wsus__single_blog">
+                                    <a href="blog/the-science-of-pairing-wine-and-cheese" class="wsus__single_blog_img">
+                                        <img src="/public/uploads/custom-images/blog--2023-03-05-05-36-09-3126.jpg" alt="blog" class="img-fluid w-100">
+                                    </a>
+                                    <div class="wsus__single_blog_text">
+                                        <a class="category" href="blogs?category=fresh-food">Fresh Food</a>
+                                        <ul class="d-flex flex-wrap mt_15">
+                                            <li><i class="fas fa-user"></i>by admin</li>
+                                            <li><i class="fas fa-calendar-alt"></i> 05 Mar 2023</li>
+                                            <li><i class="fas fa-comments"></i> 0comment</li>
+                                        </ul>
+                                        <a class="title" href="blog/the-science-of-pairing-wine-and-cheese">The Science of Pairing Wine and Cheese</a>
+                                    </div>
+                                </div>
+                            </div>
+                                            </div>
+                </div>
+            </div>
+        </section>
+        <!--=============================
+        BLOG END
+    ==============================-->
+
+
+
+    <!--=============================
+        BRAND START
+    ==============================-->
+    <section class="wsus__brand" style="background: url(/public/uploads/website-images/counter-bg-2023-03-06-09-34-36-3312.jpg);">
+        <div class="wsus__brand_overlay">
+            <div class="container">
+                <div class="row brand_slider wow fadeInUp" data-wow-duration="1s">
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-35-57-4275.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-05-2512.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-15-7213.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-24-3552.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-34-1671.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                            <div class="col-xl-2">
+                                                        <a class="wsus__single_brand" href="javascript:;">
+                                <img src="/public/uploads/custom-images/partner-2023-03-05-04-36-42-1713.png" alt="brand" class="img-fluid w-100">
+                            </a>
+                            
+                        </div>
+                                    </div>
+            </div>
+        </div>
+    </section>
+    <!--=============================
+        BRAND END
+    ==============================-->
+
+
+    <!--=============================
+        FOOTER START
+    ==============================-->
+    <footer style="background: url(/public/uploads/website-images/footer_background-2022-12-13-12-06-33-5633.jpg);">
+        <div class="footer_overlay pt_100 xs_pt_70 pb_100 xs_pb_70">
+            <div class="container wow fadeInUp" data-wow-duration="1s">
+                <div class="row justify-content-between">
+                    <div class="col-lg-4 col-sm-8 col-md-6">
+                        <div class="wsus__footer_content">
+                            <a class="footer_logo" href="https://unifood.websolutionus.com">
+                                <img src="/public/uploads/website-images/footer_logo-2022-12-13-05-17-08-5906.png" alt="UniFood" class="img-fluid w-100">
+                            </a>
+                            <span>There are many variations of Lorem Ipsum available, but the majority have suffered.</span>
+                            <p class="info"><i class="far fa-map-marker-alt"></i> 7232 Broadway 308, United States</p>
+                            <a class="info" href="callto:+1347-430-9510"><i class="fas fa-phone-alt"></i>
+                                +1347-430-9510</a>
+                            <a class="info" href="mailto:websolutionus1@gmail.com"><i class="fas fa-envelope"></i>
+                                websolutionus1@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-md-6">
+                        <div class="wsus__footer_content">
+                            <h3>Important Link</h3>
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about-us">About Us</a></li>
+                                <li><a href="contact-us">Contact Us</a></li>
+                                <li><a href="our-chef">Our Chef</a></li>
+                                <li><a href="our-chef">Dashboard</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-4 col-md-6 order-sm-4 order-lg-3">
+                        <div class="wsus__footer_content">
+                            <h3>Help Link</h3>
+                            <ul>
+                                <li><a href="blogs.html">Our Blogs</a></li>
+                                <li><a href="testimonial.html">Testimonial</a></li>
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="privacy-policy.html">Privacy and Policy</a></li>
+                                <li><a href="terms-and-condition.html">Terms anc Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 col-md-6 order-lg-4">
+                        <div class="wsus__footer_content">
+                            <h3>Subscribe to Newsletter</h3>
+                            <form id="subscribe_form">
+                                <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                <input type="email" placeholder="Email" name="email">
+                                <button id="subscribe_btn" type="submit"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                            <div class="wsus__footer_social_link">
+                                <h5>Follow us:</h5>
+                                <ul class="d-flex flex-wrap">
+                                                                        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                                                                        <li><a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                                                                        <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                                                                        <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                                                                    </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wsus__footer_bottom d-flex flex-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="wsus__footer_bottom_text d-flex flex-wrap justify-content-between">
+                            <p>©2024 websolutionus All rights reserved</p>
+                            <ul class="d-flex flex-wrap">
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="payment.html">Payment</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="dashboard.html">Dashboard</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--=============================
+        FOOTER END
+    ==============================-->
+
+
+    <!--=============================
+        SCROLL BUTTON START
+    ==============================-->
+    <div class="wsus__scroll_btn">
+        Go to top
+    </div>
+    <!--=============================
+        SCROLL BUTTON END
+    ==============================-->
+
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/612dc781d6e7610a49b2d444/1fedd6l9m';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    
+
+    
+
+    <!--bootstrap js-->
+    <script src="/public/user/js/bootstrap.bundle.min.js"></script>
+    <!--font-awesome js-->
+    <script src="/public/user/js/Font-Awesome.js"></script>
+    <!-- slick slider -->
+    <script src="/public/user/js/slick.min.js"></script>
+    <!-- isotop js -->
+    <script src="/public/user/js/isotope.pkgd.min.js"></script>
+    <!-- simplyCountdownjs -->
+    <script src="/public/user/js/simplyCountdown.js"></script>
+    <!-- counter up js -->
+    <script src="/public/user/js/jquery.waypoints.min.js"></script>
+    <script src="/public/user/js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="/public/user/js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="/public/user/js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="/public/user/js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="/public/user/js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="/public/user/js/jquery.exzoom.js"></script>
+
+    <script src="/public/backend/js/bootstrap-datepicker.min.js"></script>
+
+    <!--main/custom js-->
+    <script src="/public/user/js/main.js"></script>
+
+    <script src="/public/toastr/toastr.min.js"></script>
+    <script src="/public/backend/js/select2.min.js"></script>
+
+    <script>
+            </script>
+
+    
+<script>
+    (function($) {
+        "use strict";
+        $(document).ready(function () {
+            
+            $("#setLanguage").on('change', function(e){
+                this.submit();
+            });
+            
+            $(".first_menu_product").click();
+
+            $('.select2').select2();
+            $('.modal_select2').select2({
+                dropdownParent: $("#address_modal")
+            });
+
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                startDate: '-Infinity'
+            });
+
+            $(document).on('click', '.mini-item-remove', function () {
+                let root_li = $(this).parents('li');
+                let rowid = root_li.data('mini-item-rowid');
+                root_li.remove();
+
+                let is_cart_page = "no";
+                if(is_cart_page == 'yes'){
+                    $(".main-cart-item-"+rowid).remove();
+                    calculate_total();
+                }
+
+                calculate_mini_total();
+
+                $.ajax({
+                    type: 'get',
+                    url: "remove-cart-item" + "/" + rowid,
+                    success: function (response) {
+                        toastr.success(response.message);
+
+                        let ready_to_reload = "no"
+                        if(ready_to_reload == 'yes'){
+                            window.location.reload();
+                        }
+                    },
+                    error: function(response) {
+                        if(response.status == 500){
+                            toastr.error("Server error occured")
+                        }
+
+                        if(response.status == 403){
+                            toastr.error("Server error occured")
+                        }
+                    }
+                });
+            });
+    
+            $("#subscribe_form").on('submit', function(e){
+                    e.preventDefault();
+                    var isDemo = "0"
+                    if(isDemo == 0){
+                        toastr.error('This Is Demo Version. You Can Not Change Anything');
+                        return;
+                    }
+
+                    $("#subscribe_btn").prop("disabled", true);
+                    $("#subscribe_btn").html(`<i class="fas fa-spinner"></i>`);
+
+                    $.ajax({
+                        type: 'POST',
+                        data: $('#subscribe_form').serialize(),
+                        url: "subscribe-request",
+                        success: function (response) {
+                            toastr.success(response.message)
+                            $("#subscribe_form").trigger("reset");
+                            $("#subscribe_btn").prop("disabled", false);
+                            $("#subscribe_btn").html(`<i class="fas fa-paper-plane"></i>`);
+                        },
+                        error: function(response) {
+                            $("#subscribe_btn").prop("disabled", false);
+                            $("#subscribe_btn").html(`<i class="fas fa-paper-plane"></i>`);
+
+                            if(response.status == 403){
+                                if(response.responseJSON.message)toastr.error(response.responseJSON.message)
+                            }
+                        }
+                    });
+                })
+        });
+    })(jQuery);
+
+    function calculate_mini_total(){
+        let mini_sub_total = 0;
+        let mini_total_item = 0;
+        $(".mini-input-price").each(function () {
+            let current_val = $(this).val();
+            mini_sub_total = parseInt(mini_sub_total) + parseInt(current_val);
+            mini_total_item = parseInt(mini_total_item) + parseInt(1);
+        });
+
+        $(".mini_sub_total").html(`$${mini_sub_total}`);
+        $(".topbar_cart_qty").html(mini_total_item);
+        $(".mini_cart_body_item").html(`Total Item(${mini_total_item})`);
+
+        let mini_empty_cart = `<div class="wsus__menu_cart_header">
+                <h5>Your shopping cart is empty!</h5>
+                <span class="close_cart"><i class="fal fa-times"></i></span>
+            </div>
+            `;
+
+        if(mini_total_item == 0){
+            $(".wsus__menu_cart_boody").html(mini_empty_cart)
+        }
+    }
+
+    function load_product_model(product_id){
+
+        $("#preloader").addClass('preloader')
+        $(".img").removeClass('d-none')
+
+        $.ajax({
+            type: 'get',
+            url: "load-product-modal" + "/" + product_id,
+            success: function (response) {
+                $("#preloader").removeClass('preloader')
+                $(".img").addClass('d-none')
+                $(".load_product_modal_response").html(response)
+                $("#cartModal").modal('show');
+            },
+            error: function(response) {
+                toastr.error("Server error occured")
+            }
+        });
+    }
+
+    function add_to_wishlist(id){
+        $.ajax({
+            type: 'get',
+            url: "add-to-wishlist" + "/" + id,
+            success: function (response) {
+                toastr.success("Wishlist added successfully");
+            },
+            error: function(response) {
+                if(response.status == 500){
+                    toastr.error("Server error occured")
+                }
+
+                if(response.status == 403){
+                    toastr.error(response.responseJSON.message)
+                }
+            }
+        });
+    }
+    function before_auth_wishlist(){
+        toastr.error("Please login first")
+    }
+
+</script>
+
+</body>
+
+</html>

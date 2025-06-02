@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link rel="shortcut icon"  href="/public/uploads/website-images/favicon-2023-03-05-01-07-01-8002.png"  type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Single Review</title>
+  <title>Login</title>
+
+
+  <link rel="stylesheet" href="/public/backend/css/bootstrap.min.css">
+  <link href="/public/backend/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/backend/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/public/backend/css/style.css">
+  <link rel="stylesheet" href="/public/backend/css/bootstrap-social.css">
+  <link rel="stylesheet" href="/public/backend/css/components.css">
+    <link rel="stylesheet" href="/public/toastr/toastr.min.css">
+  <link rel="stylesheet" href="/public/backend/css/bootstrap4-toggle.min.css">
+  <link rel="stylesheet" href="/public/backend/css/dev.css">
+  <link rel="stylesheet" href="/public/backend/css/select2.min.css">
+  <link rel="stylesheet" href="/public/backend/css/tagify.css">
+  <link rel="stylesheet" href="/public/backend/css/bootstrap-tagsinput.css">
+  <link rel="stylesheet" href="/public/backend/css/fontawesome-iconpicker.min.css">
+  <link rel="stylesheet" href="/public/backend/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="/public/backend/clockpicker/dist/bootstrap-clockpicker.css">
+  <link rel="stylesheet" href="/public/backend/datetimepicker/jquery.datetimepicker.css">
+  <link rel="stylesheet" href="/public/backend/css/iziToast.min.css">
+
+  <script src="/public/backend/js/jquery-3.6.3.min.js"></script>
+
+  <script src="/public/backend/minicolor/jquery.minicolors.js"></script>
+  <link rel="stylesheet" href="/public/backend/minicolor/jquery.minicolors.css">
+
+<style>
+    .fade.in {
+        opacity: 1 !important;
+    }
+
+    .tox .tox-promotion,
+    .tox-statusbar__branding{
+        display: none !important;
+    }
+
+</style>
+
+<style>
+    dl {
+      margin: 20px 0;
+    }
+    dt {
+      font-size: 120%;
+    }
+    dd {
+      padding: 10px 20px 20px 20px;
+    }
+    dd:last-child {
+      border-bottom: none;
+    }
+    code {
+      color: black;
+      border: none;
+      background: rgba(128, 128, 128, .1);
+    }
+    [dir=rtl] code {
+      direction: ltr;
+    }
+    pre {
+      background: #f8f8f8;
+      border: none;
+      color: #333;
+      padding: 20px;
+    }
+    [dir=rtl] pre {
+      direction: ltr;
+    }
+    h2 {
+      margin-top: 50px;
+    }
+    h3 {
+      color: #aaa;
+    }
+    .jumbotron {
+      padding: 40px;
+    }
+    .jumbotron h1 {
+      margin-top: 0;
+    }
+    .jumbotron p:last-child {
+      margin-bottom: 0;
+    }
+
+    .minicolors-theme-bootstrap .minicolors-input {
+      padding-left: 44px !important;
+    }
+
+    .minicolors-theme-bootstrap .minicolors-swatch {
+        top: 7px !important;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div id="app">
+    <div class="main-wrapper">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar">
+        <div class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg custom_click"><i class="fas fa-bars"></i></a></li>
+            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+          </ul>
+        </div>
+        <ul class="navbar-nav navbar-right">
+          <li class="dropdown dropdown-list-toggle"><a target="_blank" href="https://unifood.websolutionus.com" class="nav-link nav-link-lg"><i class="fas fa-home"></i> Visit Website</i></a>
+
+          </li>
+          <li class="dropdown dropdown-list-toggle">
+            <form id="setLanguage" action="set-language">
+                <select class="form-control select2" name="code">
+                  <option value="">Select Language</option>
+                                        <option value="en"selected>English</option>
+                                        <option value="bn">Bangla</option>
+                                        <option value="ar">Arabic</option>
+                                    </select>
+            </form>
+          </li>
+
+                    <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <img alt="image" src="/public/uploads/website-images/john-doe-2023-03-05-01-05-25-5417.jpg" class="rounded-circle mr-1">
+                          <div class="d-sm-none d-lg-inline-block">John Doe</div></a>
+            <div class="dropdown-menu dropdown-menu-right">
+
+              <a href="admin/profile" class="dropdown-item has-icon">
+                <i class="far fa-user"></i> Profile
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="admin/logout" class="dropdown-item has-icon text-danger" onclick="event.preventDefault();
+              document.getElementById('admin-logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            
+            <form id="admin-logout-form" action="admin/logout" method="POST" class="d-none">
+                <input type="hidden" name="_token" value="QykwaYg9Q8jABp0ElQi62MyvEZzvVgMx1IX7uKla" autocomplete="off">            </form>
+            
+
+
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+      <div class="sidebar-brand">
+        <a href="admin/dashboard">UniFood</a>
+      </div>
+      <div class="sidebar-brand sidebar-brand-sm">
+        <a href="admin/dashboard">Un</a>
+      </div>
+
+      <ul class="sidebar-menu">
+
+          <li class=""><a class="nav-link" href="admin/dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+
+          <li class=""><a class="nav-link" href="admin/pos"><i class="fas fa-th-large"></i> <span>POS</span></a></li>
+
+          <li class="nav-item dropdown ">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-shopping-cart"></i><span>Orders</span></a>
+            <ul class="dropdown-menu">
+
+              <li class=""><a class="nav-link" href="admin/all-order">All Orders</a></li>
+
+
+              <li class=""><a class="nav-link" href="admin/pending-order">Pending Orders</a></li>
+
+              <li class=""><a class="nav-link" href="admin/pregress-order">Progress Orders</a></li>
+
+              <li class=""><a class="nav-link" href="admin/delivered-order">Delivered Orders</a></li>
+
+              <li class=""><a class="nav-link" href="admin/completed-order">Completed Orders</a></li>
+
+              <li class=""><a class="nav-link" href="admin/declined-order">Declined Orders</a></li>
+
+              <li class=""><a class="nav-link" href="admin/cash-on-delivery">Cash On Delivery</a></li>
+
+            </ul>
+
+          </li>
+
+          <li class="nav-item dropdown active">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i><span>Manage Restaurant</span></a>
+            <ul class="dropdown-menu">
+
+                <li><a class="nav-link" href="admin/product/create">Create Product</a></li>
+
+                <li class=""><a class="nav-link" href="admin/product">Products</a></li>
+
+                <li class=""><a class="nav-link" href="admin/product-category">Categories</a></li>
+
+                <li class=""><a class="nav-link" href="admin/reservation">Reservations</a></li>
+
+
+                <li class="active"><a class="nav-link" href="admin/product-review">Product Reviews</a></li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown ">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-shopping-cart"></i><span>Ecommerce</span></a>
+            <ul class="dropdown-menu">
+
+                <li class=""><a class="nav-link" href="admin/coupon">Coupon</a></li>
+
+                <li class=""><a class="nav-link" href="admin/payment-method">Payment Method</a></li>
+
+                <li class=""><a class="nav-link" href="admin/delivery-area">Delivery Area</a></li>
+
+            </ul>
+          </li>
+
+          <li class=""><a class="nav-link" href="admin/advertisement"><i class="fas fa-ad"></i> <span>Advertisement</span></a></li>
+
+          <li class="nav-item dropdown ">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span>Our Customers</span></a>
+            <ul class="dropdown-menu">
+
+                <li class=""><a class="nav-link" href="admin/customer-list">Customer List</a></li>
+
+                <li class=""><a class="nav-link" href="admin/pending-customer-list">Pending Customers</a></li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown ">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-shopping-cart"></i><span>Section</span></a>
+            <ul class="dropdown-menu">
+
+                <li class=""><a class="nav-link" href="admin/service">Service</a></li>
+
+                <li class=""><a class="nav-link" href="admin/slider">Slider</a></li>
+
+                <li class=""><a class="nav-link" href="admin/counter">Counter</a></li>
+
+                <li class=""><a class="nav-link" href="admin/partner">Partner</a></li>
+
+                <li class=""><a class="nav-link" href="admin/app-section">App Section</a></li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown ">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-globe"></i><span>Manage Website</span></a>
+
+            <ul class="dropdown-menu">
+
+                <li class=""><a class="nav-link" href="admin/seo-setup">SEO Setup</a></li>
+
+                <li class=""><a class="nav-link" href="admin/maintainance-mode">Maintainance Mode</a></li>
+
+                <li class=""><a class="nav-link" href="admin/default-avatar">Default Avatar</a></li>
+
+                <li class=""><a class="nav-link" href="admin/breadcrumb-image">Breadcrumb Image</a></li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown ">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i><span>Header and Footer</span></a>
+            <ul class="dropdown-menu">
+
+                <li class=""><a class="nav-link" href="admin/footer">Footer</a></li>
+
+                <li class=""><a class="nav-link" href="admin/social-link">Social Link</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown ">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-columns"></i><span>Pages</span></a>
+            <ul class="dropdown-menu">
+
+                <li class=""><a class="nav-link" href="admin/homepage">Homepage</a></li>
+
+                <li class=""><a class="nav-link" href="admin/about-us">About Us</a></li>
+
+                <li class=""><a class="nav-link" href="admin/contact-us">Contact Us</a></li>
+
+                <li class=""><a class="nav-link" href="admin/testimonial">Testimonial</a></li>
+
+                <li class=""><a class="nav-link" href="admin/our-chef">Our Chef</a></li>
+
+                <li class=""><a class="nav-link" href="admin/custom-page">Custom Page</a></li>
+
+                <li class=""><a class="nav-link" href="admin/terms-and-condition">Terms And Conditions</a></li>
+
+                <li class=""><a class="nav-link" href="admin/privacy-policy">Privacy Policy</a></li>
+
+                <li class=""><a class="nav-link" href="admin/faq">FAQ</a></li>
+
+                <li class=""><a class="nav-link" href="admin/error-page">Error Page</a></li>
+
+                <li class=""><a class="nav-link" href="admin/login-page">Login / Register Page</a></li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown ">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i><span>Blogs</span></a>
+            <ul class="dropdown-menu">
+
+                <li class=""><a class="nav-link" href="admin/blog-category">Categories</a></li>
+
+                <li class=""><a class="nav-link" href="admin/blog">Blogs</a></li>
+
+                <li class=""><a class="nav-link" href="admin/popular-blog">Popular Blogs</a></li>
+
+                <li class=""><a class="nav-link" href="admin/blog-comment">Comments</a></li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown ">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-envelope"></i><span>Email Configuration</span></a>
+            <ul class="dropdown-menu">
+
+                <li class=""><a class="nav-link" href="admin/email-configuration">Setting</a></li>
+
+                <li class=""><a class="nav-link" href="admin/email-template">Email Template</a></li>
+
+            </ul>
+          </li>
+
+          <li class=""><a class="nav-link" href="admin/languages"><i class="fas fa-language"></i>Manage Language</a></li>
+
+          <li class=""><a class="nav-link" href="admin/general-setting"><i class="fas fa-cog"></i> <span>Setting</span></a></li>
+          
+                      <li  class=""><a class="nav-link" href="admin/clear-database"><i class="fas fa-trash"></i> <span>Clear Database</span></a></li>
+          
+          <li class=""><a class="nav-link" href="admin/subscriber"><i class="fas fa-fire"></i> <span>Subscribers</span></a></li>
+
+          <li class=""><a class="nav-link" href="admin/contact-message"><i class="fas fa-fa fa-envelope"></i> <span>Contact Message</span></a></li>
+
+                      <li class=""><a class="nav-link" href="admin/admin"><i class="fas fa-user"></i> <span>Admin list</span></a></li>
+          
+        </ul>
+    </aside>
+
+  </div>
+
+
+            <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>Single Review</h1>
+          </div>
+
+          <div class="section-body">
+            <a href="admin/product-review" class="btn btn-primary"><i class="fas fa-list"></i> Product Reviews</a>
+            <div class="row mt-4">
+                <div class="col">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="table-responsive table-invoice">
+                        <table class="table table-striped table-bordered">
+
+                           <tr>
+                               <td>User Name</td>
+                               <td>John Doe</td>
+                           </tr>
+
+                           <tr>
+                               <td>User Email</td>
+                               <td>user@gmail.com</td>
+                           </tr>
+
+                           <tr>
+                               <td>Product</td>
+                               <td><a href="admin/product/1/edit">Hyderabadi Biryani</a></td>
+                           </tr>
+
+                           <tr>
+                               <td>Rating</td>
+                               <td>5</td>
+                           </tr>
+
+                           <tr>
+                               <td>Review</td>
+                               <td>Vim et alterum ornatus vivendum, ut mea solum repudiare. His etiam delenit tibique no, ad harum omnes scribentur qui, ne wisi detracto his.</td>
+                           </tr>
+
+                           <tr>
+                               <td>Status</td>
+                               <td>
+                                                                    <a href="javascript:;" onclick="manageReviewStatus(1)">
+                                        <input id="status_toggle" type="checkbox" checked data-toggle="toggle" data-on="Active" data-off="InActive" data-onstyle="success" data-offstyle="danger">
+                                    </a>
+                                                               </td>
+                           </tr>
+
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </section>
+      </div>
+
+<script>
+    function manageReviewStatus(id){
+            $.ajax({
+                type:"put",
+                data: { _token : 'QykwaYg9Q8jABp0ElQi62MyvEZzvVgMx1IX7uKla' },
+                url:"admin/product-review-status"+"/"+id,
+                success:function(response){
+                    toastr.success(response)
+                },
+                error:function(err){
+                }
+            })
+        }
+</script>
+
+      <footer class="main-footer">
+        <div class="footer-left">
+          ©2024 websolutionus All rights reserved
+        </div>
+        <div class="footer-right">
+
+           App Version : 2.1
+
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Item Delete Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are You sure delete this item ?</p>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+            <form id="deleteForm" action="" method="POST">
+                <input type="hidden" name="_token" value="QykwaYg9Q8jABp0ElQi62MyvEZzvVgMx1IX7uKla" autocomplete="off">                <input type="hidden" name="_method" value="DELETE">                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Yes, Delete</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="/public/backend/js/popper.min.js"></script>
+  <script src="/public/backend/js/bootstrap.min.js"></script>
+  <script src="/public/backend/datatables/jquery.dataTables.min.js"></script>
+  <script src="/public/backend/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="/public/backend/js/jquery.nicescroll.min.js"></script>
+  <script src="/public/backend/js/moment.min.js"></script>
+  <script src="/public/backend/js/stisla.js"></script>
+  <script src="/public/backend/js/scripts.js"></script>
+  <script src="/public/backend/js/select2.min.js"></script>
+  <script src="/public/backend/js/tagify.js"></script>
+  <script src="/public/toastr/toastr.min.js"></script>
+  <script src="/public/backend/js/bootstrap4-toggle.min.js"></script>
+  <script src="/public/backend/js/fontawesome-iconpicker.min.js"></script>
+  <script src="/public/backend/js/bootstrap-datepicker.min.js"></script>
+  <script src="/public/backend/clockpicker/dist/bootstrap-clockpicker.js"></script>
+  <script src="/public/backend/datetimepicker/jquery.datetimepicker.js"></script>
+  <script src="/public/backend/js/iziToast.min.js"></script>
+  <script src="/public/backend/js/modules-toastr.js"></script>
+  <script src="/public/backend/tinymce/js/tinymce/tinymce.min.js"></script>
+
+
+    <script>
+            </script>
+
+    
+
+
+<script>
+    (function($) {
+    "use strict";
+    $(document).ready(function () {
+        tinymce.init({
+            selector: '.summernote',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ]
+        });
+        $('#dataTable').DataTable();
+        $('.select2').select2();
+        $('.sub_cat_one').select2();
+        $('.tags').tagify();
+        $('.datetimepicker_mask').datetimepicker({
+            format:'Y-m-d H:i',
+
+        });
+        $('.custom-icon-picker').iconpicker({
+            templates: {
+                popover: '<div class="iconpicker-popover popover"><div class="arrow"></div>' +
+                    '<div class="popover-title"></div><div class="popover-content"></div></div>',
+                footer: '<div class="popover-footer"></div>',
+                buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">Cancel</button>' +
+                    ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">Accept</button>',
+                search: '<input type="search" class="form-control iconpicker-search" placeholder="Type to filter" />',
+                iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
+                iconpickerItem: '<a role="button" href="javascript:;" class="iconpicker-item"><i></i></a>'
+            }
+        })
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: '-Infinity'
+        });
+        $('.clockpicker').clockpicker();
+        
+        $("#setLanguage").on('change', function(e){
+            this.submit();
+        });
+
+    });
+
+    })(jQuery);
+</script>
+
+</body>
+</html>

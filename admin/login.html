@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link rel="shortcut icon"  href="/public/uploads/website-images/favicon-2023-03-05-01-07-01-8002.png"  type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Login</title>
+
+
+  <link rel="stylesheet" href="/public/backend/css/bootstrap.min.css">
+  <link href="/public/backend/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/backend/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/public/backend/css/style.css">
+  <link rel="stylesheet" href="/public/backend/css/bootstrap-social.css">
+  <link rel="stylesheet" href="/public/backend/css/components.css">
+    <link rel="stylesheet" href="/public/toastr/toastr.min.css">
+  <link rel="stylesheet" href="/public/backend/css/bootstrap4-toggle.min.css">
+  <link rel="stylesheet" href="/public/backend/css/dev.css">
+  <link rel="stylesheet" href="/public/backend/css/select2.min.css">
+  <link rel="stylesheet" href="/public/backend/css/tagify.css">
+  <link rel="stylesheet" href="/public/backend/css/bootstrap-tagsinput.css">
+  <link rel="stylesheet" href="/public/backend/css/fontawesome-iconpicker.min.css">
+  <link rel="stylesheet" href="/public/backend/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="/public/backend/clockpicker/dist/bootstrap-clockpicker.css">
+  <link rel="stylesheet" href="/public/backend/datetimepicker/jquery.datetimepicker.css">
+  <link rel="stylesheet" href="/public/backend/css/iziToast.min.css">
+
+  <script src="/public/backend/js/jquery-3.6.3.min.js"></script>
+
+  <script src="/public/backend/minicolor/jquery.minicolors.js"></script>
+  <link rel="stylesheet" href="/public/backend/minicolor/jquery.minicolors.css">
+
+<style>
+    .fade.in {
+        opacity: 1 !important;
+    }
+
+    .tox .tox-promotion,
+    .tox-statusbar__branding{
+        display: none !important;
+    }
+
+</style>
+
+<style>
+    dl {
+      margin: 20px 0;
+    }
+    dt {
+      font-size: 120%;
+    }
+    dd {
+      padding: 10px 20px 20px 20px;
+    }
+    dd:last-child {
+      border-bottom: none;
+    }
+    code {
+      color: black;
+      border: none;
+      background: rgba(128, 128, 128, .1);
+    }
+    [dir=rtl] code {
+      direction: ltr;
+    }
+    pre {
+      background: #f8f8f8;
+      border: none;
+      color: #333;
+      padding: 20px;
+    }
+    [dir=rtl] pre {
+      direction: ltr;
+    }
+    h2 {
+      margin-top: 50px;
+    }
+    h3 {
+      color: #aaa;
+    }
+    .jumbotron {
+      padding: 40px;
+    }
+    .jumbotron h1 {
+      margin-top: 0;
+    }
+    .jumbotron p:last-child {
+      margin-bottom: 0;
+    }
+
+    .minicolors-theme-bootstrap .minicolors-input {
+      padding-left: 44px !important;
+    }
+
+    .minicolors-theme-bootstrap .minicolors-swatch {
+        top: 7px !important;
+    }
+
+  </style>
+
+</head>
+<div id="app">
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+        <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <div class="login-brand d-none">
+              <img src="/public/uploads/website-images/logo-2022-12-13-05-18-57-4851.png" alt="logo" width="150" class="shadow-light">
+            </div>
+
+            <div class="card card-primary">
+              <div class="card-header"><h4>Login</h4></div>
+
+              <div class="card-body">
+                <form class="needs-validation" novalidate="" action="admin/login" method="POST">
+                    <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email exampleInputEmail" type="email" class="form-control" name="email" tabindex="1" autofocus value="">
+                  </div>
+
+                  <div class="form-group">
+                    <div class="d-block">
+                    	<label for="password" class="control-label">Password</label>
+
+                    </div>
+                    <input id="password exampleInputPassword" type="password" class="form-control" name="password" tabindex="2">
+                  </div>
+
+                  <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember" >
+                      <label class="custom-control-label" for="remember">Remember Me</label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                      Login
+                    </button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+            <div class="simple-footer">
+              
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+  </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Item Delete Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are You sure delete this item ?</p>
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+            <form id="deleteForm" action="" method="POST">
+                <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                <input type="hidden" name="_method" value="DELETE">                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Yes, Delete</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="/public/backend/js/popper.min.js"></script>
+  <script src="/public/backend/js/bootstrap.min.js"></script>
+  <script src="/public/backend/datatables/jquery.dataTables.min.js"></script>
+  <script src="/public/backend/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="/public/backend/js/jquery.nicescroll.min.js"></script>
+  <script src="/public/backend/js/moment.min.js"></script>
+  <script src="/public/backend/js/stisla.js"></script>
+  <script src="/public/backend/js/scripts.js"></script>
+  <script src="/public/backend/js/select2.min.js"></script>
+  <script src="/public/backend/js/tagify.js"></script>
+  <script src="/public/toastr/toastr.min.js"></script>
+  <script src="/public/backend/js/bootstrap4-toggle.min.js"></script>
+  <script src="/public/backend/js/fontawesome-iconpicker.min.js"></script>
+  <script src="/public/backend/js/bootstrap-datepicker.min.js"></script>
+  <script src="/public/backend/clockpicker/dist/bootstrap-clockpicker.js"></script>
+  <script src="/public/backend/datetimepicker/jquery.datetimepicker.js"></script>
+  <script src="/public/backend/js/iziToast.min.js"></script>
+  <script src="/public/backend/js/modules-toastr.js"></script>
+  <script src="/public/backend/tinymce/js/tinymce/tinymce.min.js"></script>
+
+
+    <script>
+            </script>
+
+    
+
+
+<script>
+    (function($) {
+    "use strict";
+    $(document).ready(function () {
+        tinymce.init({
+            selector: '.summernote',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ]
+        });
+        $('#dataTable').DataTable();
+        $('.select2').select2();
+        $('.sub_cat_one').select2();
+        $('.tags').tagify();
+        $('.datetimepicker_mask').datetimepicker({
+            format:'Y-m-d H:i',
+
+        });
+        $('.custom-icon-picker').iconpicker({
+            templates: {
+                popover: '<div class="iconpicker-popover popover"><div class="arrow"></div>' +
+                    '<div class="popover-title"></div><div class="popover-content"></div></div>',
+                footer: '<div class="popover-footer"></div>',
+                buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">Cancel</button>' +
+                    ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">Accept</button>',
+                search: '<input type="search" class="form-control iconpicker-search" placeholder="Type to filter" />',
+                iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
+                iconpickerItem: '<a role="button" href="javascript:;" class="iconpicker-item"><i></i></a>'
+            }
+        })
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: '-Infinity'
+        });
+        $('.clockpicker').clockpicker();
+        
+        $("#setLanguage").on('change', function(e){
+            this.submit();
+        });
+
+    });
+
+    })(jQuery);
+</script>
+
+</body>
+</html>
+
+
