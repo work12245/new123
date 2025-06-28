@@ -5,6 +5,17 @@ $(document).ready(function() {
     // Load cart data on page load
     loadCartData();
     
+    // Cart icon click handler
+    $(document).on('click', '.cart_icon', function(e) {
+        e.preventDefault();
+        $('.wsus__menu_cart_area').addClass('active');
+    });
+    
+    // Close cart
+    $(document).on('click', '.close_cart', function() {
+        $('.wsus__menu_cart_area').removeClass('active');
+    });
+    
     // Add to cart form submission
     $(document).on('submit', '#add_to_cart_form', function(e) {
         e.preventDefault();
@@ -15,7 +26,7 @@ $(document).ready(function() {
         
         // Check if size is selected
         if (!$("input[name='size_variant']:checked").length) {
-            alert('Please select a size');
+            toastr.error('Please select a size');
             return;
         }
         
@@ -26,12 +37,12 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             success: function(response) {
-                alert('Added to cart successfully!');
+                toastr.success('Added to cart successfully!');
                 $('#cartModal').modal('hide');
                 loadCartData();
             },
             error: function() {
-                alert('Error adding to cart');
+                toastr.error('Error adding to cart');
             }
         });
     });
@@ -61,10 +72,28 @@ $(document).ready(function() {
                 $('#cartModal').modal('show');
             },
             error: function() {
-                alert('Error loading product');
+                toastr.error('Error loading product');
             }
         });
     };
+    
+    // Remove item from mini cart
+    $(document).on('click', '.mini-item-remove', function() {
+        const li = $(this).closest('li');
+        const rowid = li.data('mini-item-rowid');
+        
+        $.ajax({
+            url: `/remove-cart-item/${rowid}`,
+            method: 'GET',
+            success: function(response) {
+                toastr.success('Item removed from cart');
+                loadCartData();
+            },
+            error: function() {
+                toastr.error('Error removing item');
+            }
+        });
+    });
     
     function loadCartData() {
         $.ajax({
@@ -72,6 +101,10 @@ $(document).ready(function() {
             method: 'GET',
             success: function(cartItems) {
                 updateCartDisplay(cartItems);
+            },
+            error: function() {
+                // Silently handle error, no need to show error for cart loading
+                updateCartDisplay([]);
             }
         });
     }
@@ -101,6 +134,10 @@ $(document).ready(function() {
             `;
             
             cartItems.forEach(item => {
+                const extrasHTML = item.extras && item.extras.length > 0 
+                    ? item.extras.map(extra => `<span class="extra">${extra}</span>`).join('') 
+                    : '';
+                
                 cartHTML += `
                     <li class="min-item-${item.id}" data-mini-item-rowid="${item.id}">
                         <div class="menu_cart_img">
@@ -109,7 +146,7 @@ $(document).ready(function() {
                         <div class="menu_cart_text">
                             <a class="title" href="#">${item.name}</a>
                             <p class="size">${item.size}</p>
-                            ${item.extras ? item.extras.map(extra => `<span class="extra">${extra}</span>`).join('') : ''}
+                            ${extrasHTML}
                             <p class="price mini-price-${item.id}">$${item.price}</p>
                         </div>
                         <input type="hidden" class="mini-input-price set-mini-input-price-${item.id}" value="${item.price}">
