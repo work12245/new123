@@ -5,7 +5,7 @@ run = "node index.js"
 channel = "stable-24_05"
 
 [workflows]
-runButton = "Run"
+runButton = "Development Server"
 
 [[workflows.workflow]]
 name = "Run"
@@ -15,6 +15,15 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npx http-server . -p 5000 -a 0.0.0.0"
+
+[[workflows.workflow]]
+name = "Development Server"
+author = 42284751
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node server.js"
 
 [deployment]
 run = ["sh", "-c", "node index.js"]
