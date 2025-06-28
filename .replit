@@ -1,4 +1,20 @@
 modules = ["web", "nodejs-20"]
+run = "node index.js"
 
 [nix]
 channel = "stable-24_05"
+
+[workflows]
+runButton = "Run"
+
+[[workflows.workflow]]
+name = "Run"
+author = 42284751
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python -m http.server 5000"
+
+[deployment]
+run = ["sh", "-c", "node index.js"]
