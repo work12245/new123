@@ -51,6 +51,78 @@ let data = {
     },
     {
       id: 2,
+      name: "Dal Makhani Paneer",
+      category: "Burger",
+      price: 120,
+      offer_price: 140,
+      image: "/public/uploads/custom-images/dal-makhani-paneer-2023-03-05-01-25-44-9364.jpg",
+      description: "Rich and creamy dal makhani with paneer",
+      variants: [
+        { name: "Regular", price: 120 },
+        { name: "Large", price: 140 }
+      ],
+      extras: [
+        { name: "Extra Paneer", price: 8 }
+      ]
+    },
+    {
+      id: 3,
+      name: "Indian cuisine Pakora",
+      category: "Burger",
+      price: 80,
+      offer_price: 95,
+      image: "/public/uploads/custom-images/indian-cuisine-pakora-2023-03-05-01-32-04-5856.jpg",
+      description: "Crispy and delicious pakoras",
+      variants: [
+        { name: "Small", price: 80 },
+        { name: "Large", price: 95 }
+      ],
+      extras: []
+    },
+    {
+      id: 4,
+      name: "Beef Masala Salad",
+      category: "Burger",
+      price: 150,
+      offer_price: 170,
+      image: "/public/uploads/custom-images/beef-masala-salad-2023-03-05-01-42-23-6194.jpg",
+      description: "Fresh beef masala salad",
+      variants: [
+        { name: "Regular", price: 150 }
+      ],
+      extras: []
+    },
+    {
+      id: 5,
+      name: "Chicken Nuggets",
+      category: "Burger",
+      price: 90,
+      offer_price: 110,
+      image: "/public/uploads/custom-images/chicken-nuggets-2023-03-05-01-50-15-6100.jpg",
+      description: "Crispy chicken nuggets",
+      variants: [
+        { name: "6 pieces", price: 90 },
+        { name: "12 pieces", price: 150 }
+      ],
+      extras: [
+        { name: "Extra Sauce", price: 3 }
+      ]
+    },
+    {
+      id: 6,
+      name: "Daria Shevtsova",
+      category: "Burger",
+      price: 120,
+      offer_price: 200,
+      image: "/public/uploads/custom-images/daria-shevtsova-2023-03-05-02-47-26-3957.png",
+      description: "Special dish",
+      variants: [
+        { name: "Regular", price: 120 }
+      ],
+      extras: []
+    },
+    {
+      id: 7,
       name: "Spicy Burger",
       category: "Burger", 
       price: 40,
@@ -61,6 +133,178 @@ let data = {
         { name: "Small", price: 40 },
         { name: "Medium", price: 50 },
         { name: "Large", price: 60 }
+      ],
+      extras: []
+    },
+    {
+      id: 8,
+      name: "Fried Chicken",
+      category: "Burger",
+      price: 50,
+      offer_price: 60,
+      image: "/public/uploads/custom-images/fried-chicken-2023-03-05-02-59-51-6567.png",
+      description: "Crispy fried chicken",
+      variants: [
+        { name: "2 pieces", price: 50 },
+        { name: "4 pieces", price: 90 }
+      ],
+      extras: []
+    },
+    {
+      id: 9,
+      name: "Mozzarella Sticks",
+      category: "Burger",
+      price: 70,
+      offer_price: 110,
+      image: "/public/uploads/custom-images/mozzarella-sticks-2023-03-05-03-05-46-3294.png",
+      description: "Crispy mozzarella sticks",
+      variants: [
+        { name: "Regular", price: 70 }
+      ],
+      extras: []
+    },
+    {
+      id: 10,
+      name: "Popcorn Chicken",
+      category: "Burger",
+      price: 60,
+      offer_price: 90,
+      image: "/public/uploads/custom-images/popcorn-chicken-2023-03-05-03-10-01-2671.png",
+      description: "Bite-sized popcorn chicken",
+      variants: [
+        { name: "Regular", price: 60 }
+      ],
+      extras: []
+    },
+    {
+      id: 11,
+      name: "Chicken Wings",
+      category: "Burger",
+      price: 75,
+      offer_price: 80,
+      image: "/public/uploads/custom-images/chicken-wings-2023-03-05-03-14-33-3228.png",
+      description: "Spicy chicken wings",
+      variants: [
+        { name: "6 wings", price: 75 },
+        { name: "12 wings", price: 140 }
+      ],
+      extras: []
+    },
+    {
+      id: 12,
+      name: "Onion Rings",
+      category: "Burger",
+      price: 30,
+      offer_price: 35,
+      image: "/public/uploads/custom-images/onion-rings-2023-03-05-03-23-09-1753.png",
+      description: "Crispy onion rings",
+      variants: [
+        { name: "Regular", price: 30 }
+      ],
+      extras: []
+    },
+    {
+      id: 15,
+      name: "Firecracker Shrimp",
+      category: "Chicken",
+      price: 25,
+      offer_price: 30,
+      image: "/public/uploads/custom-images/firecracker-shrimp-2023-03-06-12-25-11-9828.png",
+      description: "Spicy firecracker shrimp",
+      variants: [
+        { name: "Regular", price: 25 }
+      ],
+      extras: []
+    },
+    {
+      id: 16,
+      name: "Grilled Octopus Salad",
+      category: "Chicken",
+      price: 70,
+      offer_price: 75,
+      image: "/public/uploads/custom-images/grilled-octopus-salad-2023-03-06-12-28-49-3466.png",
+      description: "Fresh grilled octopus salad",
+      variants: [
+        { name: "Regular", price: 70 }
+      ],
+      extras: []
+    },
+    {
+      id: 17,
+      name: "Pesto and Burrata Crostini",
+      category: "Pizza",
+      price: 65,
+      offer_price: 100,
+      image: "/public/uploads/custom-images/pesto-and-burrata-crostini-2023-03-06-12-35-05-9316.png",
+      description: "Delicious pesto and burrata crostini",
+      variants: [
+        { name: "Regular", price: 65 }
+      ],
+      extras: []
+    },
+    {
+      id: 18,
+      name: "Lobster Bisque",
+      category: "Pizza",
+      price: 60,
+      offer_price: 60,
+      image: "/public/uploads/custom-images/lobster-bisque-2023-03-06-12-40-12-7186.png",
+      description: "Rich lobster bisque",
+      variants: [
+        { name: "Regular", price: 60 }
+      ],
+      extras: []
+    },
+    {
+      id: 19,
+      name: "Seared Ahi Tuna",
+      category: "Dresserts",
+      price: 85,
+      offer_price: 90,
+      image: "/public/uploads/custom-images/seared-ahi-tuna-2023-03-06-12-47-21-4113.png",
+      description: "Premium seared ahi tuna",
+      variants: [
+        { name: "Regular", price: 85 }
+      ],
+      extras: []
+    },
+    {
+      id: 20,
+      name: "Quinoa Stuffed Peppers",
+      category: "Dresserts",
+      price: 110,
+      offer_price: 110,
+      image: "/public/uploads/custom-images/quinoa-stuffed-peppers-2023-03-06-12-52-48-9661.png",
+      description: "Healthy quinoa stuffed peppers",
+      variants: [
+        { name: "Regular", price: 110 }
+      ],
+      extras: []
+    },
+    {
+      id: 21,
+      name: "Pulled Pork Sliders",
+      category: "Sandwich",
+      price: 130,
+      offer_price: 150,
+      image: "/public/uploads/custom-images/pulled-pork-sliders-2023-03-06-01-02-22-7233.png",
+      description: "Juicy pulled pork sliders",
+      variants: [
+        { name: "3 sliders", price: 130 },
+        { name: "6 sliders", price: 240 }
+      ],
+      extras: []
+    },
+    {
+      id: 22,
+      name: "Truffle Fries",
+      category: "Sandwich",
+      price: 150,
+      offer_price: 200,
+      image: "/public/uploads/custom-images/truffle-fries-2023-03-06-01-06-09-8443.png",
+      description: "Premium truffle fries",
+      variants: [
+        { name: "Regular", price: 150 }
       ],
       extras: []
     }
@@ -164,36 +408,49 @@ app.get('/load-product-modal/:id', (req, res) => {
 
 // Cart routes
 app.post('/add-to-cart', (req, res) => {
-  const { product_id, size_variant, optional_items, quantity } = req.body;
-  const product = data.products.find(p => p.id == product_id);
-  
-  if (!product) return res.status(404).json({ error: 'Product not found' });
-  
-  const variant = product.variants.find(v => v.name === size_variant);
-  const extras = optional_items || [];
-  
-  let totalPrice = variant.price * parseInt(quantity);
-  if (Array.isArray(extras)) {
-    extras.forEach(extra => {
-      const extraItem = product.extras.find(e => e.name === extra);
-      if (extraItem) totalPrice += extraItem.price;
-    });
+  try {
+    const { product_id, size_variant, optional_items, quantity } = req.body;
+    const product = data.products.find(p => p.id == product_id);
+    
+    if (!product) return res.status(404).json({ error: 'Product not found' });
+    
+    // Ensure variants exist, if not create default
+    const variants = product.variants || [{ name: "Regular", price: product.price }];
+    const variant = variants.find(v => v.name === size_variant);
+    
+    if (!variant) {
+      return res.status(400).json({ error: 'Invalid variant selected' });
+    }
+    
+    const extras = optional_items || [];
+    const productExtras = product.extras || [];
+    
+    let totalPrice = variant.price * parseInt(quantity);
+    if (Array.isArray(extras)) {
+      extras.forEach(extra => {
+        const extraItem = productExtras.find(e => e.name === extra);
+        if (extraItem) totalPrice += extraItem.price * parseInt(quantity);
+      });
+    }
+    
+    const cartItem = {
+      id: Date.now(),
+      product_id: product.id,
+      name: product.name,
+      image: product.image,
+      size: size_variant,
+      extras: extras,
+      quantity: parseInt(quantity),
+      price: totalPrice,
+      base_price: variant.price
+    };
+    
+    data.cart.push(cartItem);
+    res.json({ success: true, message: 'Added to cart successfully' });
+  } catch (error) {
+    console.error('Error in add-to-cart:', error);
+    res.status(500).json({ error: 'Server error occurred' });
   }
-  
-  const cartItem = {
-    id: Date.now(),
-    product_id: product.id,
-    name: product.name,
-    image: product.image,
-    size: size_variant,
-    extras: extras,
-    quantity: parseInt(quantity),
-    price: totalPrice,
-    base_price: variant.price
-  };
-  
-  data.cart.push(cartItem);
-  res.json({ success: true, message: 'Added to cart successfully' });
 });
 
 app.get('/cart-quantity-update', (req, res) => {
