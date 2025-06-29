@@ -363,39 +363,77 @@ app.get('/load-product-modal/:id', (req, res) => {
     }
     
     const modalHTML = `
-      <div class="wsus__cart_popup_img">
-        <img src="${product.image}" alt="product" class="img-fluid w-100">
-      </div>
-      <div class="wsus__cart_popup_text">
-        <h6>${product.name}</h6>
-        <p>$${product.price}</p>
-        <form id="add_to_cart_form" data-product-id="${product.id}">
-          <div class="popup_size">
-            <h6>Size</h6>
-            ${product.variants && product.variants.length > 0 ? 
-              product.variants.map(v => 
-                `<label><input type="radio" name="size_variant" value="${v.name}" data-variant-price="${v.price}"> ${v.name} (+$${v.price})</label>`
-              ).join('') : 
-              `<label><input type="radio" name="size_variant" value="Regular" data-variant-price="${product.price}" checked> Regular ($${product.price})</label>`
-            }
+      <div class="row">
+        <div class="col-xl-6 col-lg-6">
+          <div class="wsus__cart_popup_img">
+            <img src="${product.image}" alt="product" class="img-fluid w-100">
           </div>
-          ${product.extras && product.extras.length > 0 ? `
-          <div class="popup_extras">
-            <h6>Extras</h6>
-            ${product.extras.map(e => 
-              `<label><input type="checkbox" name="optional_items[]" value="${e.name}" data-extra-price="${e.price}"> ${e.name} (+$${e.price})</label>`
-            ).join('')}
-          </div>` : ''}
-          <div class="popup_quantity">
-            <h6>Quantity</h6>
-            <div class="quentity_btn">
-              <button type="button" class="btn btn-danger decrement"><i class="fal fa-minus"></i></button>
-              <input type="text" name="quantity" value="1" readonly>
-              <button type="button" class="btn btn-success increment"><i class="fal fa-plus"></i></button>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+          <div class="wsus__cart_popup_text">
+            <h2>${product.name}</h2>
+            <div class="rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span>(1)</span>
             </div>
+            <h3 class="price">$${product.price} ${product.offer_price ? `<del>$${product.offer_price}</del>` : ''}</h3>
+            
+            <form id="add_to_cart_form" data-product-id="${product.id}">
+              <div class="details_size">
+                <h5>Select Size</h5>
+                ${product.variants && product.variants.length > 0 ? 
+                  product.variants.map((v, index) => 
+                    `<div class="form-check">
+                       <input class="form-check-input" type="radio" name="size_variant" value="${v.name}" data-variant-price="${v.price}" id="size_${index}" ${index === 0 ? 'checked' : ''}>
+                       <label class="form-check-label" for="size_${index}">
+                         ${v.name} <span>+$${v.price}</span>
+                       </label>
+                     </div>`
+                  ).join('') : 
+                  `<div class="form-check">
+                     <input class="form-check-input" type="radio" name="size_variant" value="Regular" data-variant-price="${product.price}" id="size_0" checked>
+                     <label class="form-check-label" for="size_0">
+                       Regular <span>$${product.price}</span>
+                     </label>
+                   </div>`
+                }
+              </div>
+              
+              ${product.extras && product.extras.length > 0 ? `
+              <div class="details_extra_item">
+                <h5>Select Addon (Optional)</h5>
+                ${product.extras.map((e, index) => 
+                  `<div class="form-check">
+                     <input class="form-check-input" type="checkbox" name="optional_items[]" value="${e.name}" data-extra-price="${e.price}" id="extra_${index}">
+                     <label class="form-check-label" for="extra_${index}">
+                       ${e.name} <span>+$${e.price}</span>
+                     </label>
+                   </div>`
+                ).join('')}
+              </div>` : ''}
+              
+              <div class="details_quentity">
+                <h5>Select Quantity</h5>
+                <div class="quentity_btn_area d-flex flex-wrap align-items-center">
+                  <div class="quentity_btn">
+                    <button class="btn btn-danger decrement" type="button"><i class="fal fa-minus"></i></button>
+                    <input type="text" name="quantity" value="1" readonly>
+                    <button class="btn btn-success increment" type="button"><i class="fal fa-plus"></i></button>
+                  </div>
+                  <h3>$<span class="total-price">${product.variants && product.variants.length > 0 ? product.variants[0].price : product.price}</span></h3>
+                </div>
+              </div>
+              
+              <ul class="details_button_area d-flex flex-wrap">
+                <li><button type="submit" class="common_btn">Add to Cart</button></li>
+              </ul>
+            </form>
           </div>
-          <button type="submit" class="common_btn">Add to Cart</button>
-        </form>
+        </div>
       </div>
     `;
     

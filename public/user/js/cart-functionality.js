@@ -21,8 +21,6 @@ $(document).ready(function() {
         e.preventDefault();
         
         const productId = $(this).data('product-id');
-        const formData = new FormData(this);
-        formData.append('product_id', productId);
         
         // Check if size is selected
         if (!$("input[name='size_variant']:checked").length) {
@@ -30,18 +28,30 @@ $(document).ready(function() {
             return;
         }
         
+        // Collect form data as regular object
+        const formData = {
+            product_id: productId,
+            size_variant: $("input[name='size_variant']:checked").val(),
+            quantity: $("input[name='quantity']").val() || 1,
+            optional_items: []
+        };
+        
+        // Collect optional items
+        $("input[name='optional_items[]']:checked").each(function() {
+            formData.optional_items.push($(this).val());
+        });
+        
         $.ajax({
             url: '/add-to-cart',
             method: 'POST',
             data: formData,
-            processData: false,
-            contentType: false,
             success: function(response) {
                 toastr.success('Added to cart successfully!');
                 $('#cartModal').modal('hide');
                 loadCartData();
             },
-            error: function() {
+            error: function(xhr) {
+                console.log('Error details:', xhr.responseText);
                 toastr.error('Error adding to cart');
             }
         });
@@ -52,6 +62,7 @@ $(document).ready(function() {
         const input = $(this).siblings('input[name="quantity"]');
         let value = parseInt(input.val());
         input.val(value + 1);
+        calculateModalPrice();
     });
     
     $(document).on('click', '.decrement', function() {
@@ -59,8 +70,32 @@ $(document).ready(function() {
         let value = parseInt(input.val());
         if (value > 1) {
             input.val(value - 1);
+            calculateModalPrice();
         }
     });
+    
+    // Size variant change
+    $(document).on('change', 'input[name="size_variant"]', function() {
+        calculateModalPrice();
+    });
+    
+    // Extra items change
+    $(document).on('change', 'input[name="optional_items[]"]', function() {
+        calculateModalPrice();
+    });
+    
+    function calculateModalPrice() {
+        let basePrice = parseFloat($('input[name="size_variant"]:checked').data('variant-price')) || 0;
+        let quantity = parseInt($('input[name="quantity"]').val()) || 1;
+        let extrasPrice = 0;
+        
+        $('input[name="optional_items[]"]:checked').each(function() {
+            extrasPrice += parseFloat($(this).data('extra-price')) || 0;
+        });
+        
+        let totalPrice = (basePrice + extrasPrice) * quantity;
+        $('.total-price').text(totalPrice.toFixed(0));
+    }
     
     // Load product modal
     window.load_product_model = function(productId) {
