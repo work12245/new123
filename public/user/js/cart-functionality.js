@@ -199,8 +199,8 @@ $(document).ready(function() {
             cartHTML += `
                 </ul>
                 <p class="subtotal">Sub Total <span class="mini_sub_total">$${subtotal}</span></p>
-                <a class="cart_view" href="/cart.html">view cart</a>
-                <a class="checkout" href="/checkout.html">checkout</a>
+                <a class="cart_view" href="cart.html">view cart</a>
+                <a class="checkout" href="checkout.html">checkout</a>
             `;
             
             $('.wsus__menu_cart_boody').html(cartHTML);
