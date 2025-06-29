@@ -214,47 +214,7 @@
     <div class="wsus__menu_cart_area">
         <div class="wsus__menu_cart_boody">
 
-                            <div>
-                    <div class="wsus__menu_cart_header">
-                        <h5 class="mini_cart_body_item">Total Item(2)</h5>
-                        <span class="close_cart"><i class="fal fa-times"></i></span>
-                    </div>
-                    <ul class="mini_cart_list">
-                                                                            <li class="min-item-1705e4be380fb31bf37bd10cafbf7843" data-mini-item-rowid="1705e4be380fb31bf37bd10cafbf7843">
-                                <div class="menu_cart_img">
-                                    <img src="https://unifood.websolutionus.com/public/uploads/custom-images/daria-shevtsova-2023-03-05-02-47-26-3957.png" alt="menu" class="img-fluid w-100">
-                                </div>
-                                <div class="menu_cart_text">
-                                    <a class="title" href="https://unifood.websolutionus.com/product/daria-shevtsova">Daria Shevtsova </a>
-                                    <p class="size">Medium</p>
-                                                                        <span class="extra">Burritos (+$10)</span>
-                                    
-                                    
-                                    <p class="price mini-price-1705e4be380fb31bf37bd10cafbf7843">$160</p>
-                                </div>
-                                <input type="hidden" class="mini-input-price set-mini-input-price-1705e4be380fb31bf37bd10cafbf7843" value="160">
-                                <span class="del_icon mini-item-remove"><i class="fal fa-times"></i></span>
-                            </li>
-                                                    <li class="min-item-b447734268866b1302afa40591e90cd1" data-mini-item-rowid="b447734268866b1302afa40591e90cd1">
-                                <div class="menu_cart_img">
-                                    <img src="https://unifood.websolutionus.com/public/uploads/custom-images/hyderabadi-biryani-2023-03-05-01-14-59-9689.png" alt="menu" class="img-fluid w-100">
-                                </div>
-                                <div class="menu_cart_text">
-                                    <a class="title" href="https://unifood.websolutionus.com/product/hyderabadi-biryani">Hyderabadi Biryani </a>
-                                    <p class="size">Small</p>
-                                    
-                                    
-                                    <p class="price mini-price-b447734268866b1302afa40591e90cd1">$260</p>
-                                </div>
-                                <input type="hidden" class="mini-input-price set-mini-input-price-b447734268866b1302afa40591e90cd1" value="260">
-                                <span class="del_icon mini-item-remove"><i class="fal fa-times"></i></span>
-                            </li>
-                        
-                    </ul>
-                    <p class="subtotal">Sub Total <span class="mini_sub_total">$420</span></p>
-                    <a class="cart_view" href="https://unifood.websolutionus.com/cart"> view cart</a>
-                    <a class="checkout" href="https://unifood.websolutionus.com/checkout">checkout</a>
-                </div>
+                            <!-- Cart content will be loaded dynamically -->
             
         </div>
     </div>
@@ -531,8 +491,8 @@
                     remove_mini_item(rowid)
 
                     $.ajax({
-                        type: 'get',
-                        url: "https://unifood.websolutionus.com/remove-cart-item" + "/" + rowid,
+                        type: 'DELETE',
+                        url: "/remove-from-cart/" + rowid,
                         success: function (response) {
                             toastr.success(response.message);
                         },
@@ -568,8 +528,8 @@
                     $(".topbar_cart_qty").html(0);
 
                     $.ajax({
-                        type: 'get',
-                        url: "https://unifood.websolutionus.com/cart-clear",
+                        type: 'DELETE',
+                        url: "/clear-cart",
                         success: function (response) {
                             toastr.success(response.message);
                         },
@@ -593,9 +553,9 @@
         function update_item_qty(rowid, quantity){
             calculate_total();
             $.ajax({
-                type: 'get',
-                data: {rowid, quantity},
-                url: "https://unifood.websolutionus.com/cart-quantity-update",
+                type: 'PUT',
+                data: {quantity: quantity},
+                url: "/update-cart-quantity/" + rowid,
                 success: function (response) {
 
                 },
@@ -669,11 +629,16 @@
 
         function loadCartPageData() {
             $.ajax({
-                url: '/api/cart',
+                url: '/cart-data',
                 method: 'GET',
-                success: function(cartItems) {
-                    displayCartItems(cartItems);
-                    updateCartTotals(cartItems);
+                success: function(response) {
+                    if (response.success) {
+                        displayCartItems(response.cartItems);
+                        updateCartTotals(response.cartItems);
+                        loadMiniCart(response.cartItems);
+                    } else {
+                        showEmptyCart();
+                    }
                 },
                 error: function() {
                     // Show empty cart if error
@@ -752,6 +717,66 @@
                     </div>
                 </div>
             `);
+        }
+
+        function loadMiniCart(cartItems) {
+            const miniCartBody = $('.wsus__menu_cart_boody');
+            
+            if (cartItems.length === 0) {
+                miniCartBody.html(`
+                    <div class="wsus__menu_cart_header">
+                        <h5>Your shopping cart is empty!</h5>
+                        <span class="close_cart"><i class="fal fa-times"></i></span>
+                    </div>
+                `);
+                $('.topbar_cart_qty').text('0');
+                return;
+            }
+
+            const totalItems = cartItems.length;
+            const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+
+            let miniCartHTML = `
+                <div>
+                    <div class="wsus__menu_cart_header">
+                        <h5 class="mini_cart_body_item">Total Item(${totalItems})</h5>
+                        <span class="close_cart"><i class="fal fa-times"></i></span>
+                    </div>
+                    <ul class="mini_cart_list">
+            `;
+
+            cartItems.forEach(function(item) {
+                const extrasHTML = item.extras && item.extras.length > 0 
+                    ? `<span class="extra">${item.extras.join(', ')}</span>` 
+                    : '';
+
+                miniCartHTML += `
+                    <li class="min-item-${item.id}" data-mini-item-rowid="${item.id}">
+                        <div class="menu_cart_img">
+                            <img src="${item.image}" alt="menu" class="img-fluid w-100">
+                        </div>
+                        <div class="menu_cart_text">
+                            <a class="title" href="#">${item.name}</a>
+                            <p class="size">${item.size}</p>
+                            ${extrasHTML}
+                            <p class="price mini-price-${item.id}">$${item.price}</p>
+                        </div>
+                        <input type="hidden" class="mini-input-price set-mini-input-price-${item.id}" value="${item.price}">
+                        <span class="del_icon mini-item-remove"><i class="fal fa-times"></i></span>
+                    </li>
+                `;
+            });
+
+            miniCartHTML += `
+                    </ul>
+                    <p class="subtotal">Sub Total <span class="mini_sub_total">$${subtotal}</span></p>
+                    <a class="cart_view" href="cart.html">view cart</a>
+                    <a class="checkout" href="checkout.html">checkout</a>
+                </div>
+            `;
+
+            miniCartBody.html(miniCartHTML);
+            $('.topbar_cart_qty').text(totalItems);
         }
 
     </script>
@@ -995,15 +1020,12 @@
                 calculate_mini_total();
 
                 $.ajax({
-                    type: 'get',
-                    url: "https://unifood.websolutionus.com/remove-cart-item" + "/" + rowid,
+                    type: 'DELETE',
+                    url: "/remove-from-cart/" + rowid,
                     success: function (response) {
                         toastr.success(response.message);
-
-                        let ready_to_reload = "no"
-                        if(ready_to_reload == 'yes'){
-                            window.location.reload();
-                        }
+                        // Reload cart data after removing item
+                        loadCartPageData();
                     },
                     error: function(response) {
                         if(response.status == 500){

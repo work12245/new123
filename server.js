@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
@@ -322,7 +321,7 @@ let data = {
 app.post('/store-login', (req, res) => {
   const { email, password } = req.body;
   const user = data.users.find(u => u.email === email && u.password === password);
-  
+
   if (user) {
     data.currentUser = user;
     res.redirect('/dashboard.html');
@@ -333,12 +332,12 @@ app.post('/store-login', (req, res) => {
 
 app.post('/store-register', (req, res) => {
   const { name, email, password } = req.body;
-  
+
   // Check if user exists
   if (data.users.find(u => u.email === email)) {
     return res.redirect('/register.html?error=exists');
   }
-  
+
   const newUser = {
     id: data.users.length + 1,
     name,
@@ -346,7 +345,7 @@ app.post('/store-register', (req, res) => {
     password,
     addresses: []
   };
-  
+
   data.users.push(newUser);
   data.currentUser = newUser;
   res.redirect('/dashboard.html');
@@ -357,11 +356,11 @@ app.get('/load-product-modal/:id', (req, res) => {
   try {
     const productId = parseInt(req.params.id);
     const product = data.products.find(p => p.id === productId);
-    
+
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
     }
-    
+
     const modalHTML = `
       <div class="row">
         <div class="col-xl-6 col-lg-6">
@@ -381,7 +380,7 @@ app.get('/load-product-modal/:id', (req, res) => {
               <span>(1)</span>
             </div>
             <h3 class="price">$${product.price} ${product.offer_price ? `<del>$${product.offer_price}</del>` : ''}</h3>
-            
+
             <form id="add_to_cart_form" data-product-id="${product.id}">
               <div class="details_size">
                 <h5>Select Size</h5>
@@ -402,7 +401,7 @@ app.get('/load-product-modal/:id', (req, res) => {
                    </div>`
                 }
               </div>
-              
+
               ${product.extras && product.extras.length > 0 ? `
               <div class="details_extra_item">
                 <h5>Select Addon (Optional)</h5>
@@ -415,7 +414,7 @@ app.get('/load-product-modal/:id', (req, res) => {
                    </div>`
                 ).join('')}
               </div>` : ''}
-              
+
               <div class="details_quentity">
                 <h5>Select Quantity</h5>
                 <div class="quentity_btn_area d-flex flex-wrap align-items-center">
@@ -427,7 +426,7 @@ app.get('/load-product-modal/:id', (req, res) => {
                   <h3>$<span class="total-price">${product.variants && product.variants.length > 0 ? product.variants[0].price : product.price}</span></h3>
                 </div>
               </div>
-              
+
               <ul class="details_button_area d-flex flex-wrap">
                 <li><button type="submit" class="common_btn">Add to Cart</button></li>
               </ul>
@@ -436,7 +435,7 @@ app.get('/load-product-modal/:id', (req, res) => {
         </div>
       </div>
     `;
-    
+
     res.send(modalHTML);
   } catch (error) {
     console.error('Error in load-product-modal:', error);
@@ -449,20 +448,20 @@ app.post('/add-to-cart', (req, res) => {
   try {
     const { product_id, size_variant, optional_items, quantity } = req.body;
     const product = data.products.find(p => p.id == product_id);
-    
+
     if (!product) return res.status(404).json({ error: 'Product not found' });
-    
+
     // Ensure variants exist, if not create default
     const variants = product.variants || [{ name: "Regular", price: product.price }];
     const variant = variants.find(v => v.name === size_variant);
-    
+
     if (!variant) {
       return res.status(400).json({ error: 'Invalid variant selected' });
     }
-    
+
     const extras = optional_items || [];
     const productExtras = product.extras || [];
-    
+
     let totalPrice = variant.price * parseInt(quantity);
     if (Array.isArray(extras)) {
       extras.forEach(extra => {
@@ -470,7 +469,7 @@ app.post('/add-to-cart', (req, res) => {
         if (extraItem) totalPrice += extraItem.price * parseInt(quantity);
       });
     }
-    
+
     const cartItem = {
       id: Date.now(),
       product_id: product.id,
@@ -482,7 +481,7 @@ app.post('/add-to-cart', (req, res) => {
       price: totalPrice,
       base_price: variant.price
     };
-    
+
     data.cart.push(cartItem);
     res.json({ success: true, message: 'Added to cart successfully' });
   } catch (error) {
@@ -494,7 +493,7 @@ app.post('/add-to-cart', (req, res) => {
 app.get('/cart-quantity-update', (req, res) => {
   const { rowid, quantity } = req.query;
   const cartItem = data.cart.find(item => item.id == rowid);
-  
+
   if (cartItem) {
     cartItem.quantity = parseInt(quantity);
     cartItem.price = cartItem.base_price * cartItem.quantity;
@@ -506,7 +505,7 @@ app.get('/cart-quantity-update', (req, res) => {
       });
     }
   }
-  
+
   res.json({ success: true });
 });
 
@@ -524,7 +523,7 @@ app.get('/cart-clear', (req, res) => {
 // Reservation route
 app.post('/store-reservation', (req, res) => {
   const { reserve_date, reserve_time, person } = req.body;
-  
+
   const reservation = {
     id: data.reservations.length + 1,
     date: reserve_date,
@@ -533,7 +532,7 @@ app.post('/store-reservation', (req, res) => {
     user: data.currentUser?.name || 'Guest',
     status: 'pending'
   };
-  
+
   data.reservations.push(reservation);
   res.json({ success: true, message: 'Reservation request sent successfully' });
 });
@@ -541,17 +540,27 @@ app.post('/store-reservation', (req, res) => {
 // Newsletter subscription
 app.post('/subscribe-request', (req, res) => {
   const { email } = req.body;
-  
+
   if (!data.subscribers.find(s => s.email === email)) {
     data.subscribers.push({ email, date: new Date() });
   }
-  
+
   res.json({ success: true, message: 'Successfully subscribed to newsletter' });
 });
 
-// API routes for getting data
+// Get cart data
 app.get('/api/cart', (req, res) => {
-  res.json(data.cart);
+    const sessionCart = req.session.cart || [];
+    res.json(sessionCart);
+});
+
+// Get cart data for cart page
+app.get('/cart-data', (req, res) => {
+    const sessionCart = req.session.cart || [];
+    res.json({
+        success: true,
+        cartItems: sessionCart
+    });
 });
 
 app.get('/api/user', (req, res) => {
@@ -561,18 +570,18 @@ app.get('/api/user', (req, res) => {
 app.get('/api/products', (req, res) => {
   const { category, search } = req.query;
   let products = data.products;
-  
+
   if (category) {
     products = products.filter(p => p.category.toLowerCase() === category.toLowerCase());
   }
-  
+
   if (search) {
     products = products.filter(p => 
       p.name.toLowerCase().includes(search.toLowerCase()) ||
       p.description.toLowerCase().includes(search.toLowerCase())
     );
   }
-  
+
   res.json(products);
 });
 
