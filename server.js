@@ -1,12 +1,21 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const session = require('express-session');
 const app = express();
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('.'));
+
+// Session configuration
+app.use(session({
+  secret: 'unifood-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
 // In-memory data storage (in production, use a real database)
 let data = {
@@ -482,7 +491,12 @@ app.post('/add-to-cart', (req, res) => {
       base_price: variant.price
     };
 
-    data.cart.push(cartItem);
+    // Initialize session cart if it doesn't exist
+    if (!req.session.cart) {
+        req.session.cart = [];
+    }
+    
+    req.session.cart.push(cartItem);
     res.json({ success: true, message: 'Added to cart successfully' });
   } catch (error) {
     console.error('Error in add-to-cart:', error);
@@ -490,18 +504,24 @@ app.post('/add-to-cart', (req, res) => {
   }
 });
 
-app.get('/cart-quantity-update', (req, res) => {
-  const { rowid, quantity } = req.query;
-  const cartItem = data.cart.find(item => item.id == rowid);
+app.put('/update-cart-quantity/:id', (req, res) => {
+  const { id } = req.params;
+  const { quantity } = req.body;
+  
+  if (!req.session.cart) {
+    req.session.cart = [];
+  }
+  
+  const cartItem = req.session.cart.find(item => item.id == id);
 
   if (cartItem) {
     cartItem.quantity = parseInt(quantity);
     cartItem.price = cartItem.base_price * cartItem.quantity;
-    if (cartItem.extras) {
+    if (cartItem.extras && cartItem.extras.length > 0) {
       cartItem.extras.forEach(extra => {
         const product = data.products.find(p => p.id == cartItem.product_id);
-        const extraItem = product.extras.find(e => e.name === extra);
-        if (extraItem) cartItem.price += extraItem.price;
+        const extraItem = product.extras?.find(e => e.name === extra);
+        if (extraItem) cartItem.price += extraItem.price * cartItem.quantity;
       });
     }
   }
@@ -509,14 +529,19 @@ app.get('/cart-quantity-update', (req, res) => {
   res.json({ success: true });
 });
 
-app.get('/remove-cart-item/:id', (req, res) => {
+app.delete('/remove-from-cart/:id', (req, res) => {
   const itemId = req.params.id;
-  data.cart = data.cart.filter(item => item.id != itemId);
+  
+  if (!req.session.cart) {
+    req.session.cart = [];
+  }
+  
+  req.session.cart = req.session.cart.filter(item => item.id != itemId);
   res.json({ success: true, message: 'Item removed from cart' });
 });
 
-app.get('/cart-clear', (req, res) => {
-  data.cart = [];
+app.delete('/clear-cart', (req, res) => {
+  req.session.cart = [];
   res.json({ success: true, message: 'Cart cleared successfully' });
 });
 
@@ -550,16 +575,22 @@ app.post('/subscribe-request', (req, res) => {
 
 // Get cart data
 app.get('/api/cart', (req, res) => {
-    const sessionCart = req.session.cart || [];
-    res.json(sessionCart);
+    // Initialize session cart if it doesn't exist
+    if (!req.session.cart) {
+        req.session.cart = [];
+    }
+    res.json(req.session.cart);
 });
 
 // Get cart data for cart page
 app.get('/cart-data', (req, res) => {
-    const sessionCart = req.session.cart || [];
+    // Initialize session cart if it doesn't exist
+    if (!req.session.cart) {
+        req.session.cart = [];
+    }
     res.json({
         success: true,
-        cartItems: sessionCart
+        cartItems: req.session.cart
     });
 });
 
