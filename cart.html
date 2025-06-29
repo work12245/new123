@@ -440,17 +440,17 @@
                     calculatePrice()
                 });
 
-                $(".increament_product").on("click", function(){
+                $(document).on('click', '.increament_product', function(){
                     let parernt_td = $(this).parents('td');
                     let item_price = parernt_td.data('item-price')
-                    let optional_price = parernt_td.data('optional-price')
+                    let optional_price = parernt_td.data('optional-price') || 0;
                     let quantity = parernt_td.find('.quantity').val();
-                    let new_qty = parseInt(quantity) + parseInt(1);
+                    let new_qty = parseInt(quantity) + 1;
                     parernt_td.find('.quantity').val(new_qty)
-                    let new_item_price = parseInt(new_qty) * parseInt(item_price);
-                    let new_sub_total_price = parseInt(new_item_price) + parseInt(optional_price);
+                    let new_item_price = new_qty * item_price;
+                    let new_sub_total_price = new_item_price + optional_price;
                     let parent_tr = parernt_td.parents('tr');
-                    let product_sub_total_html = `<h6>$${new_sub_total_price}</h6> <input type="hidden" class="product_total" value="${new_sub_total_price}">`
+                    let product_sub_total_html = `<h6>$${new_sub_total_price}</h6> <input type="hidden" class="product_total" value="${new_sub_total_price}">`;
                     parent_tr.find('.wsus__pro_tk').html(product_sub_total_html);
 
                     let rowid = parernt_td.data('rowid')
@@ -459,19 +459,19 @@
                     update_item_qty(rowid, new_qty);
                 })
 
-                $(".decrement_product").on("click", function(){
+                $(document).on('click', '.decrement_product', function(){
                     let parernt_td = $(this).parents('td');
                     let item_price = parernt_td.data('item-price')
-                    let optional_price = parernt_td.data('optional-price')
+                    let optional_price = parernt_td.data('optional-price') || 0;
                     let quantity = parernt_td.find('.quantity').val();
-                    if(quantity == 1)return;
-                    let new_qty = parseInt(quantity) - parseInt(1);
+                    if(quantity == 1) return;
+                    let new_qty = parseInt(quantity) - 1;
                     parernt_td.find('.quantity').val(new_qty)
-                    let new_item_price = parseInt(new_qty) * parseInt(item_price);
-                    let new_sub_total_price = parseInt(new_item_price) + parseInt(optional_price);
+                    let new_item_price = new_qty * item_price;
+                    let new_sub_total_price = new_item_price + optional_price;
                     let parent_tr = parernt_td.parents('tr');
                     let product_sub_total_html = `<h6>$${new_sub_total_price}</h6>
-                    <input type="hidden" class="product_total" value="${new_sub_total_price}">`
+                    <input type="hidden" class="product_total" value="${new_sub_total_price}">`;
                     parent_tr.find('.wsus__pro_tk').html(product_sub_total_html);
 
                     let rowid = parernt_td.data('rowid')
@@ -482,7 +482,7 @@
 
                 })
 
-                $(".remove_item").on("click", function(){
+                $(document).on('click', '.remove_item', function(){
                     let parernt_td = $(this).parents('td');
                     let rowid = parernt_td.data('remove-rowid');
                     let parent_tr = parernt_td.parents('tr');
@@ -495,6 +495,7 @@
                         url: "/remove-from-cart/" + rowid,
                         success: function (response) {
                             toastr.success(response.message);
+                            loadCartPageData(); // Reload cart data
                         },
                         error: function(response) {
                             if(response.status == 500){
