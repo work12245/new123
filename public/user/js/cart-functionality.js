@@ -71,10 +71,16 @@ $(document).ready(function() {
                 $('.load_product_modal_response').html(response);
                 $('#cartModal').modal('show');
             },
-            error: function() {
+            error: function(xhr, status, error) {
+                console.log('Error details:', xhr.responseText);
                 toastr.error('Error loading product');
             }
         });
+    };
+    
+    // Alternative function name for compatibility
+    window.loadProductModal = function(productId) {
+        load_product_model(productId);
     };
     
     // Remove item from mini cart

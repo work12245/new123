@@ -110,44 +110,56 @@ app.post('/store-register', (req, res) => {
 
 // Product routes
 app.get('/load-product-modal/:id', (req, res) => {
-  const product = data.products.find(p => p.id == req.params.id);
-  if (!product) return res.status(404).send('Product not found');
-  
-  const modalHTML = `
-    <div class="wsus__cart_popup_img">
-      <img src="${product.image}" alt="product" class="img-fluid w-100">
-    </div>
-    <div class="wsus__cart_popup_text">
-      <h6>${product.name}</h6>
-      <p>$${product.price}</p>
-      <form id="add_to_cart_form" data-product-id="${product.id}">
-        <div class="popup_size">
-          <h6>Size</h6>
-          ${product.variants.map(v => 
-            `<label><input type="radio" name="size_variant" value="${v.name}" data-variant-price="${v.price}"> ${v.name} (+$${v.price})</label>`
-          ).join('')}
-        </div>
-        ${product.extras.length > 0 ? `
-        <div class="popup_extras">
-          <h6>Extras</h6>
-          ${product.extras.map(e => 
-            `<label><input type="checkbox" name="optional_items[]" value="${e.name}" data-extra-price="${e.price}"> ${e.name} (+$${e.price})</label>`
-          ).join('')}
-        </div>` : ''}
-        <div class="popup_quantity">
-          <h6>Quantity</h6>
-          <div class="quentity_btn">
-            <button type="button" class="btn btn-danger decrement"><i class="fal fa-minus"></i></button>
-            <input type="text" name="quantity" value="1" readonly>
-            <button type="button" class="btn btn-success increment"><i class="fal fa-plus"></i></button>
+  try {
+    const productId = parseInt(req.params.id);
+    const product = data.products.find(p => p.id === productId);
+    
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    
+    const modalHTML = `
+      <div class="wsus__cart_popup_img">
+        <img src="${product.image}" alt="product" class="img-fluid w-100">
+      </div>
+      <div class="wsus__cart_popup_text">
+        <h6>${product.name}</h6>
+        <p>$${product.price}</p>
+        <form id="add_to_cart_form" data-product-id="${product.id}">
+          <div class="popup_size">
+            <h6>Size</h6>
+            ${product.variants && product.variants.length > 0 ? 
+              product.variants.map(v => 
+                `<label><input type="radio" name="size_variant" value="${v.name}" data-variant-price="${v.price}"> ${v.name} (+$${v.price})</label>`
+              ).join('') : 
+              `<label><input type="radio" name="size_variant" value="Regular" data-variant-price="${product.price}" checked> Regular ($${product.price})</label>`
+            }
           </div>
-        </div>
-        <button type="submit" class="common_btn">Add to Cart</button>
-      </form>
-    </div>
-  `;
-  
-  res.send(modalHTML);
+          ${product.extras && product.extras.length > 0 ? `
+          <div class="popup_extras">
+            <h6>Extras</h6>
+            ${product.extras.map(e => 
+              `<label><input type="checkbox" name="optional_items[]" value="${e.name}" data-extra-price="${e.price}"> ${e.name} (+$${e.price})</label>`
+            ).join('')}
+          </div>` : ''}
+          <div class="popup_quantity">
+            <h6>Quantity</h6>
+            <div class="quentity_btn">
+              <button type="button" class="btn btn-danger decrement"><i class="fal fa-minus"></i></button>
+              <input type="text" name="quantity" value="1" readonly>
+              <button type="button" class="btn btn-success increment"><i class="fal fa-plus"></i></button>
+            </div>
+          </div>
+          <button type="submit" class="common_btn">Add to Cart</button>
+        </form>
+      </div>
+    `;
+    
+    res.send(modalHTML);
+  } catch (error) {
+    console.error('Error in load-product-modal:', error);
+    res.status(500).json({ error: 'Server error occurred' });
+  }
 });
 
 // Cart routes
