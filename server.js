@@ -515,13 +515,19 @@ app.put('/update-cart-quantity/:id', (req, res) => {
   const cartItem = req.session.cart.find(item => item.id == id);
 
   if (cartItem) {
+    const product = data.products.find(p => p.id == cartItem.product_id);
     cartItem.quantity = parseInt(quantity);
+    
+    // Calculate base price for the quantity
     cartItem.price = cartItem.base_price * cartItem.quantity;
-    if (cartItem.extras && cartItem.extras.length > 0) {
+    
+    // Add extras price for the quantity
+    if (cartItem.extras && cartItem.extras.length > 0 && product && product.extras) {
       cartItem.extras.forEach(extra => {
-        const product = data.products.find(p => p.id == cartItem.product_id);
-        const extraItem = product.extras?.find(e => e.name === extra);
-        if (extraItem) cartItem.price += extraItem.price * cartItem.quantity;
+        const extraItem = product.extras.find(e => e.name === extra);
+        if (extraItem) {
+          cartItem.price += extraItem.price * cartItem.quantity;
+        }
       });
     }
   }

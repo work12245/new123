@@ -441,45 +441,52 @@
                 });
 
                 $(document).on('click', '.increament_product', function(){
-                    let parernt_td = $(this).parents('td');
-                    let item_price = parernt_td.data('item-price')
-                    let optional_price = parernt_td.data('optional-price') || 0;
-                    let quantity = parernt_td.find('.quantity').val();
+                    let parent_td = $(this).parents('td');
+                    let item_price = parent_td.data('item-price');
+                    let optional_price = parent_td.data('optional-price') || 0;
+                    let quantity = parent_td.find('.quantity').val();
                     let new_qty = parseInt(quantity) + 1;
-                    parernt_td.find('.quantity').val(new_qty)
-                    let new_item_price = new_qty * item_price;
-                    let new_sub_total_price = new_item_price + optional_price;
-                    let parent_tr = parernt_td.parents('tr');
+                    parent_td.find('.quantity').val(new_qty);
+                    let new_sub_total_price = new_qty * item_price + optional_price;
+                    let parent_tr = parent_td.parents('tr');
                     let product_sub_total_html = `<h6>$${new_sub_total_price}</h6> <input type="hidden" class="product_total" value="${new_sub_total_price}">`;
                     parent_tr.find('.wsus__pro_tk').html(product_sub_total_html);
 
-                    let rowid = parernt_td.data('rowid')
-                    $(".mini-price-"+rowid).html(`$${new_sub_total_price}`)
-                    $(".set-mini-input-price-"+rowid).val(new_sub_total_price)
+                    let rowid = parent_td.data('rowid');
+                    $(".mini-price-"+rowid).html(`$${new_sub_total_price}`);
+                    $(".set-mini-input-price-"+rowid).val(new_sub_total_price);
+                    
+                    // Update totals immediately
+                    updateCartTotals();
+                    updateMiniCartTotals();
+                    
+                    // Send update to server
                     update_item_qty(rowid, new_qty);
                 })
 
                 $(document).on('click', '.decrement_product', function(){
-                    let parernt_td = $(this).parents('td');
-                    let item_price = parernt_td.data('item-price')
-                    let optional_price = parernt_td.data('optional-price') || 0;
-                    let quantity = parernt_td.find('.quantity').val();
-                    if(quantity == 1) return;
+                    let parent_td = $(this).parents('td');
+                    let item_price = parent_td.data('item-price');
+                    let optional_price = parent_td.data('optional-price') || 0;
+                    let quantity = parent_td.find('.quantity').val();
+                    if(quantity <= 1) return;
                     let new_qty = parseInt(quantity) - 1;
-                    parernt_td.find('.quantity').val(new_qty)
-                    let new_item_price = new_qty * item_price;
-                    let new_sub_total_price = new_item_price + optional_price;
-                    let parent_tr = parernt_td.parents('tr');
-                    let product_sub_total_html = `<h6>$${new_sub_total_price}</h6>
-                    <input type="hidden" class="product_total" value="${new_sub_total_price}">`;
+                    parent_td.find('.quantity').val(new_qty);
+                    let new_sub_total_price = new_qty * item_price + optional_price;
+                    let parent_tr = parent_td.parents('tr');
+                    let product_sub_total_html = `<h6>$${new_sub_total_price}</h6> <input type="hidden" class="product_total" value="${new_sub_total_price}">`;
                     parent_tr.find('.wsus__pro_tk').html(product_sub_total_html);
 
-                    let rowid = parernt_td.data('rowid')
-                    $(".mini-price-"+rowid).html(`$${new_sub_total_price}`)
-                    $(".set-mini-input-price-"+rowid).val(new_sub_total_price)
-
+                    let rowid = parent_td.data('rowid');
+                    $(".mini-price-"+rowid).html(`$${new_sub_total_price}`);
+                    $(".set-mini-input-price-"+rowid).val(new_sub_total_price);
+                    
+                    // Update totals immediately
+                    updateCartTotals();
+                    updateMiniCartTotals();
+                    
+                    // Send update to server
                     update_item_qty(rowid, new_qty);
-
                 })
 
                 $(document).on('click', '.remove_item', function(){
@@ -680,9 +687,9 @@
                         </td>
                         <td class="wsus__pro_select" data-item-price="${item.base_price}" data-optional-price="0" data-rowid="${item.id}">
                             <div class="quentity_btn">
-                                <button class="btn btn-danger decrement_product"><i class="fal fa-minus"></i></button>
+                                <button class="btn btn-danger decrement_product" type="button"><i class="fal fa-minus"></i></button>
                                 <input class="quantity" type="text" readonly value="${item.quantity}">
-                                <button class="btn btn-success increament_product"><i class="fal fa-plus"></i></button>
+                                <button class="btn btn-success increament_product" type="button"><i class="fal fa-plus"></i></button>
                             </div>
                         </td>
                         <td class="wsus__pro_tk">
@@ -778,6 +785,35 @@
 
             miniCartBody.html(miniCartHTML);
             $('.topbar_cart_qty').text(totalItems);
+        }
+
+        function updateCartTotals() {
+            let subtotal = 0;
+            $('.product_total').each(function() {
+                subtotal += parseInt($(this).val());
+            });
+            
+            const discount = 0;
+            const delivery = 0;
+            const total = subtotal - discount + delivery;
+
+            $('#cart-subtotal').text('$' + subtotal);
+            $('#cart-discount').text('$' + discount);
+            $('#cart-delivery').text('$' + delivery.toFixed(2));
+            $('#cart-total').text('$' + total);
+        }
+
+        function updateMiniCartTotals() {
+            let subtotal = 0;
+            let totalItems = 0;
+            $('.mini-input-price').each(function() {
+                subtotal += parseInt($(this).val());
+                totalItems++;
+            });
+            
+            $('.mini_sub_total').text('$' + subtotal);
+            $('.topbar_cart_qty').text(totalItems);
+            $('.mini_cart_body_item').text(`Total Item(${totalItems})`);
         }
 
     </script>
