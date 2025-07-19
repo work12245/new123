@@ -3,7 +3,7 @@ run = "npm run dev"
 
 [nix]
 channel = "stable-24_05"
-packages = ["j", "run"]
+packages = ["j", "run", "killall"]
 
 [workflows]
 runButton = "Development Server"
@@ -31,3 +31,4 @@ run = ["sh", "-c", "npm run dev"]
 
 [[ports]]
 localPort = 5000
+externalPort = 3000
