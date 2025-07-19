@@ -1,8 +1,9 @@
 modules = ["web", "nodejs-20"]
-run = "node index.js"
+run = "npm run dev"
 
 [nix]
 channel = "stable-24_05"
+packages = ["j", "run"]
 
 [workflows]
 runButton = "Development Server"
@@ -26,8 +27,7 @@ task = "shell.exec"
 args = "node server.js"
 
 [deployment]
-run = ["sh", "-c", "node index.js"]
+run = ["sh", "-c", "npm run dev"]
 
 [[ports]]
 localPort = 5000
-externalPort = 80
