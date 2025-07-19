@@ -326,6 +326,11 @@ let data = {
 
 // Routes
 
+// Serve index.html at root route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // Authentication routes
 app.post('/store-login', (req, res) => {
   const { email, password } = req.body;
