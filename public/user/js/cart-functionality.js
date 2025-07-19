@@ -8,12 +8,12 @@ $(document).ready(function() {
     // Cart icon click handler
     $(document).on('click', '.cart_icon', function(e) {
         e.preventDefault();
-        $('.wsus__menu_cart_area').addClass('active');
+        $('.wsus__menu_cart_area').addClass('show_mini_cart');
     });
     
     // Close cart
     $(document).on('click', '.close_cart', function() {
-        $('.wsus__menu_cart_area').removeClass('active');
+        $('.wsus__menu_cart_area').removeClass('show_mini_cart');
     });
     
     // Add to cart form submission
@@ -28,7 +28,7 @@ $(document).ready(function() {
             return;
         }
         
-        // Collect form data as regular object
+        // Collect form data
         const formData = {
             product_id: productId,
             size_variant: $("input[name='size_variant']:checked").val(),
@@ -97,7 +97,7 @@ $(document).ready(function() {
         $('.total-price').text(totalPrice.toFixed(0));
     }
     
-    // Load product modal
+    // Load product modal - Global function
     window.load_product_model = function(productId) {
         $.ajax({
             url: `/load-product-modal/${productId}`,
@@ -113,19 +113,14 @@ $(document).ready(function() {
         });
     };
     
-    // Alternative function name for compatibility
-    window.loadProductModal = function(productId) {
-        load_product_model(productId);
-    };
-    
-    // Remove item from mini cart
+    // Remove item from cart
     $(document).on('click', '.mini-item-remove', function() {
         const li = $(this).closest('li');
         const rowid = li.data('mini-item-rowid');
         
         $.ajax({
-            url: `/remove-cart-item/${rowid}`,
-            method: 'GET',
+            url: `/remove-from-cart/${rowid}`,
+            method: 'DELETE',
             success: function(response) {
                 toastr.success('Item removed from cart');
                 loadCartData();
@@ -144,7 +139,6 @@ $(document).ready(function() {
                 updateCartDisplay(cartItems);
             },
             error: function() {
-                // Silently handle error, no need to show error for cart loading
                 updateCartDisplay([]);
             }
         });
@@ -207,3 +201,12 @@ $(document).ready(function() {
         }
     }
 });
+
+// Global functions for compatibility
+window.before_auth_wishlist = function(id) {
+    toastr.error("Please login first");
+};
+
+window.add_to_wishlist = function(id) {
+    toastr.error("Please login first");
+};

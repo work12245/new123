@@ -202,8 +202,7 @@
                         <a href="dashboard.html"><i class="fas fa-user"></i></a>
                     </li>
                     <li>
-                                                <a class="common_btn" href="login.html">reservation</a>
-                        
+                        <a class="common_btn" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">reservation</a>
                     </li>
                 </ul>
             </div>
@@ -243,6 +242,55 @@
         </div>
     </div>
     <!-- CART POPUT END -->
+
+    <!-- RESERVATION MODAL START -->
+    <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Make a Reservation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="wsus__reservation_form" action="/store-reservation" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="date" name="reserve_date" class="form-control datepicker" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Time</label>
+                                    <input type="time" name="reserve_time" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Number of Persons</label>
+                                    <select name="person" class="form-control" required>
+                                        <option value="">Select Persons</option>
+                                        <option value="1">1 Person</option>
+                                        <option value="2">2 Persons</option>
+                                        <option value="3">3 Persons</option>
+                                        <option value="4">4 Persons</option>
+                                        <option value="5">5 Persons</option>
+                                        <option value="6">6 Persons</option>
+                                        <option value="7">7 Persons</option>
+                                        <option value="8">8 Persons</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="common_btn">Submit Reservation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- RESERVATION MODAL END -->
+
     <!--=============================
         OFFER ITEM END
     ==============================-->
@@ -1826,7 +1874,38 @@
     <script src="/public/backend/js/select2.min.js"></script>
 
     <script>
-            </script>
+    // Global functions for onclick events
+    function calculate_mini_total(){
+        let mini_sub_total = 0;
+        let mini_total_item = 0;
+        $(".mini-input-price").each(function () {
+            let current_val = $(this).val();
+            mini_sub_total = parseInt(mini_sub_total) + parseInt(current_val);
+            mini_total_item = parseInt(mini_total_item) + parseInt(1);
+        });
+
+        $(".mini_sub_total").html(`$${mini_sub_total}`);
+        $(".topbar_cart_qty").html(mini_total_item);
+        $(".mini_cart_body_item").html(`Total Item(${mini_total_item})`);
+
+        if(mini_total_item == 0){
+            $(".wsus__menu_cart_boody").html(`
+                <div class="wsus__menu_cart_header">
+                    <h5>Your shopping cart is empty!</h5>
+                    <span class="close_cart"><i class="fal fa-times"></i></span>
+                </div>
+            `);
+        }
+    }
+
+    function before_auth_wishlist(id){
+        toastr.error("Please login first");
+    }
+
+    function add_to_wishlist(id){
+        toastr.error("Please login first");
+    }
+</script>
 
     
 <script>

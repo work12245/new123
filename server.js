@@ -557,6 +557,18 @@ app.delete('/remove-from-cart/:id', (req, res) => {
   res.json({ success: true, message: 'Item removed from cart' });
 });
 
+// Alternative GET route for compatibility
+app.get('/remove-cart-item/:id', (req, res) => {
+  const itemId = req.params.id;
+  
+  if (!req.session.cart) {
+    req.session.cart = [];
+  }
+  
+  req.session.cart = req.session.cart.filter(item => item.id != itemId);
+  res.json({ success: true, message: 'Item removed from cart' });
+});
+
 app.delete('/clear-cart', (req, res) => {
   req.session.cart = [];
   res.json({ success: true, message: 'Cart cleared successfully' });

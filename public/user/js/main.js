@@ -19,7 +19,8 @@ $(function () {
 
 
     //=======MENU CART======
-    $(".cart_icon").click(function () {
+    $(".cart_icon").click(function (e) {
+        e.preventDefault();
         $(".wsus__menu_cart_area").addClass("show_mini_cart");
     });
 
@@ -346,9 +347,7 @@ $(function () {
 
 
     //*========STICKY SIDEBAR=======
-    $("#sticky_sidebar").stickit({
-        top: 10,
-    })
+    // Sticky sidebar functionality removed due to library compatibility
 
 
     //=======OFFER ITEM SLIDER======
