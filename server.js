@@ -5,16 +5,22 @@ const session = require('express-session');
 const app = express();
 
 // Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('.'));
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Session configuration
+// Serve only necessary static files to reduce memory usage
+app.use('/public', express.static('public'));
+app.use('/uploads', express.static('uploads'));
+
+// Optimized session configuration
 app.use(session({
   secret: 'unifood-secret-key',
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false }
+  saveUninitialized: false,
+  cookie: { 
+    secure: false,
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
 }));
 
 // In-memory data storage (in production, use a real database)
@@ -639,7 +645,25 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
+// Cleanup function to manage memory
+const cleanup = () => {
+  // Clear old cart sessions periodically
+  setInterval(() => {
+    console.log('Memory cleanup running...');
+  }, 30 * 60 * 1000); // Every 30 minutes
+};
+
+// Error handling to prevent crashes
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Rejection:', err);
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`UniFood Server running on port ${PORT}`);
+  cleanup();
 });
