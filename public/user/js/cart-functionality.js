@@ -246,9 +246,31 @@ $(document).ready(function() {
 
 // Global functions for compatibility
 window.before_auth_wishlist = function(id) {
-    toastr.error("Please login first");
+    toastr.error("Please login first to add to wishlist");
+    setTimeout(() => {
+        window.location.href = '/login.html';
+    }, 1500);
 };
 
 window.add_to_wishlist = function(id) {
-    toastr.error("Please login first");
+    $.ajax({
+        url: '/api/user',
+        method: 'GET',
+        success: function(user) {
+            if (user && user.name) {
+                toastr.success("Added to wishlist successfully!");
+            } else {
+                toastr.error("Please login first to add to wishlist");
+                setTimeout(() => {
+                    window.location.href = '/login.html';
+                }, 1500);
+            }
+        },
+        error: function() {
+            toastr.error("Please login first to add to wishlist");
+            setTimeout(() => {
+                window.location.href = '/login.html';
+            }, 1500);
+        }
+    });
 };

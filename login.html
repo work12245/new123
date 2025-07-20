@@ -280,18 +280,18 @@
                         <div class="wsus__login_area">
                             <h2>Welcome back!</h2>
                             <p>sign in to continue</p>
-                            <form action="/store-login" method="POST">
-                                <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                <div class="row">
+                            <form id="loginForm">
+                                <div class="row">
                                     <div class="col-xl-12">
                                         <div class="wsus__login_imput">
                                             <label>Email</label>
-                                            <input type="email" name="email" placeholder="Email">
+                                            <input type="email" name="email" placeholder="Email" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="wsus__login_imput">
                                             <label>Password</label>
-                                            <input type="password" name="password" placeholder="Password">
+                                            <input type="password" name="password" placeholder="Password" required>
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
@@ -300,19 +300,26 @@
                                                 <input class="form-check-input" name="remember" type="checkbox" value=""
                                                     id="flexCheckDefault">
                                                 <label class="form-check-label" for="flexCheckDefault">
-                                                    Remeber Me
+                                                    Remember Me
                                                 </label>
                                             </div>
                                             <a href="forget-password">Forgot Password ?</a>
                                         </div>
                                     </div>
 
-                                    
                                     <div class="col-xl-12">
                                         <div class="wsus__login_imput">
-                                            <button type="submit" class="common_btn">login</button>
+                                            <button type="submit" class="common_btn" id="loginBtn">Login</button>
                                         </div>
                                     </div>
+                                </div>
+                                
+                                <!-- Demo Accounts Info -->
+                                <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px; font-size: 12px;">
+                                    <h6 style="margin-bottom: 10px; color: #333;">Demo Accounts:</h6>
+                                    <p style="margin: 5px 0;"><strong>Customer:</strong> john@example.com / password123</p>
+                                    <p style="margin: 5px 0;"><strong>Customer:</strong> jane@example.com / jane123</p>
+                                    <p style="margin: 5px 0;"><strong>Admin:</strong> admin@unifood.com / admin123</p>
                                 </div>
                             </form>
 
@@ -529,7 +536,43 @@
     <script src="/public/backend/js/select2.min.js"></script>
 
     <script>
-            </script>
+        $(document).ready(function() {
+            $('#loginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const email = $('input[name="email"]').val();
+                const password = $('input[name="password"]').val();
+                
+                if (!email || !password) {
+                    toastr.error('Please fill in all fields');
+                    return;
+                }
+                
+                $('#loginBtn').prop('disabled', true).text('Logging in...');
+                
+                $.ajax({
+                    url: '/store-login',
+                    method: 'POST',
+                    data: { email, password },
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success('Login successful!');
+                            setTimeout(() => {
+                                window.location.href = response.redirect;
+                            }, 1000);
+                        } else {
+                            toastr.error(response.message);
+                            $('#loginBtn').prop('disabled', false).text('Login');
+                        }
+                    },
+                    error: function() {
+                        toastr.error('Login failed. Please try again.');
+                        $('#loginBtn').prop('disabled', false).text('Login');
+                    }
+                });
+            });
+        });
+    </script>
 
     
 <script>

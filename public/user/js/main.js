@@ -2,6 +2,61 @@ $(function () {
 
     "use strict";
 
+    // Check user authentication status
+    checkAuthStatus();
+
+    // Logout functionality
+    $(document).on('click', '#logoutBtn', function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '/logout',
+            method: 'POST',
+            success: function(response) {
+                if (response.success) {
+                    toastr.success('Logged out successfully');
+                    setTimeout(() => {
+                        window.location.href = response.redirect;
+                    }, 1000);
+                }
+            },
+            error: function() {
+                toastr.error('Logout failed');
+            }
+        });
+    });
+
+    function checkAuthStatus() {
+        $.ajax({
+            url: '/api/user',
+            method: 'GET',
+            success: function(user) {
+                if (user && user.name) {
+                    // User is logged in
+                    $('.auth-links').html(`
+                        <li><span style="color: #fff; margin-right: 10px;">Welcome, ${user.name}!</span></li>
+                        <li><a href="/dashboard.html"><i class="fas fa-user"></i> Dashboard</a></li>
+                        <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                    `);
+                } else {
+                    // User not logged in
+                    $('.auth-links').html(`
+                        <li><a href="/login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <li><a href="/register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+                    `);
+                }
+            },
+            error: function() {
+                // User not logged in
+                $('.auth-links').html(`
+                    <li><a href="/login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li><a href="/register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+                `);
+            }
+        });
+    }
+
+
     //======menu fix js======
     if ($('.main_menu').offset() != undefined) {
         var navoff = $('.main_menu').offset().top;

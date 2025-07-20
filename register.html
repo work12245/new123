@@ -280,41 +280,39 @@
                         <div class="wsus__login_area">
                             <h2>Registration</h2>
                             <p>Do not have an account ? please fill up the form below</p>
-                            <form action="/store-register" method="POST">
-                                <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">                                <div class="row">
+                            <form id="registerForm">
+                                <div class="row">
                                     <div class="col-xl-12">
                                         <div class="wsus__login_imput">
                                             <label>Name</label>
-                                            <input type="text" name="name" placeholder="Name">
+                                            <input type="text" name="name" placeholder="Name" required>
                                         </div>
                                     </div>
 
                                     <div class="col-xl-12">
                                         <div class="wsus__login_imput">
                                             <label>Email</label>
-                                            <input type="email" name="email" placeholder="Email">
+                                            <input type="email" name="email" placeholder="Email" required>
                                         </div>
                                     </div>
-
 
                                     <div class="col-xl-12">
                                         <div class="wsus__login_imput">
                                             <label>Password</label>
-                                            <input type="password" name="password" placeholder="Password">
+                                            <input type="password" name="password" placeholder="Password" required minlength="6">
                                         </div>
                                     </div>
 
                                     <div class="col-xl-12">
                                         <div class="wsus__login_imput">
                                             <label>Confirm Password</label>
-                                            <input type="password" name="password_confirmation" placeholder="Confirm Password">
+                                            <input type="password" name="password_confirmation" placeholder="Confirm Password" required>
                                         </div>
                                     </div>
-
                                     
                                     <div class="col-xl-12">
                                         <div class="wsus__login_imput">
-                                            <button type="submit" class="common_btn">Register</button>
+                                            <button type="submit" class="common_btn" id="registerBtn">Register</button>
                                         </div>
                                     </div>
                                 </div>
@@ -533,7 +531,50 @@
     <script src="/public/backend/js/select2.min.js"></script>
 
     <script>
-            </script>
+        $(document).ready(function() {
+            $('#registerForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const name = $('input[name="name"]').val();
+                const email = $('input[name="email"]').val();
+                const password = $('input[name="password"]').val();
+                const password_confirmation = $('input[name="password_confirmation"]').val();
+                
+                if (!name || !email || !password || !password_confirmation) {
+                    toastr.error('Please fill in all fields');
+                    return;
+                }
+                
+                if (password !== password_confirmation) {
+                    toastr.error('Passwords do not match');
+                    return;
+                }
+                
+                $('#registerBtn').prop('disabled', true).text('Creating Account...');
+                
+                $.ajax({
+                    url: '/store-register',
+                    method: 'POST',
+                    data: { name, email, password, password_confirmation },
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success('Registration successful!');
+                            setTimeout(() => {
+                                window.location.href = response.redirect;
+                            }, 1000);
+                        } else {
+                            toastr.error(response.message);
+                            $('#registerBtn').prop('disabled', false).text('Register');
+                        }
+                    },
+                    error: function() {
+                        toastr.error('Registration failed. Please try again.');
+                        $('#registerBtn').prop('disabled', false).text('Register');
+                    }
+                });
+            });
+        });
+    </script>
 
     
 <script>

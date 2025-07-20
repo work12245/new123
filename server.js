@@ -31,6 +31,7 @@ let data = {
       name: "John Doe",
       email: "john@example.com",
       password: "password123",
+      role: "customer",
       addresses: [
         {
           id: 1,
@@ -42,6 +43,40 @@ let data = {
           delivery_charge: 25
         }
       ]
+    },
+    {
+      id: 2,
+      name: "Admin User",
+      email: "admin@unifood.com",
+      password: "admin123",
+      role: "admin",
+      addresses: []
+    },
+    {
+      id: 3,
+      name: "Jane Smith",
+      email: "jane@example.com",
+      password: "jane123",
+      role: "customer",
+      addresses: [
+        {
+          id: 2,
+          type: "work",
+          name: "Jane Smith",
+          phone: "555-0123",
+          address: "New York, NY, USA",
+          delivery_area: "Downtown",
+          delivery_charge: 30
+        }
+      ]
+    },
+    {
+      id: 4,
+      name: "Mike Johnson",
+      email: "mike@example.com",
+      password: "mike123",
+      role: "customer",
+      addresses: []
     }
   ],
   products: [
@@ -364,19 +399,31 @@ app.post('/store-login', (req, res) => {
   const user = data.users.find(u => u.email === email && u.password === password);
 
   if (user) {
+    req.session.user = user;
     data.currentUser = user;
-    res.redirect('/dashboard.html');
+    
+    // Redirect based on role
+    if (user.role === 'admin') {
+      res.json({ success: true, redirect: '/admin/dashboard.html', role: 'admin' });
+    } else {
+      res.json({ success: true, redirect: '/dashboard.html', role: 'customer' });
+    }
   } else {
-    res.redirect('/login.html?error=invalid');
+    res.json({ success: false, message: 'Invalid email or password' });
   }
 });
 
 app.post('/store-register', (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, password_confirmation } = req.body;
+
+  // Validate password confirmation
+  if (password !== password_confirmation) {
+    return res.json({ success: false, message: 'Passwords do not match' });
+  }
 
   // Check if user exists
   if (data.users.find(u => u.email === email)) {
-    return res.redirect('/register.html?error=exists');
+    return res.json({ success: false, message: 'Email already exists' });
   }
 
   const newUser = {
@@ -384,13 +431,40 @@ app.post('/store-register', (req, res) => {
     name,
     email,
     password,
+    role: 'customer',
     addresses: []
   };
 
   data.users.push(newUser);
+  req.session.user = newUser;
   data.currentUser = newUser;
-  res.redirect('/dashboard.html');
+  res.json({ success: true, redirect: '/dashboard.html', role: 'customer' });
 });
+
+// Logout route
+app.post('/logout', (req, res) => {
+  req.session.destroy();
+  data.currentUser = null;
+  res.json({ success: true, redirect: '/login.html' });
+});
+
+// Check authentication middleware
+const requireAuth = (req, res, next) => {
+  if (req.session.user) {
+    next();
+  } else {
+    res.redirect('/login.html');
+  }
+};
+
+// Check admin middleware
+const requireAdmin = (req, res, next) => {
+  if (req.session.user && req.session.user.role === 'admin') {
+    next();
+  } else {
+    res.status(403).json({ error: 'Admin access required' });
+  }
+};
 
 // Product routes
 app.get('/load-product-modal/:id', (req, res) => {
@@ -421,6 +495,9 @@ app.get('/load-product-modal/:id', (req, res) => {
               <span>(1)</span>
             </div>
             <h3 class="price">$${product.price} ${product.offer_price ? `<del>$${product.offer_price}</del>` : ''}</h3>
+            <div class="product-description" style="margin: 15px 0; padding: 10px; background: #f8f9fa; border-radius: 5px;">
+              <p style="margin: 0; color: #666; font-size: 14px;">${product.description}</p>
+            </div>
 
             <form id="add_to_cart_form" data-product-id="${product.id}">
               <div class="details_size">
@@ -751,7 +828,48 @@ app.post('/place-order', (req, res) => {
 });
 
 app.get('/api/user', (req, res) => {
-  res.json(data.currentUser);
+  res.json(req.session.user || null);
+});
+
+// Admin routes
+app.get('/admin/dashboard.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/dashboard.html'));
+});
+
+// Get all users (admin only)
+app.get('/api/admin/users', requireAdmin, (req, res) => {
+  res.json({
+    success: true,
+    users: data.users.map(user => ({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      registered: new Date().toISOString().split('T')[0] // Dummy date
+    }))
+  });
+});
+
+// Get all orders (admin only)
+app.get('/api/admin/orders', requireAdmin, (req, res) => {
+  res.json({
+    success: true,
+    orders: data.orders
+  });
+});
+
+// Get dashboard stats (admin only)
+app.get('/api/admin/stats', requireAdmin, (req, res) => {
+  res.json({
+    success: true,
+    stats: {
+      totalUsers: data.users.filter(u => u.role === 'customer').length,
+      totalOrders: data.orders.length,
+      totalProducts: data.products.length,
+      totalRevenue: data.orders.reduce((sum, order) => sum + order.total, 0),
+      pendingOrders: data.orders.filter(o => o.status === 'pending').length
+    }
+  });
 });
 
 app.get('/api/products', (req, res) => {
