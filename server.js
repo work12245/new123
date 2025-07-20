@@ -337,6 +337,15 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Serve cart and checkout pages
+app.get('/cart.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'cart.html'));
+});
+
+app.get('/checkout.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'checkout.html'));
+});
+
 // Authentication routes
 app.post('/store-login', (req, res) => {
   const { email, password } = req.body;
