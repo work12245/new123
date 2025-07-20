@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Summary</title>
+    <link rel="icon" type="image/png" href="public/uploads/website-images/favicon-2023-03-05-01-07-01-8002.png">
+    <link rel="stylesheet" href="public/user/css/all.min.css">
+    <link rel="stylesheet" href="public/user/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/user/css/style.css">
+    <link rel="stylesheet" href="public/toastr/toastr.min.css">
+    
+    <script src="public/user/js/jquery-3.6.3.min.js"></script>
+    <script src="public/toastr/toastr.min.js"></script>
+</head>
+<body>
+
+    <!--=============================
+        TOPBAR START
+    ==============================-->
+    <section class="wsus__topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6 d-none d-md-block">
+                    <ul class="wsus__topbar_info d-flex flex-wrap">
+                        <li><a href="mailto:websolutionus1@gmail.com"><i class="fas fa-envelope"></i> websolutionus1@gmail.com</a></li>
+                        <li><a href="callto:+1347-430-9510"><i class="fas fa-phone-alt"></i> +1347-430-9510</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                    <div class="topbar_right">
+                        <ul class="topbar_icon d-flex flex-wrap">
+                            <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                        </ul>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--=============================
+        MENU START
+    ==============================-->
+    <nav class="navbar navbar-expand-lg main_menu">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="public/uploads/website-images/logo-2022-12-13-05-18-57-4851.png" alt="UniFood" class="img-fluid">
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--=============================
+        BREADCRUMB START
+    ==============================-->
+    <section class="wsus__breadcrumb" style="background: url(public/uploads/website-images/breadcrumb_image-2022-12-31-01-18-17-5423.jpg);">
+        <div class="wsus__breadcrumb_overlay">
+            <div class="container">
+                <div class="wsus__breadcrumb_text">
+                    <h1>Order Summary</h1>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="javascript:;">Order Summary</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--=============================
+        ORDER SUMMARY START
+    ==============================-->
+    <section class="wsus__cart_view mt_125 xs_mt_95 mb_100 xs_mb_70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="wsus__checkout_form">
+                        <h4>Order Details</h4>
+                        <div id="order-item-details">
+                            <!-- Order item will be loaded here -->
+                        </div>
+
+                        <h4 class="mt-4">Select Delivery Address</h4>
+                        <div class="row" id="address-selection">
+                            <div class="col-md-6">
+                                <div class="wsus__checkout_single_address">
+                                    <div class="form-check">
+                                        <input value="1" data-delivery-charge="25" class="form-check-input address_id" type="radio" name="address_id" id="home-1">
+                                        <label class="form-check-label" for="home-1">
+                                            <span class="icon"><i class="fas fa-home"></i>Home</span>
+                                            <span class="address">Name: John Doe</span>
+                                            <span class="address">Phone: 125-985-4587</span>
+                                            <span class="address">Delivery area: Metrocenter Mall</span>
+                                            <span class="address">Address: Los Angeles, CA, USA</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="wsus__checkout_single_address">
+                                    <div class="form-check">
+                                        <input value="2" data-delivery-charge="15" class="form-check-input address_id" type="radio" name="address_id" id="home-2">
+                                        <label class="form-check-label" for="home-2">
+                                            <span class="icon"><i class="far fa-car-building"></i>Office</span>
+                                            <span class="address">Name: John Doe</span>
+                                            <span class="address">Phone: 123-343-4444</span>
+                                            <span class="address">Delivery area: Thunderbird Paseo Park</span>
+                                            <span class="address">Address: Los Angeles, CA, USA</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="wsus__cart_list_footer_button">
+                        <h6>Order Summary</h6>
+                        <p>Item Total: <span id="item-total">$0</span></p>
+                        <p>Delivery (+): <span class="delivery_charge">$0.00</span></p>
+                        <p class="total"><span>Total:</span> <span class="grand_total">$0</span></p>
+                        
+                        <button class="common_btn mt-3" id="proceed-to-checkout">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            loadBuyNowData();
+
+            // Address selection
+            $("input[name='address_id']").on("change", function() {
+                var deliveryCharge = $(this).data('delivery-charge');
+                $(".delivery_charge").html(`$${deliveryCharge}`);
+                
+                var itemTotal = parseFloat($("#item-total").text().replace('$', ''));
+                var grandTotal = itemTotal + deliveryCharge;
+                $(".grand_total").html(`$${grandTotal}`);
+            });
+
+            // Proceed to checkout
+            $("#proceed-to-checkout").on("click", function() {
+                if (!$("input[name='address_id']:checked").length) {
+                    toastr.error("Please select a delivery address");
+                    return;
+                }
+                window.location.href = "/checkout-payment.html";
+            });
+        });
+
+        function loadBuyNowData() {
+            $.ajax({
+                url: '/buy-now-data',
+                method: 'GET',
+                success: function(response) {
+                    if (response.success && response.buyNowItem) {
+                        displayOrderItem(response.buyNowItem);
+                    } else {
+                        toastr.error("No item found");
+                        window.location.href = "/index.html";
+                    }
+                },
+                error: function() {
+                    toastr.error("Error loading order data");
+                    window.location.href = "/index.html";
+                }
+            });
+        }
+
+        function displayOrderItem(item) {
+            const extrasHTML = item.extras && item.extras.length > 0 
+                ? item.extras.map(extra => `<p class="mb-1"><small>+ ${extra}</small></p>`).join('') 
+                : '';
+
+            const orderHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="${item.image}" alt="${item.name}" class="img-fluid">
+                            </div>
+                            <div class="col-md-9">
+                                <h5>${item.name}</h5>
+                                <p><strong>Size:</strong> ${item.size}</p>
+                                ${extrasHTML}
+                                <p><strong>Quantity:</strong> ${item.quantity}</p>
+                                <p><strong>Price:</strong> $${item.price}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            $("#order-item-details").html(orderHTML);
+            $("#item-total").text(`$${item.price}`);
+            $(".grand_total").text(`$${item.price}`);
+        }
+    </script>
+
+    <script src="public/user/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

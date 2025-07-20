@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Payment</title>
+    <link rel="icon" type="image/png" href="public/uploads/website-images/favicon-2023-03-05-01-07-01-8002.png">
+    <link rel="stylesheet" href="public/user/css/all.min.css">
+    <link rel="stylesheet" href="public/user/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/user/css/style.css">
+    <link rel="stylesheet" href="public/toastr/toastr.min.css">
+    
+    <script src="public/user/js/jquery-3.6.3.min.js"></script>
+    <script src="public/toastr/toastr.min.js"></script>
+</head>
+<body>
+
+    <!--=============================
+        TOPBAR START
+    ==============================-->
+    <section class="wsus__topbar">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-6 d-none d-md-block">
+                    <ul class="wsus__topbar_info d-flex flex-wrap">
+                        <li><a href="mailto:websolutionus1@gmail.com"><i class="fas fa-envelope"></i> websolutionus1@gmail.com</a></li>
+                        <li><a href="callto:+1347-430-9510"><i class="fas fa-phone-alt"></i> +1347-430-9510</a></li>
+                    </ul>
+                </div>
+                <div class="col-xl-6 col-md-6">
+                    <div class="topbar_right">
+                        <ul class="topbar_icon d-flex flex-wrap">
+                            <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                        </ul>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--=============================
+        MENU START
+    ==============================-->
+    <nav class="navbar navbar-expand-lg main_menu">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="public/uploads/website-images/logo-2022-12-13-05-18-57-4851.png" alt="UniFood" class="img-fluid">
+            </a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav m-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--=============================
+        BREADCRUMB START
+    ==============================-->
+    <section class="wsus__breadcrumb" style="background: url(public/uploads/website-images/breadcrumb_image-2022-12-31-01-18-17-5423.jpg);">
+        <div class="wsus__breadcrumb_overlay">
+            <div class="container">
+                <div class="wsus__breadcrumb_text">
+                    <h1>Checkout Payment</h1>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="javascript:;">Payment</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--=============================
+        CHECKOUT PAYMENT START
+    ==============================-->
+    <section class="wsus__cart_view mt_125 xs_mt_95 mb_100 xs_mb_70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="wsus__checkout_form">
+                        <h4>Select Payment Method</h4>
+                        <div class="payment-methods">
+                            <div class="payment-option mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method" value="paypal" id="paypal">
+                                    <label class="form-check-label" for="paypal">
+                                        <i class="fab fa-paypal"></i> PayPal
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-option mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method" value="stripe" id="stripe">
+                                    <label class="form-check-label" for="stripe">
+                                        <i class="fab fa-stripe"></i> Stripe (Credit/Debit Card)
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-option mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method" value="razorpay" id="razorpay">
+                                    <label class="form-check-label" for="razorpay">
+                                        <i class="fas fa-credit-card"></i> Razorpay
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-option mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method" value="mollie" id="mollie">
+                                    <label class="form-check-label" for="mollie">
+                                        <i class="fas fa-money-check-alt"></i> Mollie
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-option mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method" value="cash_on_delivery" id="cod" checked>
+                                    <label class="form-check-label" for="cod">
+                                        <i class="fas fa-money-bill-wave"></i> Cash on Delivery
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Credit Card Details (shown when Stripe is selected) -->
+                        <div id="card-details" style="display: none;">
+                            <h5>Card Details</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control mb-3" placeholder="Card Number" id="card-number">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control mb-3" placeholder="MM/YY" id="card-expiry">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control mb-3" placeholder="CVV" id="card-cvv">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control mb-3" placeholder="Cardholder Name" id="card-name">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="wsus__cart_list_footer_button">
+                        <h6>Order Summary</h6>
+                        <div id="order-summary">
+                            <!-- Order summary will be loaded here -->
+                        </div>
+                        
+                        <button class="common_btn mt-3 w-100" id="place-order">
+                            <i class="fas fa-lock"></i> Place Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            loadOrderSummary();
+
+            // Show/hide card details
+            $("input[name='payment_method']").on("change", function() {
+                if ($(this).val() === 'stripe') {
+                    $("#card-details").show();
+                } else {
+                    $("#card-details").hide();
+                }
+            });
+
+            // Place order
+            $("#place-order").on("click", function() {
+                const paymentMethod = $("input[name='payment_method']:checked").val();
+                
+                if (!paymentMethod) {
+                    toastr.error("Please select a payment method");
+                    return;
+                }
+
+                // Validate card details if Stripe is selected
+                if (paymentMethod === 'stripe') {
+                    if (!$("#card-number").val() || !$("#card-expiry").val() || !$("#card-cvv").val() || !$("#card-name").val()) {
+                        toastr.error("Please fill in all card details");
+                        return;
+                    }
+                }
+
+                // Place the order
+                $.ajax({
+                    url: '/place-order',
+                    method: 'POST',
+                    data: {
+                        address_id: 1, // Default address for demo
+                        payment_method: paymentMethod,
+                        order_type: 'buyNow'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success(response.message);
+                            setTimeout(() => {
+                                window.location.href = `/order-confirmation.html?order_id=${response.order_id}`;
+                            }, 2000);
+                        } else {
+                            toastr.error("Error placing order");
+                        }
+                    },
+                    error: function() {
+                        toastr.error("Error placing order");
+                    }
+                });
+            });
+        });
+
+        function loadOrderSummary() {
+            $.ajax({
+                url: '/buy-now-data',
+                method: 'GET',
+                success: function(response) {
+                    if (response.success && response.buyNowItem) {
+                        displayOrderSummary(response.buyNowItem);
+                    } else {
+                        toastr.error("No order found");
+                        window.location.href = "/index.html";
+                    }
+                },
+                error: function() {
+                    toastr.error("Error loading order");
+                    window.location.href = "/index.html";
+                }
+            });
+        }
+
+        function displayOrderSummary(item) {
+            const deliveryCharge = 25; // Default delivery charge
+            const total = item.price + deliveryCharge;
+
+            const summaryHTML = `
+                <p>Item: ${item.name}</p>
+                <p>Quantity: ${item.quantity}</p>
+                <p>Item Total: <span>$${item.price}</span></p>
+                <p>Delivery: <span>$${deliveryCharge}</span></p>
+                <p class="total"><span>Total:</span> <span>$${total}</span></p>
+            `;
+
+            $("#order-summary").html(summaryHTML);
+        }
+    </script>
+
+    <script src="public/user/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

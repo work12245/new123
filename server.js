@@ -346,6 +346,18 @@ app.get('/checkout.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'checkout.html'));
 });
 
+app.get('/order-summary.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'order-summary.html'));
+});
+
+app.get('/checkout-payment.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'checkout-payment.html'));
+});
+
+app.get('/order-confirmation.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'order-confirmation.html'));
+});
+
 // Authentication routes
 app.post('/store-login', (req, res) => {
   const { email, password } = req.body;
@@ -458,6 +470,7 @@ app.get('/load-product-modal/:id', (req, res) => {
 
               <ul class="details_button_area d-flex flex-wrap">
                 <li><button type="submit" class="common_btn">Add to Cart</button></li>
+                <li><button type="button" class="common_btn buy-now-btn" style="background: #28a745; margin-left: 10px;">Buy Now</button></li>
               </ul>
             </form>
           </div>
@@ -630,6 +643,111 @@ app.get('/cart-data', (req, res) => {
         success: true,
         cartItems: req.session.cart
     });
+});
+
+// Buy Now - Direct purchase
+app.post('/buy-now', (req, res) => {
+    try {
+        const { product_id, size_variant, optional_items, quantity } = req.body;
+        const product = data.products.find(p => p.id == product_id);
+
+        if (!product) return res.status(404).json({ error: 'Product not found' });
+
+        // Ensure variants exist, if not create default
+        const variants = product.variants || [{ name: "Regular", price: product.price }];
+        const variant = variants.find(v => v.name === size_variant);
+
+        if (!variant) {
+            return res.status(400).json({ error: 'Invalid variant selected' });
+        }
+
+        const extras = optional_items || [];
+        const productExtras = product.extras || [];
+
+        let totalPrice = variant.price * parseInt(quantity);
+        if (Array.isArray(extras)) {
+            extras.forEach(extra => {
+                const extraItem = productExtras.find(e => e.name === extra);
+                if (extraItem) totalPrice += extraItem.price * parseInt(quantity);
+            });
+        }
+
+        const buyNowItem = {
+            id: Date.now(),
+            product_id: product.id,
+            name: product.name,
+            image: product.image,
+            size: size_variant,
+            extras: extras,
+            quantity: parseInt(quantity),
+            price: totalPrice,
+            base_price: variant.price
+        };
+
+        // Store in session for direct purchase
+        req.session.buyNowItem = buyNowItem;
+        res.json({ success: true, message: 'Ready for purchase', buyNowItem });
+    } catch (error) {
+        console.error('Error in buy-now:', error);
+        res.status(500).json({ error: 'Server error occurred' });
+    }
+});
+
+// Get buy now item
+app.get('/buy-now-data', (req, res) => {
+    res.json({
+        success: true,
+        buyNowItem: req.session.buyNowItem || null
+    });
+});
+
+// Process order
+app.post('/place-order', (req, res) => {
+    try {
+        const { address_id, payment_method, order_type } = req.body; // order_type: 'cart' or 'buyNow'
+        
+        let orderItems = [];
+        let totalAmount = 0;
+
+        if (order_type === 'buyNow' && req.session.buyNowItem) {
+            orderItems = [req.session.buyNowItem];
+            totalAmount = req.session.buyNowItem.price;
+        } else if (order_type === 'cart' && req.session.cart) {
+            orderItems = req.session.cart;
+            totalAmount = req.session.cart.reduce((sum, item) => sum + item.price, 0);
+        } else {
+            return res.status(400).json({ error: 'No items to order' });
+        }
+
+        const order = {
+            id: Date.now(),
+            items: orderItems,
+            total: totalAmount,
+            address_id: address_id,
+            payment_method: payment_method,
+            status: 'pending',
+            created_at: new Date(),
+            user: data.currentUser?.name || 'Guest'
+        };
+
+        data.orders.push(order);
+
+        // Clear the session data
+        if (order_type === 'buyNow') {
+            req.session.buyNowItem = null;
+        } else {
+            req.session.cart = [];
+        }
+
+        res.json({ 
+            success: true, 
+            message: 'Order placed successfully!',
+            order_id: order.id 
+        });
+    } catch (error) {
+        console.error('Error placing order:', error);
+        res.status(500).json({ error: 'Server error occurred' });
+    }
 });
 
 app.get('/api/user', (req, res) => {

@@ -56,6 +56,48 @@ $(document).ready(function() {
             }
         });
     });
+
+    // Buy Now functionality
+    $(document).on('click', '.buy-now-btn', function(e) {
+        e.preventDefault();
+        
+        const productId = $('#add_to_cart_form').data('product-id');
+        
+        // Check if size is selected
+        if (!$("input[name='size_variant']:checked").length) {
+            toastr.error('Please select a size');
+            return;
+        }
+        
+        // Collect form data
+        const formData = {
+            product_id: productId,
+            size_variant: $("input[name='size_variant']:checked").val(),
+            quantity: $("input[name='quantity']").val() || 1,
+            optional_items: []
+        };
+        
+        // Collect optional items
+        $("input[name='optional_items[]']:checked").each(function() {
+            formData.optional_items.push($(this).val());
+        });
+        
+        $.ajax({
+            url: '/buy-now',
+            method: 'POST',
+            data: formData,
+            success: function(response) {
+                toastr.success('Proceeding to checkout!');
+                $('#cartModal').modal('hide');
+                // Redirect to order summary page
+                window.location.href = '/order-summary.html';
+            },
+            error: function(xhr) {
+                console.log('Error details:', xhr.responseText);
+                toastr.error('Error processing purchase');
+            }
+        });
+    });
     
     // Quantity increment/decrement in modal
     $(document).on('click', '.increment', function() {
