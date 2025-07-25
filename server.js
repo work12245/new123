@@ -630,13 +630,9 @@ app.get('/order-confirmation.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'order-confirmation.html'));
 });
 
-// Serve login pages
+// User Panel Routes
 app.get('/login.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'login.html'));
-});
-
-app.get('/admin/login.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'admin/login.html'));
 });
 
 app.get('/register.html', (req, res) => {
@@ -645,6 +641,400 @@ app.get('/register.html', (req, res) => {
 
 app.get('/dashboard.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'dashboard.html'));
+});
+
+app.get('/about-us.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'about-us.html'));
+});
+
+app.get('/blogs.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'blogs.html'));
+});
+
+app.get('/contact-us.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'contact-us.html'));
+});
+
+app.get('/faq.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'faq.html'));
+});
+
+app.get('/forget-password.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'forget-password.html'));
+});
+
+app.get('/our-chef.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'our-chef.html'));
+});
+
+app.get('/products.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'products.html'));
+});
+
+app.get('/privacy-policy.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'privacy-policy.html'));
+});
+
+app.get('/terms-and-condition.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'terms-and-condition.html'));
+});
+
+app.get('/testimonial.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'testimonial.html'));
+});
+
+app.get('/payment.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'payment.html'));
+});
+
+// Blog Routes
+app.get('/blog/:slug', (req, res) => {
+  const blogPath = path.join(__dirname, 'blog', req.params.slug, 'index.html');
+  if (fs.existsSync(blogPath)) {
+    res.sendFile(blogPath);
+  } else {
+    res.status(404).send('Blog post not found');
+  }
+});
+
+// Product Routes
+app.get('/product/:slug', (req, res) => {
+  const productPath = path.join(__dirname, 'product', req.params.slug + '.html');
+  if (fs.existsSync(productPath)) {
+    res.sendFile(productPath);
+  } else {
+    res.status(404).send('Product not found');
+  }
+});
+
+// Page Routes
+app.get('/page/:slug', (req, res) => {
+  const pagePath = path.join(__dirname, 'page', req.params.slug + '.html');
+  if (fs.existsSync(pagePath)) {
+    res.sendFile(pagePath);
+  } else {
+    res.status(404).send('Page not found');
+  }
+});
+
+// Admin Login Route
+app.get('/admin/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/login.html'));
+});
+
+// Admin Panel Routes (All require admin authentication)
+app.get('/admin/dashboard.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/dashboard.html'));
+});
+
+app.get('/admin/about-us.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/about-us.html'));
+});
+
+app.get('/admin/admin.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/admin.html'));
+});
+
+app.get('/admin/advertisement.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/advertisement.html'));
+});
+
+app.get('/admin/all-order.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/all-order.html'));
+});
+
+app.get('/admin/app-section.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/app-section.html'));
+});
+
+app.get('/admin/blog-category.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/blog-category.html'));
+});
+
+app.get('/admin/blog-comment.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/blog-comment.html'));
+});
+
+app.get('/admin/blog.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/blog.html'));
+});
+
+app.get('/admin/breadcrumb-image.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/breadcrumb-image.html'));
+});
+
+app.get('/admin/cash-on-delivery.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/cash-on-delivery.html'));
+});
+
+app.get('/admin/clear-database.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/clear-database.html'));
+});
+
+app.get('/admin/completed-order.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/completed-order.html'));
+});
+
+app.get('/admin/contact-message.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/contact-message.html'));
+});
+
+app.get('/admin/contact-us.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/contact-us.html'));
+});
+
+app.get('/admin/counter.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/counter.html'));
+});
+
+app.get('/admin/coupon.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/coupon.html'));
+});
+
+app.get('/admin/custom-page.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/custom-page.html'));
+});
+
+app.get('/admin/customer-list.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/customer-list.html'));
+});
+
+app.get('/admin/declined-order.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/declined-order.html'));
+});
+
+app.get('/admin/default-avatar.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/default-avatar.html'));
+});
+
+app.get('/admin/delivered-order.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/delivered-order.html'));
+});
+
+app.get('/admin/delivery-area.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/delivery-area.html'));
+});
+
+app.get('/admin/email-configuration.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/email-configuration.html'));
+});
+
+app.get('/admin/email-template.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/email-template.html'));
+});
+
+app.get('/admin/error-page.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/error-page.html'));
+});
+
+app.get('/admin/faq.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/faq.html'));
+});
+
+app.get('/admin/footer.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/footer.html'));
+});
+
+app.get('/admin/general-setting.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/general-setting.html'));
+});
+
+app.get('/admin/homepage.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/homepage.html'));
+});
+
+app.get('/admin/languages.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/languages.html'));
+});
+
+app.get('/admin/login-page.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/login-page.html'));
+});
+
+app.get('/admin/maintainance-mode.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/maintainance-mode.html'));
+});
+
+app.get('/admin/our-chef.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/our-chef.html'));
+});
+
+app.get('/admin/partner.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/partner.html'));
+});
+
+app.get('/admin/payment-method.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/payment-method.html'));
+});
+
+app.get('/admin/pending-customer-list.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/pending-customer-list.html'));
+});
+
+app.get('/admin/pending-order.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/pending-order.html'));
+});
+
+app.get('/admin/popular-blog.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/popular-blog.html'));
+});
+
+app.get('/admin/pos.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/pos.html'));
+});
+
+app.get('/admin/pregress-order.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/pregress-order.html'));
+});
+
+app.get('/admin/privacy-policy.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/privacy-policy.html'));
+});
+
+app.get('/admin/product-category.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/product-category.html'));
+});
+
+app.get('/admin/product-review.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/product-review.html'));
+});
+
+app.get('/admin/products.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/products.html'));
+});
+
+app.get('/admin/profile.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/profile.html'));
+});
+
+app.get('/admin/reservation.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/reservation.html'));
+});
+
+app.get('/admin/send-email-to-all-customer.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/send-email-to-all-customer.html'));
+});
+
+app.get('/admin/seo-setup.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/seo-setup.html'));
+});
+
+app.get('/admin/service.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/service.html'));
+});
+
+app.get('/admin/slider.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/slider.html'));
+});
+
+app.get('/admin/social-link.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/social-link.html'));
+});
+
+app.get('/admin/subscriber.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/subscriber.html'));
+});
+
+app.get('/admin/terms-and-condition.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/terms-and-condition.html'));
+});
+
+app.get('/admin/testimonial.html', requireAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/testimonial.html'));
+});
+
+// Admin Dynamic Routes with Parameters
+app.get('/admin/customer-show/:id.html', requireAdmin, (req, res) => {
+  const customerPath = path.join(__dirname, 'admin/customer-show', req.params.id + '.html');
+  if (fs.existsSync(customerPath)) {
+    res.sendFile(customerPath);
+  } else {
+    res.status(404).send('Customer not found');
+  }
+});
+
+app.get('/admin/order-show/:id.html', requireAdmin, (req, res) => {
+  const orderPath = path.join(__dirname, 'admin/order-show', req.params.id + '.html');
+  if (fs.existsSync(orderPath)) {
+    res.sendFile(orderPath);
+  } else {
+    res.status(404).send('Order not found');
+  }
+});
+
+app.get('/admin/show-contact-message/:id.html', requireAdmin, (req, res) => {
+  const messagePath = path.join(__dirname, 'admin/show-contact-message', req.params.id + '.html');
+  if (fs.existsSync(messagePath)) {
+    res.sendFile(messagePath);
+  } else {
+    res.status(404).send('Message not found');
+  }
+});
+
+app.get('/admin/show-product-review/:id.html', requireAdmin, (req, res) => {
+  const reviewPath = path.join(__dirname, 'admin/show-product-review', req.params.id + '.html');
+  if (fs.existsSync(reviewPath)) {
+    res.sendFile(reviewPath);
+  } else {
+    res.status(404).send('Review not found');
+  }
+});
+
+// Admin Edit Routes
+app.get('/admin/product/:id/edit.html', requireAdmin, (req, res) => {
+  const editPath = path.join(__dirname, 'admin/product', req.params.id, 'edit.html');
+  if (fs.existsSync(editPath)) {
+    res.sendFile(editPath);
+  } else {
+    res.status(404).send('Product edit page not found');
+  }
+});
+
+app.get('/admin/product-gallery/:id.html', requireAdmin, (req, res) => {
+  const galleryPath = path.join(__dirname, 'admin/product-gallery', req.params.id + '.html');
+  if (fs.existsSync(galleryPath)) {
+    res.sendFile(galleryPath);
+  } else {
+    res.status(404).send('Product gallery not found');
+  }
+});
+
+app.get('/admin/product-variant/:id.html', requireAdmin, (req, res) => {
+  const variantPath = path.join(__dirname, 'admin/product-variant', req.params.id + '.html');
+  if (fs.existsSync(variantPath)) {
+    res.sendFile(variantPath);
+  } else {
+    res.status(404).send('Product variant not found');
+  }
+});
+
+app.get('/admin/edit-email-template/:id.html', requireAdmin, (req, res) => {
+  const templatePath = path.join(__dirname, 'admin/edit-email-template', req.params.id + '.html');
+  if (fs.existsSync(templatePath)) {
+    res.sendFile(templatePath);
+  } else {
+    res.status(404).send('Email template not found');
+  }
+});
+
+// Admin Create Routes for various sections
+app.get('/admin/:section/create.html', requireAdmin, (req, res) => {
+  const createPath = path.join(__dirname, 'admin', req.params.section, 'create.html');
+  if (fs.existsSync(createPath)) {
+    res.sendFile(createPath);
+  } else {
+    res.status(404).send('Create page not found');
+  }
+});
+
+// Admin Edit Routes for various sections with ID
+app.get('/admin/:section/:id/edit.html', requireAdmin, (req, res) => {
+  const editPath = path.join(__dirname, 'admin', req.params.section, req.params.id, 'edit.html');
+  if (fs.existsSync(editPath)) {
+    res.sendFile(editPath);
+  } else {
+    res.status(404).send('Edit page not found');
+  }
 });
 
 // Authentication routes
@@ -1195,10 +1585,7 @@ app.get('/auth-status', (req, res) => {
   });
 });
 
-// Admin routes
-app.get('/admin/dashboard.html', requireAdmin, (req, res) => {
-  res.sendFile(path.join(__dirname, 'admin/dashboard.html'));
-});
+// Admin routes are now defined above with all other admin routes
 
 // Get all users (admin only)
 app.get('/api/admin/users', requireAdmin, (req, res) => {
@@ -1312,6 +1699,41 @@ app.get('/api/products', (req, res) => {
 app.post('/store-contact', (req, res) => {
   console.log('Contact form submitted:', req.body);
   res.json({ success: true, message: 'Message sent successfully' });
+});
+
+// Catch-all route for undefined paths
+app.get('*', (req, res) => {
+  // Check if it's an admin route that requires authentication
+  if (req.path.startsWith('/admin/') && req.path !== '/admin/login.html') {
+    if (!req.session.user || req.session.user.role !== 'admin') {
+      return res.redirect('/admin/login.html');
+    }
+  }
+  
+  // For other undefined routes, redirect to appropriate page
+  if (req.path.startsWith('/admin/')) {
+    res.status(404).send(`
+      <html>
+        <head><title>Page Not Found</title></head>
+        <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+          <h1>404 - Admin Page Not Found</h1>
+          <p>The requested admin page "${req.path}" was not found.</p>
+          <a href="/admin/dashboard.html" style="color: blue;">Go to Admin Dashboard</a>
+        </body>
+      </html>
+    `);
+  } else {
+    res.status(404).send(`
+      <html>
+        <head><title>Page Not Found</title></head>
+        <body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
+          <h1>404 - Page Not Found</h1>
+          <p>The requested page "${req.path}" was not found.</p>
+          <a href="/" style="color: blue;">Go to Homepage</a>
+        </body>
+      </html>
+    `);
+  }
 });
 
 // Error handling
