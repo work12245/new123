@@ -1,6 +1,4 @@
-The code is modified to add click handlers to all menu items, ensuring they are all clickable and function as intended.
-```
-```replit_final_file
+
 $(function () {
 
     "use strict";
@@ -59,6 +57,22 @@ $(function () {
         });
     }
 
+    // Event delegation for dynamically added menu items
+    $(document).on('click', '.wsus__menu_item', function(e) {
+        // Check if the click is on action buttons
+        if ($(e.target).closest('ul').length > 0) {
+            return; // Don't trigger modal if clicking on action buttons
+        }
+        
+        // Get product ID from onclick attribute or data attribute
+        let onclick = $(this).attr('onclick');
+        if (onclick) {
+            let productId = onclick.match(/load_product_model\((\d+)\)/);
+            if (productId) {
+                load_product_model(parseInt(productId[1]));
+            }
+        }
+    });
 
     //======menu fix js======
     if ($('.main_menu').offset() != undefined) {
@@ -74,8 +88,6 @@ $(function () {
         });
     }
 
-
-
     //=======MENU CART======
     $(".cart_icon").click(function (e) {
         e.preventDefault();
@@ -86,7 +98,6 @@ $(function () {
         $(".wsus__menu_cart_area").removeClass("show_mini_cart");
     });
 
-
     //=======MENU SEARCH======
     $(".menu_search").click(function () {
         $(".wsus__search_form").addClass("show");
@@ -96,15 +107,11 @@ $(function () {
         $(".wsus__search_form").removeClass("show");
     });
 
-
-
     //=========NICE SELECT=========
     $('#select_js').niceSelect();
     $('#select_js2').niceSelect();
     $('#select_js3').niceSelect();
     $('#select_js4').niceSelect();
-
-
 
     //=======BANNER SLIDER======
     $('.banner_slider').slick({
@@ -116,7 +123,6 @@ $(function () {
         dots: true,
         arrows: false,
     });
-
 
     //=======OFFER ITEM SLIDER======
     $('.offer_item_slider').slick({
@@ -163,7 +169,6 @@ $(function () {
         ]
     });
 
-
     //*==========ISOTOPE==============
     var $grid = $('.grid').isotope({});
 
@@ -176,13 +181,10 @@ $(function () {
 
     //active class
     $('.menu_filter button').on("click", function (event) {
-
         $(this).siblings('.active').removeClass('active');
         $(this).addClass('active');
         event.preventDefault();
-
     });
-
 
     //*=======simplyCountdown========
     var d = new Date(),
@@ -196,7 +198,6 @@ $(function () {
         day: d.getDate(),
         enableUtc: true
     });
-
 
     //=======TEAM SLIDER======
     $('.team_slider').slick({
@@ -240,8 +241,6 @@ $(function () {
             }
         ]
     });
-
-
 
     //=======ADD SLIDER======
     $('.add_slider').slick({
@@ -288,11 +287,8 @@ $(function () {
         ]
     });
 
-
-
     //=========COUNTER JS=========
     $('.counter').countUp();
-
 
     //=======OFFER ITEM SLIDER======
     $('.testi_slider').slick({
@@ -337,7 +333,6 @@ $(function () {
         ]
     });
 
-
     //=======BRAND SLIDER======
     $('.brand_slider').slick({
         slidesToShow: 6,
@@ -381,7 +376,6 @@ $(function () {
         ]
     });
 
-
     //*=======SCROLL BUTTON=======
     $('.wsus__scroll_btn').on('click', function () {
         $('html, body').animate({
@@ -399,14 +393,8 @@ $(function () {
         }
     });
 
-
     //======= VENOBOX.JS.=========
     $('.venobox').venobox();
-
-
-    //*========STICKY SIDEBAR=======
-    // Sticky sidebar functionality removed due to library compatibility
-
 
     //=======OFFER ITEM SLIDER======
     $('.blog_det_slider').slick({
@@ -450,7 +438,6 @@ $(function () {
             }
         ]
     });
-
 
     //=======OFFER ITEM SLIDER======
     $('.related_product_slider').slick({
@@ -497,16 +484,13 @@ $(function () {
         ]
     });
 
-
     //*==========wow js==========
     new WOW().init();
-
 
     //*==========PERSONAL INFO==========
     $(".dash_info_btn").click(function () {
         $(".wsus_dash_personal_info").toggleClass("show");
     });
-
 
     //*==========ORDER HISTORY==========
     $(".view_invoice").on("click", function () {
@@ -525,7 +509,6 @@ $(function () {
         $(".wsus__invoice").fadeOut();
     });
 
-
     //*==========DASHBOARD ADDRESS==========
     $(".dash_add_new_address").on("click", function () {
         $(".address_body").addClass("show_new_address");
@@ -543,7 +526,6 @@ $(function () {
         $(".address_body").removeClass("show_edit_address");
     });
 
-
     //=======OFFER ITEM SLIDER======
     $('.banner2_slider').slick({
         slidesToShow: 1,
@@ -554,9 +536,7 @@ $(function () {
         arrows: true,
         nextArrow: '<i class="far fa-long-arrow-right nextArrow"></i>',
         prevArrow: '<i class="far fa-long-arrow-left prevArrow"></i>',
-
     });
-
 
     //=======TESTIMONIAL 2 SLIDER======
     $('.testi_slider2').slick({
@@ -602,7 +582,6 @@ $(function () {
             }
         ]
     });
-
 
     //=======PRODUCT DETAILS SLIDER======
     if ($("#exzoom").length > 0) {
