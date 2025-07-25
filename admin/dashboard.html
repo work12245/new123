@@ -375,19 +375,274 @@
 
                   <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
-                      <div class="card-icon bg-primary">
+                      <div class="card-icon bg-success">
                           <i class="fas fa-dollar-sign"></i>
                       </div>
                       <div class="card-wrap">
                         <div class="card-header">
-                          <h4>Today Earning</h4>
+                          <h4>Total Revenue</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="total-revenue">
                           $0
                         </div>
                       </div>
                     </div>
                   </div>
+
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                      <div class="card-icon bg-warning">
+                          <i class="fas fa-users"></i>
+                      </div>
+                      <div class="card-wrap">
+                        <div class="card-header">
+                          <h4>Total Users</h4>
+                        </div>
+                        <div class="card-body" id="total-users">
+                          0
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                      <div class="card-icon bg-info">
+                          <i class="fas fa-utensils"></i>
+                      </div>
+                      <div class="card-wrap">
+                        <div class="card-header">
+                          <h4>Total Products</h4>
+                        </div>
+                        <div class="card-body" id="total-products">
+                          0
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+
+            <!-- Orders Management Section -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Recent Orders</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="orders-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Customer</th>
+                                            <th>Items</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="orders-tbody">
+                                        <!-- Orders will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reservations Management Section -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Reservations</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="reservations-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Customer</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Persons</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="reservations-tbody">
+                                        <!-- Reservations will be loaded here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="../public/backend/js/jquery-3.6.3.min.js"></script>
+<script src="../public/backend/js/bootstrap.min.js"></script>
+<script src="../public/toastr/toastr.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    loadDashboardData();
+    loadOrders();
+    loadReservations();
+});
+
+function loadDashboardData() {
+    $.ajax({
+        url: '/api/admin/stats',
+        method: 'GET',
+        success: function(response) {
+            if (response.success) {
+                const stats = response.stats;
+                $('#total-revenue').text('$' + stats.totalRevenue);
+                $('#total-users').text(stats.totalUsers);
+                $('#total-products').text(stats.totalProducts);
+                
+                // Update the "Today Order" card
+                $('.card-statistic-1:first .card-body').text(stats.totalOrders);
+            }
+        },
+        error: function() {
+            console.error('Error loading dashboard stats');
+        }
+    });
+}
+
+function loadOrders() {
+    $.ajax({
+        url: '/api/admin/orders',
+        method: 'GET',
+        success: function(response) {
+            if (response.success) {
+                const ordersHtml = response.orders.map(order => `
+                    <tr>
+                        <td>#${order.id}</td>
+                        <td>${order.user_name}<br><small>${order.user_email}</small></td>
+                        <td>${order.items.length} item(s)</td>
+                        <td>$${order.total}</td>
+                        <td>
+                            <span class="badge badge-${getStatusColor(order.status)}">
+                                ${order.status.replace('_', ' ').toUpperCase()}
+                            </span>
+                        </td>
+                        <td>${new Date(order.created_at).toLocaleDateString()}</td>
+                        <td>
+                            <select class="form-control form-control-sm" onchange="updateOrderStatus(${order.id}, this.value)">
+                                <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                <option value="preparing" ${order.status === 'preparing' ? 'selected' : ''}>Preparing</option>
+                                <option value="on_the_way" ${order.status === 'on_the_way' ? 'selected' : ''}>On the Way</option>
+                                <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                                <option value="cancelled" ${order.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                            </select>
+                        </td>
+                    </tr>
+                `).join('');
+                $('#orders-tbody').html(ordersHtml);
+            }
+        },
+        error: function() {
+            console.error('Error loading orders');
+        }
+    });
+}
+
+function loadReservations() {
+    $.ajax({
+        url: '/api/admin/reservations',
+        method: 'GET',
+        success: function(response) {
+            if (response.success) {
+                const reservationsHtml = response.reservations.map(reservation => `
+                    <tr>
+                        <td>#${reservation.id}</td>
+                        <td>${reservation.user_name}<br><small>${reservation.user_email}</small></td>
+                        <td>${reservation.date}</td>
+                        <td>${reservation.time}</td>
+                        <td>${reservation.persons}</td>
+                        <td>
+                            <span class="badge badge-${getStatusColor(reservation.status)}">
+                                ${reservation.status.toUpperCase()}
+                            </span>
+                        </td>
+                        <td>
+                            <select class="form-control form-control-sm" onchange="updateReservationStatus(${reservation.id}, this.value)">
+                                <option value="pending" ${reservation.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                <option value="confirmed" ${reservation.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+                                <option value="cancelled" ${reservation.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                                <option value="completed" ${reservation.status === 'completed' ? 'selected' : ''}>Completed</option>
+                            </select>
+                        </td>
+                    </tr>
+                `).join('');
+                $('#reservations-tbody').html(reservationsHtml);
+            }
+        },
+        error: function() {
+            console.error('Error loading reservations');
+        }
+    });
+}
+
+function updateOrderStatus(orderId, status) {
+    $.ajax({
+        url: `/api/admin/orders/${orderId}/status`,
+        method: 'PUT',
+        data: { status: status },
+        success: function(response) {
+            if (response.success) {
+                toastr.success('Order status updated successfully');
+                loadOrders(); // Refresh the orders table
+            } else {
+                toastr.error('Error updating order status');
+            }
+        },
+        error: function() {
+            toastr.error('Error updating order status');
+        }
+    });
+}
+
+function updateReservationStatus(reservationId, status) {
+    $.ajax({
+        url: `/api/admin/reservations/${reservationId}/status`,
+        method: 'PUT',
+        data: { status: status },
+        success: function(response) {
+            if (response.success) {
+                toastr.success('Reservation status updated successfully');
+                loadReservations(); // Refresh the reservations table
+            } else {
+                toastr.error('Error updating reservation status');
+            }
+        },
+        error: function() {
+            toastr.error('Error updating reservation status');
+        }
+    });
+}
+
+function getStatusColor(status) {
+    switch(status) {
+        case 'pending': return 'warning';
+        case 'preparing': return 'info';
+        case 'on_the_way': return 'primary';
+        case 'delivered': case 'confirmed': case 'completed': return 'success';
+        case 'cancelled': return 'danger';
+        default: return 'secondary';
+    }
+}
+</script>
 
                   <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">

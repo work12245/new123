@@ -32,6 +32,7 @@ let data = {
       email: "john@example.com",
       password: "password123",
       role: "customer",
+      created_at: "2024-01-15",
       addresses: [
         {
           id: 1,
@@ -50,6 +51,7 @@ let data = {
       email: "admin@unifood.com",
       password: "admin123",
       role: "admin",
+      created_at: "2024-01-01",
       addresses: []
     },
     {
@@ -58,6 +60,7 @@ let data = {
       email: "jane@example.com",
       password: "jane123",
       role: "customer",
+      created_at: "2024-01-20",
       addresses: [
         {
           id: 2,
@@ -76,7 +79,56 @@ let data = {
       email: "mike@example.com",
       password: "mike123",
       role: "customer",
-      addresses: []
+      created_at: "2024-01-25",
+      addresses: [
+        {
+          id: 3,
+          type: "home",
+          name: "Mike Johnson",
+          phone: "555-0456",
+          address: "Chicago, IL, USA",
+          delivery_area: "North Side",
+          delivery_charge: 20
+        }
+      ]
+    },
+    {
+      id: 5,
+      name: "Sarah Wilson",
+      email: "sarah@example.com",
+      password: "sarah123",
+      role: "customer",
+      created_at: "2024-02-01",
+      addresses: [
+        {
+          id: 4,
+          type: "home",
+          name: "Sarah Wilson",
+          phone: "555-0789",
+          address: "Miami, FL, USA",
+          delivery_area: "South Beach",
+          delivery_charge: 35
+        }
+      ]
+    },
+    {
+      id: 6,
+      name: "Test User",
+      email: "test@example.com",
+      password: "test123",
+      role: "customer",
+      created_at: "2024-02-10",
+      addresses: [
+        {
+          id: 5,
+          type: "home",
+          name: "Test User",
+          phone: "555-TEST",
+          address: "Test City, TC, USA",
+          delivery_area: "Test Area",
+          delivery_charge: 15
+        }
+      ]
     }
   ],
   products: [
@@ -359,9 +411,194 @@ let data = {
     }
   ],
   cart: [],
-  orders: [],
-  reservations: [],
-  subscribers: [],
+  orders: [
+    {
+      id: 1001,
+      user_id: 1,
+      user_name: "John Doe",
+      user_email: "john@example.com",
+      items: [
+        {
+          id: 1,
+          product_id: 1,
+          name: "Hyderabadi Biryani",
+          image: "/public/uploads/custom-images/hyderabadi-biryani-2023-03-05-01-14-59-9689.png",
+          size: "Medium",
+          extras: ["Extra Cheese"],
+          quantity: 2,
+          price: 310,
+          base_price: 150
+        }
+      ],
+      total: 335, // including delivery
+      address: {
+        name: "John Doe",
+        phone: "125-985-4587",
+        address: "Los Angeles, CA, USA",
+        delivery_area: "Metrocenter Mall"
+      },
+      delivery_charge: 25,
+      payment_method: "Cash on Delivery",
+      status: "delivered",
+      created_at: "2024-02-08T10:30:00Z",
+      updated_at: "2024-02-08T12:45:00Z"
+    },
+    {
+      id: 1002,
+      user_id: 3,
+      user_name: "Jane Smith",
+      user_email: "jane@example.com",
+      items: [
+        {
+          id: 2,
+          product_id: 6,
+          name: "Daria Shevtsova",
+          image: "/public/uploads/custom-images/daria-shevtsova-2023-03-05-02-47-26-3957.png",
+          size: "Regular",
+          extras: [],
+          quantity: 1,
+          price: 120,
+          base_price: 120
+        },
+        {
+          id: 3,
+          product_id: 7,
+          name: "Spicy Burger",
+          image: "/public/uploads/custom-images/spicy-burger-2023-03-05-02-57-08-4535.png",
+          size: "Large",
+          extras: [],
+          quantity: 2,
+          price: 120,
+          base_price: 60
+        }
+      ],
+      total: 270, // including delivery
+      address: {
+        name: "Jane Smith",
+        phone: "555-0123",
+        address: "New York, NY, USA",
+        delivery_area: "Downtown"
+      },
+      delivery_charge: 30,
+      payment_method: "Online Payment",
+      status: "pending",
+      created_at: "2024-02-10T14:20:00Z",
+      updated_at: "2024-02-10T14:20:00Z"
+    },
+    {
+      id: 1003,
+      user_id: 4,
+      user_name: "Mike Johnson",
+      user_email: "mike@example.com",
+      items: [
+        {
+          id: 4,
+          product_id: 5,
+          name: "Chicken Nuggets",
+          image: "/public/uploads/custom-images/chicken-nuggets-2023-03-05-01-50-15-6100.jpg",
+          size: "12 pieces",
+          extras: ["Extra Sauce"],
+          quantity: 1,
+          price: 153,
+          base_price: 150
+        }
+      ],
+      total: 173, // including delivery
+      address: {
+        name: "Mike Johnson",
+        phone: "555-0456",
+        address: "Chicago, IL, USA",
+        delivery_area: "North Side"
+      },
+      delivery_charge: 20,
+      payment_method: "Cash on Delivery",
+      status: "preparing",
+      created_at: "2024-02-10T16:15:00Z",
+      updated_at: "2024-02-10T16:30:00Z"
+    },
+    {
+      id: 1004,
+      user_id: 5,
+      user_name: "Sarah Wilson",
+      user_email: "sarah@example.com",
+      items: [
+        {
+          id: 5,
+          product_id: 8,
+          name: "Fried Chicken",
+          image: "/public/uploads/custom-images/fried-chicken-2023-03-05-02-59-51-6567.png",
+          size: "4 pieces",
+          extras: [],
+          quantity: 1,
+          price: 90,
+          base_price: 90
+        },
+        {
+          id: 6,
+          product_id: 12,
+          name: "Onion Rings",
+          image: "/public/uploads/custom-images/onion-rings-2023-03-05-03-23-09-1753.png",
+          size: "Regular",
+          extras: [],
+          quantity: 2,
+          price: 60,
+          base_price: 30
+        }
+      ],
+      total: 185, // including delivery
+      address: {
+        name: "Sarah Wilson",
+        phone: "555-0789",
+        address: "Miami, FL, USA",
+        delivery_area: "South Beach"
+      },
+      delivery_charge: 35,
+      payment_method: "Online Payment",
+      status: "on_the_way",
+      created_at: "2024-02-10T18:00:00Z",
+      updated_at: "2024-02-10T18:45:00Z"
+    }
+  ],
+  reservations: [
+    {
+      id: 1,
+      user_name: "John Doe",
+      user_email: "john@example.com",
+      date: "2024-02-15",
+      time: "19:00",
+      persons: 4,
+      status: "confirmed",
+      created_at: "2024-02-08T09:30:00Z"
+    },
+    {
+      id: 2,
+      user_name: "Jane Smith", 
+      user_email: "jane@example.com",
+      date: "2024-02-14",
+      time: "18:30",
+      persons: 2,
+      status: "pending",
+      created_at: "2024-02-10T11:20:00Z"
+    },
+    {
+      id: 3,
+      user_name: "Mike Johnson",
+      user_email: "mike@example.com", 
+      date: "2024-02-16",
+      time: "20:00",
+      persons: 6,
+      status: "pending",
+      created_at: "2024-02-10T15:45:00Z"
+    }
+  ],
+  subscribers: [
+    { email: "john@example.com", date: "2024-01-15T10:00:00Z" },
+    { email: "jane@example.com", date: "2024-01-20T14:30:00Z" },
+    { email: "mike@example.com", date: "2024-01-25T16:45:00Z" },
+    { email: "sarah@example.com", date: "2024-02-01T09:15:00Z" },
+    { email: "newsletter1@example.com", date: "2024-02-05T11:20:00Z" },
+    { email: "newsletter2@example.com", date: "2024-02-08T13:10:00Z" }
+  ],
   currentUser: null
 };
 
@@ -882,15 +1119,32 @@ app.post('/place-order', (req, res) => {
             return res.status(400).json({ error: 'No items to order' });
         }
 
+        const user = req.session.user || data.currentUser;
+        const userAddress = user?.addresses?.find(addr => addr.id == address_id);
+        
         const order = {
             id: Date.now(),
+            user_id: user?.id || null,
+            user_name: user?.name || 'Guest',
+            user_email: user?.email || 'guest@example.com',
             items: orderItems,
-            total: totalAmount,
-            address_id: address_id,
+            total: totalAmount + (userAddress?.delivery_charge || 25),
+            address: userAddress ? {
+                name: userAddress.name,
+                phone: userAddress.phone,
+                address: userAddress.address,
+                delivery_area: userAddress.delivery_area
+            } : {
+                name: 'Guest User',
+                phone: 'N/A',
+                address: 'No address provided',
+                delivery_area: 'Default Area'
+            },
+            delivery_charge: userAddress?.delivery_charge || 25,
             payment_method: payment_method,
             status: 'pending',
             created_at: new Date(),
-            user: data.currentUser?.name || 'Guest'
+            updated_at: new Date()
         };
 
         data.orders.push(order);
@@ -970,6 +1224,11 @@ app.get('/api/admin/orders', requireAdmin, (req, res) => {
 
 // Get dashboard stats (admin only)
 app.get('/api/admin/stats', requireAdmin, (req, res) => {
+  const today = new Date().toISOString().split('T')[0];
+  const todayOrders = data.orders.filter(order => 
+    order.created_at.split('T')[0] === today
+  );
+  
   res.json({
     success: true,
     stats: {
@@ -977,8 +1236,57 @@ app.get('/api/admin/stats', requireAdmin, (req, res) => {
       totalOrders: data.orders.length,
       totalProducts: data.products.length,
       totalRevenue: data.orders.reduce((sum, order) => sum + order.total, 0),
-      pendingOrders: data.orders.filter(o => o.status === 'pending').length
+      pendingOrders: data.orders.filter(o => o.status === 'pending').length,
+      todayOrders: todayOrders.length,
+      todayRevenue: todayOrders.reduce((sum, order) => sum + order.total, 0),
+      totalReservations: data.reservations.length,
+      totalSubscribers: data.subscribers.length
     }
+  });
+});
+
+// Update order status (admin only)
+app.put('/api/admin/orders/:id/status', requireAdmin, (req, res) => {
+  const orderId = parseInt(req.params.id);
+  const { status } = req.body;
+  
+  const order = data.orders.find(o => o.id === orderId);
+  if (order) {
+    order.status = status;
+    order.updated_at = new Date();
+    res.json({ success: true, message: 'Order status updated successfully' });
+  } else {
+    res.status(404).json({ success: false, message: 'Order not found' });
+  }
+});
+
+// Get reservations (admin only)
+app.get('/api/admin/reservations', requireAdmin, (req, res) => {
+  res.json({
+    success: true,
+    reservations: data.reservations
+  });
+});
+
+// Update reservation status (admin only)
+app.put('/api/admin/reservations/:id/status', requireAdmin, (req, res) => {
+  const reservationId = parseInt(req.params.id);
+  const { status } = req.body;
+  
+  const reservation = data.reservations.find(r => r.id === reservationId);
+  if (reservation) {
+    reservation.status = status;
+    res.json({ success: true, message: 'Reservation status updated successfully' });
+  } else {
+    res.status(404).json({ success: false, message: 'Reservation not found' });
+  }
+});
+
+// Get subscribers (admin only)
+app.get('/api/admin/subscribers', requireAdmin, (req, res) => {
+  res.json({
+    success: true,
+    subscribers: data.subscribers
   });
 });
 
