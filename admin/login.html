@@ -113,7 +113,7 @@
               <div class="card-header"><h4>Login</h4></div>
 
               <div class="card-body">
-                <form class="needs-validation" novalidate="" action="admin/login" method="POST">
+                <form class="needs-validation" novalidate="" id="adminLoginForm">
                     <input type="hidden" name="_token" value="lUrV1BomdDlHwZi8obIaCpNTUjv0xeijDeW1GykM" autocomplete="off">
                   <div class="form-group">
                     <label for="email">Email</label>
@@ -139,6 +139,14 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                       Login
                     </button>
+                  </div>
+                  
+                  <!-- Demo Admin Credentials -->
+                  <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px; font-size: 12px; border-left: 4px solid #007bff;">
+                    <h6 style="margin-bottom: 10px; color: #333; font-weight: bold;">Demo Admin Account:</h6>
+                    <p style="margin: 5px 0;"><strong>Email:</strong> admin@unifood.com</p>
+                    <p style="margin: 5px 0;"><strong>Password:</strong> admin123</p>
+                    <small style="color: #666;">Use these credentials to access the admin dashboard</small>
                   </div>
                 </form>
 
@@ -202,7 +210,55 @@
 
 
     <script>
-            </script>
+        $(document).ready(function() {
+            $('#adminLoginForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const email = $('input[name="email"]').val();
+                const password = $('input[name="password"]').val();
+                
+                if (!email || !password) {
+                    iziToast.error({
+                        title: 'Error',
+                        message: 'Please fill in all fields'
+                    });
+                    return;
+                }
+                
+                $('button[type="submit"]').prop('disabled', true).text('Logging in...');
+                
+                $.ajax({
+                    url: '/admin-login',
+                    method: 'POST',
+                    data: { email, password },
+                    success: function(response) {
+                        if (response.success) {
+                            iziToast.success({
+                                title: 'Success',
+                                message: response.message
+                            });
+                            setTimeout(() => {
+                                window.location.href = response.redirect;
+                            }, 1000);
+                        } else {
+                            iziToast.error({
+                                title: 'Error',
+                                message: response.message
+                            });
+                            $('button[type="submit"]').prop('disabled', false).text('Login');
+                        }
+                    },
+                    error: function() {
+                        iziToast.error({
+                            title: 'Error',
+                            message: 'Login failed. Please try again.'
+                        });
+                        $('button[type="submit"]').prop('disabled', false).text('Login');
+                    }
+                });
+            });
+        });
+    </script>
 
     
 

@@ -393,23 +393,109 @@ app.get('/order-confirmation.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'order-confirmation.html'));
 });
 
+// Serve login pages
+app.get('/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'login.html'));
+});
+
+app.get('/admin/login.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin/login.html'));
+});
+
+app.get('/register.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'register.html'));
+});
+
+app.get('/dashboard.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dashboard.html'));
+});
+
 // Authentication routes
 app.post('/store-login', (req, res) => {
-  const { email, password } = req.body;
-  const user = data.users.find(u => u.email === email && u.password === password);
-
-  if (user) {
-    req.session.user = user;
-    data.currentUser = user;
+  try {
+    const { email, password } = req.body;
     
-    // Redirect based on role
-    if (user.role === 'admin') {
-      res.json({ success: true, redirect: '/admin/dashboard.html', role: 'admin' });
-    } else {
-      res.json({ success: true, redirect: '/dashboard.html', role: 'customer' });
+    // Validate input
+    if (!email || !password) {
+      return res.json({ success: false, message: 'Email and password are required' });
     }
-  } else {
-    res.json({ success: false, message: 'Invalid email or password' });
+
+    const user = data.users.find(u => u.email === email && u.password === password);
+
+    if (user) {
+      req.session.user = user;
+      data.currentUser = user;
+      
+      // Redirect based on role
+      if (user.role === 'admin') {
+        res.json({ 
+          success: true, 
+          redirect: '/admin/dashboard.html', 
+          role: 'admin',
+          message: 'Admin login successful!',
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role
+          }
+        });
+      } else {
+        res.json({ 
+          success: true, 
+          redirect: '/dashboard.html', 
+          role: 'customer',
+          message: 'Customer login successful!',
+          user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role
+          }
+        });
+      }
+    } else {
+      res.json({ success: false, message: 'Invalid email or password' });
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ success: false, message: 'Server error occurred during login' });
+  }
+});
+
+// Admin specific login route
+app.post('/admin-login', (req, res) => {
+  try {
+    const { email, password } = req.body;
+    
+    if (!email || !password) {
+      return res.json({ success: false, message: 'Email and password are required' });
+    }
+
+    const user = data.users.find(u => u.email === email && u.password === password && u.role === 'admin');
+
+    if (user) {
+      req.session.user = user;
+      data.currentUser = user;
+      
+      res.json({ 
+        success: true, 
+        redirect: '/admin/dashboard.html', 
+        role: 'admin',
+        message: 'Admin login successful!',
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role
+        }
+      });
+    } else {
+      res.json({ success: false, message: 'Invalid admin credentials' });
+    }
+  } catch (error) {
+    console.error('Admin login error:', error);
+    res.status(500).json({ success: false, message: 'Server error occurred during admin login' });
   }
 });
 
@@ -827,8 +913,32 @@ app.post('/place-order', (req, res) => {
     }
 });
 
+// Get current user info
 app.get('/api/user', (req, res) => {
-  res.json(req.session.user || null);
+  if (req.session.user) {
+    res.json({
+      success: true,
+      user: {
+        id: req.session.user.id,
+        name: req.session.user.name,
+        email: req.session.user.email,
+        role: req.session.user.role
+      }
+    });
+  } else {
+    res.json({
+      success: false,
+      user: null
+    });
+  }
+});
+
+// Check authentication status
+app.get('/auth-status', (req, res) => {
+  res.json({
+    isAuthenticated: !!req.session.user,
+    user: req.session.user || null
+  });
 });
 
 // Admin routes

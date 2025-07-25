@@ -315,11 +315,14 @@
                                 </div>
                                 
                                 <!-- Demo Accounts Info -->
-                                <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px; font-size: 12px;">
-                                    <h6 style="margin-bottom: 10px; color: #333;">Demo Accounts:</h6>
-                                    <p style="margin: 5px 0;"><strong>Customer:</strong> john@example.com / password123</p>
-                                    <p style="margin: 5px 0;"><strong>Customer:</strong> jane@example.com / jane123</p>
-                                    <p style="margin: 5px 0;"><strong>Admin:</strong> admin@unifood.com / admin123</p>
+                                <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px; font-size: 12px; border-left: 4px solid #eb0029;">
+                                    <h6 style="margin-bottom: 10px; color: #333; font-weight: bold;">Demo Customer Accounts:</h6>
+                                    <p style="margin: 5px 0;"><strong>Customer 1:</strong> john@example.com / password123</p>
+                                    <p style="margin: 5px 0;"><strong>Customer 2:</strong> jane@example.com / jane123</p>
+                                    <p style="margin: 5px 0;"><strong>Customer 3:</strong> mike@example.com / mike123</p>
+                                    <hr style="margin: 10px 0;">
+                                    <p style="margin: 5px 0; color: #666;"><strong>For Admin Access:</strong> <a href="/admin/login.html" style="color: #eb0029;">Go to Admin Login</a></p>
+                                    <small style="color: #666;">Use any customer credentials above to access the customer dashboard</small>
                                 </div>
                             </form>
 
@@ -556,7 +559,7 @@
                     data: { email, password },
                     success: function(response) {
                         if (response.success) {
-                            toastr.success('Login successful!');
+                            toastr.success(response.message || 'Login successful!');
                             setTimeout(() => {
                                 window.location.href = response.redirect;
                             }, 1000);
@@ -565,7 +568,8 @@
                             $('#loginBtn').prop('disabled', false).text('Login');
                         }
                     },
-                    error: function() {
+                    error: function(xhr, status, error) {
+                        console.error('Login error:', error);
                         toastr.error('Login failed. Please try again.');
                         $('#loginBtn').prop('disabled', false).text('Login');
                     }
