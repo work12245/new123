@@ -1169,13 +1169,6 @@ app.post('/store-register', (req, res) => {
   });
 });
 
-// Logout route
-app.post('/logout', (req, res) => {
-  req.session.destroy();
-  data.currentUser = null;
-  res.json({ success: true, redirect: '/login.html' });
-});
-
 // Check authentication middleware
 const requireAuth = (req, res, next) => {
   if (req.session.user) {
@@ -1199,6 +1192,13 @@ const requireUserAuth = (req, res, next) => {
   // Allow access since we're handling auth on frontend with localStorage
   next();
 };
+
+// Logout route
+app.post('/logout', (req, res) => {
+  req.session.destroy();
+  data.currentUser = null;
+  res.json({ success: true, redirect: '/login.html' });
+});
 
 // Product routes
 app.get('/load-product-modal/:id', (req, res) => {
@@ -1765,6 +1765,100 @@ app.get('/api/admin/subscribers', requireAdmin, (req, res) => {
     success: true,
     subscribers: data.subscribers
   });
+});
+
+// Update user details (admin only)
+app.put('/api/admin/users/:id', requireAdmin, (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    const { name, email, role } = req.body;
+    
+    const userIndex = data.users.findIndex(u => u.id === userId);
+    if (userIndex !== -1) {
+      // Check if email already exists for another user
+      const existingUser = data.users.find(u => u.email === email && u.id !== userId);
+      if (existingUser) {
+        return res.status(400).json({ success: false, message: 'Email already exists' });
+      }
+      
+      data.users[userIndex] = { ...data.users[userIndex], name, email, role };
+      res.json({ 
+        success: true, 
+        message: 'User updated successfully',
+        user: data.users[userIndex]
+      });
+    } else {
+      res.status(404).json({ success: false, message: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Update user error:', error);
+    res.status(500).json({ success: false, message: 'Server error occurred' });
+  }
+});
+
+// Delete user (admin only)
+app.delete('/api/admin/users/:id', requireAdmin, (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    const userIndex = data.users.findIndex(u => u.id === userId);
+    
+    if (userIndex !== -1) {
+      // Don't allow deleting admin users
+      if (data.users[userIndex].role === 'admin') {
+        return res.status(400).json({ success: false, message: 'Cannot delete admin users' });
+      }
+      
+      data.users.splice(userIndex, 1);
+      res.json({ success: true, message: 'User deleted successfully' });
+    } else {
+      res.status(404).json({ success: false, message: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Delete user error:', error);
+    res.status(500).json({ success: false, message: 'Server error occurred' });
+  }
+});
+
+// Sync localStorage users with server (enhanced)
+app.post('/api/admin/sync-users', requireAdmin, (req, res) => {
+  try {
+    const { users } = req.body;
+    if (users && Array.isArray(users)) {
+      let syncedCount = 0;
+      let updatedCount = 0;
+      
+      users.forEach(localUser => {
+        const existingUserIndex = data.users.findIndex(u => u.email === localUser.email);
+        if (existingUserIndex === -1) {
+          // Add new user
+          data.users.push({
+            ...localUser,
+            id: Math.max(...data.users.map(u => u.id), 0) + 1,
+            created_at: localUser.created_at || new Date().toISOString()
+          });
+          syncedCount++;
+        } else {
+          // Update existing user
+          data.users[existingUserIndex] = { 
+            ...data.users[existingUserIndex], 
+            ...localUser,
+            id: data.users[existingUserIndex].id // Keep original ID
+          };
+          updatedCount++;
+        }
+      });
+      
+      res.json({ 
+        success: true, 
+        message: `Synced ${syncedCount} new users, updated ${updatedCount} existing users` 
+      });
+    } else {
+      res.status(400).json({ success: false, message: 'Invalid users data' });
+    }
+  } catch (error) {
+    console.error('Sync users error:', error);
+    res.status(500).json({ success: false, message: 'Server error occurred' });
+  }
 });
 
 app.get('/api/products', (req, res) => {
