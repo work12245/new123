@@ -53,6 +53,7 @@
     <!--jquery library js-->
     <script src="/public/user/js/jquery-3.6.3.min.js"></script>
     <script src="/public/user/js/sweetalert2@11.js"></script>
+    <script src="/public/user/js/auth.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
@@ -1994,6 +1995,94 @@
 
     <script src="/public/toastr/toastr.min.js"></script>
     <script src="/public/backend/js/select2.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Check authentication
+            if (!window.authManager || !window.authManager.isAuthenticated()) {
+                window.location.href = '/login.html';
+                return;
+            }
+
+            const user = window.authManager.currentUser;
+            
+            // Update user information in dashboard
+            function updateDashboardWithUserData() {
+                // Update header info
+                $('.dasboard_header h2').text(user.name);
+                
+                // Update personal info section
+                $('.personal_info_text p:contains("Name:")').html(`<span>Name:</span> ${user.name}`);
+                $('.personal_info_text p:contains("Email:")').html(`<span>Email:</span> ${user.email}`);
+                $('.personal_info_text p:contains("Phone:")').html(`<span>Phone:</span> ${user.phone || 'Not provided'}`);
+                $('.personal_info_text p:contains("Address:")').html(`<span>Address:</span> ${user.address || 'Not provided'}`);
+                
+                // Update form fields
+                $('input[name="name"]').val(user.name);
+                $('input[name="email"]').val(user.email);
+                $('input[name="phone"]').val(user.phone || '');
+                $('input[name="address"]').val(user.address || '');
+            }
+
+            updateDashboardWithUserData();
+
+            // Handle profile update
+            $('#personal_info_form').on('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = {
+                    name: $('input[name="name"]').val(),
+                    email: $('input[name="email"]').val(),
+                    phone: $('input[name="phone"]').val(),
+                    address: $('input[name="address"]').val()
+                };
+
+                // Update user in localStorage
+                const updatedUser = window.authManager.updateProfile(formData);
+                
+                if (updatedUser) {
+                    toastr.success('Profile updated successfully!');
+                    updateDashboardWithUserData();
+                    
+                    // Hide edit form and show info
+                    $('.wsus_dash_personal_info_edit').hide();
+                    $('.personal_info_text').show();
+                    $('.edit').show();
+                    $('.cancel').hide();
+                } else {
+                    toastr.error('Failed to update profile');
+                }
+            });
+
+            // Handle edit button click
+            $('.dash_info_btn').on('click', function(e) {
+                e.preventDefault();
+                const isEditing = $('.wsus_dash_personal_info_edit').is(':visible');
+                
+                if (isEditing) {
+                    // Cancel editing
+                    $('.wsus_dash_personal_info_edit').hide();
+                    $('.personal_info_text').show();
+                    $('.edit').show();
+                    $('.cancel').hide();
+                } else {
+                    // Start editing
+                    $('.personal_info_text').hide();
+                    $('.wsus_dash_personal_info_edit').show();
+                    $('.edit').hide();
+                    $('.cancel').show();
+                }
+            });
+
+            // Handle logout
+            $('#logout_btn').on('click', function(e) {
+                e.preventDefault();
+                if (window.authManager) {
+                    window.authManager.logout();
+                }
+            });
+        });
+    </script>
 
     <script>
             </script>

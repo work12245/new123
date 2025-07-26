@@ -3,29 +3,72 @@ $(function () {
 
     "use strict";
 
+    // Load authentication script first
+    $.getScript('/public/user/js/auth.js').done(function() {
+        console.log('Auth manager loaded');
+        
+        // Initialize authentication
+        if (window.authManager) {
+            window.authManager.init();
+        }
+    });
+
     // Check user authentication status
-    checkAuthStatus();
+    function checkAuthStatus() {
+        if (window.authManager && window.authManager.isAuthenticated()) {
+            const user = window.authManager.currentUser;
+            updateUIForAuthenticatedUser(user);
+        } else {
+            updateUIForGuestUser();
+        }
+    }
+
+    // Update UI for authenticated user
+    function updateUIForAuthenticatedUser(user) {
+        // Update user info in header if exists
+        $('.user-name').text(user.name);
+        $('.user-email').text(user.email);
+        
+        // Show logout button, hide login button
+        $('.login-btn').hide();
+        $('.logout-btn').show();
+        $('.user-dashboard-link').show();
+    }
+
+    // Update UI for guest user
+    function updateUIForGuestUser() {
+        $('.login-btn').show();
+        $('.logout-btn').hide();
+        $('.user-dashboard-link').hide();
+    }
 
     // Logout functionality
-    $(document).on('click', '#logoutBtn', function(e) {
+    $(document).on('click', '#logout_btn, .logout-btn', function(e) {
         e.preventDefault();
-
-        $.ajax({
-            url: '/logout',
-            method: 'POST',
-            success: function(response) {
-                if (response.success) {
-                    toastr.success('Logged out successfully');
-                    setTimeout(() => {
-                        window.location.href = response.redirect;
-                    }, 1000);
+        
+        if (window.authManager) {
+            window.authManager.logout();
+        } else {
+            $.ajax({
+                url: '/logout',
+                method: 'POST',
+                success: function(response) {
+                    if (response.success) {
+                        toastr.success('Logged out successfully');
+                        setTimeout(() => {
+                            window.location.href = response.redirect;
+                        }, 1000);
+                    }
+                },
+                error: function() {
+                    toastr.error('Logout failed');
                 }
-            },
-            error: function() {
-                toastr.error('Logout failed');
-            }
-        });
+            });
+        }
     });
+
+    // Initialize auth status check after a short delay
+    setTimeout(checkAuthStatus, 100);
 
     function checkAuthStatus() {
         $.ajax({

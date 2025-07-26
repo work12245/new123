@@ -1037,6 +1037,12 @@ app.get('/admin/:section/:id/edit.html', requireAdmin, (req, res) => {
   }
 });
 
+// Check if user dashboard access is allowed
+const requireUserAuth = (req, res, next) => {
+  // Allow access since we're handling auth on frontend with localStorage
+  next();
+};
+
 // Authentication routes
 app.post('/store-login', (req, res) => {
   try {
@@ -1064,7 +1070,8 @@ app.post('/store-login', (req, res) => {
             id: user.id,
             name: user.name,
             email: user.email,
-            role: user.role
+            role: user.role,
+            addresses: user.addresses || []
           }
         });
       } else {
@@ -1077,7 +1084,8 @@ app.post('/store-login', (req, res) => {
             id: user.id,
             name: user.name,
             email: user.email,
-            role: user.role
+            role: user.role,
+            addresses: user.addresses || []
           }
         });
       }
@@ -1145,13 +1153,26 @@ app.post('/store-register', (req, res) => {
     email,
     password,
     role: 'customer',
-    addresses: []
+    addresses: [],
+    created_at: new Date().toISOString()
   };
 
   data.users.push(newUser);
   req.session.user = newUser;
   data.currentUser = newUser;
-  res.json({ success: true, redirect: '/dashboard.html', role: 'customer' });
+  res.json({ 
+    success: true, 
+    redirect: '/dashboard.html', 
+    role: 'customer',
+    message: 'Registration successful!',
+    user: {
+      id: newUser.id,
+      name: newUser.name,
+      email: newUser.email,
+      role: newUser.role,
+      addresses: newUser.addresses
+    }
+  });
 });
 
 // Logout route
@@ -1566,7 +1587,8 @@ app.get('/api/user', (req, res) => {
         id: req.session.user.id,
         name: req.session.user.name,
         email: req.session.user.email,
-        role: req.session.user.role
+        role: req.session.user.role,
+        addresses: req.session.user.addresses || []
       }
     });
   } else {
@@ -1574,6 +1596,74 @@ app.get('/api/user', (req, res) => {
       success: false,
       user: null
     });
+  }
+});
+
+// Update user profile
+app.put('/api/user/profile', (req, res) => {
+  try {
+    const { name, email, phone, address } = req.body;
+    
+    if (req.session.user) {
+      const userIndex = data.users.findIndex(u => u.id === req.session.user.id);
+      if (userIndex !== -1) {
+        data.users[userIndex].name = name || data.users[userIndex].name;
+        data.users[userIndex].email = email || data.users[userIndex].email;
+        data.users[userIndex].phone = phone || data.users[userIndex].phone;
+        data.users[userIndex].address = address || data.users[userIndex].address;
+        
+        req.session.user = data.users[userIndex];
+        
+        res.json({
+          success: true,
+          message: 'Profile updated successfully',
+          user: {
+            id: data.users[userIndex].id,
+            name: data.users[userIndex].name,
+            email: data.users[userIndex].email,
+            phone: data.users[userIndex].phone,
+            address: data.users[userIndex].address,
+            role: data.users[userIndex].role
+          }
+        });
+      } else {
+        res.status(404).json({ success: false, message: 'User not found' });
+      }
+    } else {
+      res.status(401).json({ success: false, message: 'Not authenticated' });
+    }
+  } catch (error) {
+    console.error('Profile update error:', error);
+    res.status(500).json({ success: false, message: 'Server error occurred' });
+  }
+});
+
+// Sync localStorage users with server (for admin panel)
+app.post('/api/sync-users', (req, res) => {
+  try {
+    const { users } = req.body;
+    if (users && Array.isArray(users)) {
+      // Merge localStorage users with existing users
+      users.forEach(localUser => {
+        const existingUserIndex = data.users.findIndex(u => u.email === localUser.email);
+        if (existingUserIndex === -1) {
+          // Add new user
+          data.users.push({
+            ...localUser,
+            id: data.users.length + 1
+          });
+        } else {
+          // Update existing user
+          data.users[existingUserIndex] = { ...data.users[existingUserIndex], ...localUser };
+        }
+      });
+      res.json({ success: true, message: 'Users synced successfully' });
+    } else {
+      res.status(400).json({ success: false, message: 'Invalid users data' });
+    }
+  } catch (error) {
+    console.error('Sync users error:', error);
+    res.status(500).json({ success: false, message: 'Server error occurred' });
   }
 });
 

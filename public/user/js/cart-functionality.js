@@ -2,6 +2,13 @@
 // Cart functionality
 $(document).ready(function() {
     
+    // Load auth script if not loaded
+    if (!window.authManager) {
+        $.getScript('/public/user/js/auth.js').done(function() {
+            console.log('Auth manager loaded in cart');
+        });
+    }
+    
     // Load cart data on page load
     loadCartData();
     
@@ -98,6 +105,84 @@ $(document).ready(function() {
             }
         });
     });
+
+    // Checkout button click handler
+    $(document).on('click', '.checkout, a[href="/checkout.html"], a[href="checkout.html"]', function(e) {
+        e.preventDefault();
+        
+        if (window.authManager && !window.authManager.isAuthenticated()) {
+            // Show login popup
+            window.authManager.showLoginPopup().then((user) => {
+                // User logged in successfully, proceed to checkout
+                window.location.href = '/checkout.html';
+            }).catch((error) => {
+                console.log('Login cancelled or failed:', error.message);
+            });
+        } else {
+            // User is authenticated, proceed to checkout
+            window.location.href = '/checkout.html';
+        }
+    });
+
+    // Buy Now button enhancement to check auth at checkout
+    $(document).on('click', '.buy-now-btn', function(e) {
+        e.preventDefault();
+        
+        const productId = $('#add_to_cart_form').data('product-id');
+        
+        // Check if size is selected
+        if (!$("input[name='size_variant']:checked").length) {
+            toastr.error('Please select a size');
+            return;
+        }
+        
+        // Collect form data
+        const formData = {
+            product_id: productId,
+            size_variant: $("input[name='size_variant']:checked").val(),
+            quantity: $("input[name='quantity']").val() || 1,
+            optional_items: []
+        };
+        
+        // Collect optional items
+        $("input[name='optional_items[]']:checked").each(function() {
+            formData.optional_items.push($(this).val());
+        });
+        
+        // Save buy now item to localStorage temporarily
+        localStorage.setItem('buyNowItem', JSON.stringify(formData));
+        
+        if (window.authManager && !window.authManager.isAuthenticated()) {
+            // Show login popup
+            window.authManager.showLoginPopup().then((user) => {
+                // User logged in successfully, proceed to order summary
+                processBuyNow(formData);
+            }).catch((error) => {
+                console.log('Login cancelled or failed:', error.message);
+            });
+        } else {
+            // User is authenticated, proceed directly
+            processBuyNow(formData);
+        }
+    });
+
+    function processBuyNow(formData) {
+        $.ajax({
+            url: '/buy-now',
+            method: 'POST',
+            data: formData,
+            success: function(response) {
+                toastr.success('Proceeding to checkout!');
+                $('#cartModal').modal('hide');
+                // Redirect to order summary page
+                window.location.href = '/order-summary.html';
+            },
+            error: function(xhr) {
+                console.log('Error details:', xhr.responseText);
+                toastr.error('Error processing purchase');
+            }
+        });
+    }
     
     // Quantity increment/decrement in modal
     $(document).on('click', '.increment', function() {

@@ -530,8 +530,22 @@
     <script src="/public/toastr/toastr.min.js"></script>
     <script src="/public/backend/js/select2.min.js"></script>
 
+    <!-- Load auth script -->
+    <script src="/public/user/js/auth.js"></script>
+    
     <script>
         $(document).ready(function() {
+            // Check if user is already authenticated
+            if (window.authManager && window.authManager.isAuthenticated()) {
+                const user = window.authManager.currentUser;
+                if (user.role === 'admin') {
+                    window.location.href = '/admin/dashboard.html';
+                } else {
+                    window.location.href = '/dashboard.html';
+                }
+                return;
+            }
+            
             $('#registerForm').on('submit', function(e) {
                 e.preventDefault();
                 
@@ -558,6 +572,11 @@
                     data: { name, email, password, password_confirmation },
                     success: function(response) {
                         if (response.success) {
+                            // Save user to localStorage
+                            if (window.authManager) {
+                                window.authManager.saveUserToStorage(response.user);
+                            }
+                            
                             toastr.success('Registration successful!');
                             setTimeout(() => {
                                 window.location.href = response.redirect;
