@@ -602,6 +602,28 @@ let data = {
   currentUser: null
 };
 
+// Middleware functions (must be defined before use)
+const requireAuth = (req, res, next) => {
+  if (req.session.user) {
+    next();
+  } else {
+    res.redirect('/login.html');
+  }
+};
+
+const requireAdmin = (req, res, next) => {
+  if (req.session.user && req.session.user.role === 'admin') {
+    next();
+  } else {
+    res.status(403).json({ error: 'Admin access required' });
+  }
+};
+
+const requireUserAuth = (req, res, next) => {
+  // Allow access since we're handling auth on frontend with localStorage
+  next();
+};
+
 // Routes
 
 // Serve index.html at root route
@@ -1169,29 +1191,7 @@ app.post('/store-register', (req, res) => {
   });
 });
 
-// Check authentication middleware
-const requireAuth = (req, res, next) => {
-  if (req.session.user) {
-    next();
-  } else {
-    res.redirect('/login.html');
-  }
-};
 
-// Check admin middleware
-const requireAdmin = (req, res, next) => {
-  if (req.session.user && req.session.user.role === 'admin') {
-    next();
-  } else {
-    res.status(403).json({ error: 'Admin access required' });
-  }
-};
-
-// Check if user dashboard access is allowed
-const requireUserAuth = (req, res, next) => {
-  // Allow access since we're handling auth on frontend with localStorage
-  next();
-};
 
 // Logout route
 app.post('/logout', (req, res) => {
