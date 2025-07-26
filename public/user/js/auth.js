@@ -75,17 +75,21 @@ class AuthManager {
         
         if (userProtectedPages.some(page => currentPage.includes(page))) {
             if (!this.isAuthenticated()) {
+                alert('Please login to access the dashboard');
                 this.redirectToLogin();
-                return;
+                return false;
             }
         }
         
         if (adminProtectedPages.some(page => currentPage.includes(page))) {
             if (!this.isAuthenticated() || !this.isAdmin()) {
+                alert('Admin access required');
                 this.redirectToLogin(true);
-                return;
+                return false;
             }
         }
+        
+        return true;
     }
 
     // Redirect to login

@@ -496,9 +496,33 @@ $(document).ready(function() {
     loadDashboardData();
     loadOrders();
     loadReservations();
+    loadUsers();
+    
+    // Sync localStorage users with server on load
+    syncLocalStorageUsers();
 });
 
+function syncLocalStorageUsers() {
+    const localUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+    if (localUsers.length > 0) {
+        $.ajax({
+            url: '/api/sync-users',
+            method: 'POST',
+            data: { users: localUsers },
+            success: function(response) {
+                console.log('Users synced with server');
+            },
+            error: function() {
+                console.log('Failed to sync users with server');
+            }
+        });
+    }
+}
+
 function loadDashboardData() {
+    // Load from both server and localStorage
+    const localUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+    
     $.ajax({
         url: '/api/admin/stats',
         method: 'GET',
@@ -506,7 +530,7 @@ function loadDashboardData() {
             if (response.success) {
                 const stats = response.stats;
                 $('#total-revenue').text('$' + stats.totalRevenue);
-                $('#total-users').text(stats.totalUsers);
+                $('#total-users').text(Math.max(stats.totalUsers, localUsers.length));
                 $('#total-products').text(stats.totalProducts);
                 
                 // Update the "Today Order" card
@@ -514,9 +538,128 @@ function loadDashboardData() {
             }
         },
         error: function() {
-            console.error('Error loading dashboard stats');
+            // Fallback to localStorage data
+            $('#total-users').text(localUsers.length);
+            console.error('Error loading dashboard stats, using local data');
         }
     });
+}
+
+function loadUsers() {
+    // Load users from both server and localStorage
+    const localUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+    
+    $.ajax({
+        url: '/api/admin/users',
+        method: 'GET',
+        success: function(response) {
+            if (response.success) {
+                displayUsers([...response.users, ...localUsers]);
+            }
+        },
+        error: function() {
+            // Fallback to localStorage users
+            displayUsers(localUsers);
+        }
+    });
+}
+
+function displayUsers(users) {
+    const uniqueUsers = users.filter((user, index, self) => 
+        index === self.findIndex(u => u.email === user.email)
+    );
+    
+    const usersHtml = uniqueUsers.map(user => `
+        <tr>
+            <td>${user.id || 'N/A'}</td>
+            <td>${user.name || 'N/A'}</td>
+            <td>${user.email || 'N/A'}</td>
+            <td><span class="badge badge-${user.role === 'admin' ? 'danger' : 'success'}">${user.role || 'customer'}</span></td>
+            <td>${user.created_at ? new Date(user.created_at).toLocaleDateString() : 'N/A'}</td>
+            <td>
+                <button class="btn btn-sm btn-primary" onclick="editUser('${user.email}')">Edit</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteUser('${user.email}')">Delete</button>
+            </td>
+        </tr>
+    `).join('');
+    
+    // Add to dashboard if users table exists
+    if ($('#usersTable').length) {
+        $('#usersTable tbody').html(usersHtml);
+    } else {
+        // Create users section in dashboard
+        const usersSection = `
+            <div class="col-md-12 mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Recent Users</h4>
+                        <div class="card-header-action">
+                            <a href="/admin/customer-list.html" class="btn btn-primary">View All</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="usersTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Joined</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${usersHtml}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        $('.row').append(usersSection);
+    }
+}
+
+function editUser(email) {
+    const allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+    const user = allUsers.find(u => u.email === email);
+    
+    if (user) {
+        const newName = prompt('Edit user name:', user.name);
+        const newRole = prompt('Edit user role (customer/admin):', user.role);
+        
+        if (newName && newRole) {
+            user.name = newName;
+            user.role = newRole;
+            
+            // Update localStorage
+            localStorage.setItem('allUsers', JSON.stringify(allUsers));
+            
+            // Update current user if editing self
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser && currentUser.email === email) {
+                localStorage.setItem('currentUser', JSON.stringify(user));
+            }
+            
+            loadUsers();
+            toastr.success('User updated successfully!');
+        }
+    }
+}
+
+function deleteUser(email) {
+    if (confirm('Are you sure you want to delete this user?')) {
+        let allUsers = JSON.parse(localStorage.getItem('allUsers') || '[]');
+        allUsers = allUsers.filter(u => u.email !== email);
+        localStorage.setItem('allUsers', JSON.stringify(allUsers));
+        
+        loadUsers();
+        loadDashboardData();
+        toastr.success('User deleted successfully!');
+    }
 }
 
 function loadOrders() {

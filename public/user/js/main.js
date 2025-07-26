@@ -109,13 +109,38 @@ $(function () {
         
         // Get product ID from onclick attribute or data attribute
         let onclick = $(this).attr('onclick');
+        let productId = null;
+        
         if (onclick) {
-            let productId = onclick.match(/load_product_model\((\d+)\)/);
-            if (productId) {
-                load_product_model(parseInt(productId[1]));
+            let match = onclick.match(/load_product_model\((\d+)\)/);
+            if (match) {
+                productId = parseInt(match[1]);
             }
+        } else {
+            // Try to get from data attribute
+            productId = $(this).data('product-id');
+        }
+        
+        if (productId) {
+            load_product_model(productId);
         }
     });
+
+    // Make load_product_model globally available
+    window.load_product_model = function(productId) {
+        $.ajax({
+            url: `/load-product-modal/${productId}`,
+            method: 'GET',
+            success: function(response) {
+                $('.load_product_modal_response').html(response);
+                $('#cartModal').modal('show');
+            },
+            error: function(xhr, status, error) {
+                console.log('Error details:', xhr.responseText);
+                toastr.error('Error loading product');
+            }
+        });
+    };
 
     //======menu fix js======
     if ($('.main_menu').offset() != undefined) {

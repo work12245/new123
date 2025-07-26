@@ -1037,12 +1037,6 @@ app.get('/admin/:section/:id/edit.html', requireAdmin, (req, res) => {
   }
 });
 
-// Check if user dashboard access is allowed
-const requireUserAuth = (req, res, next) => {
-  // Allow access since we're handling auth on frontend with localStorage
-  next();
-};
-
 // Authentication routes
 app.post('/store-login', (req, res) => {
   try {
@@ -1198,6 +1192,12 @@ const requireAdmin = (req, res, next) => {
   } else {
     res.status(403).json({ error: 'Admin access required' });
   }
+};
+
+// Check if user dashboard access is allowed
+const requireUserAuth = (req, res, next) => {
+  // Allow access since we're handling auth on frontend with localStorage
+  next();
 };
 
 // Product routes
